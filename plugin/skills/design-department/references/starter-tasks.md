@@ -1,0 +1,5 @@
+- Build the brand kit page: colors with exact values, the named fonts, and three lines of visual voice from the company profile - one self-contained file to the outbox
+- Draft the doc header template: company name, the look, and a one-line footer any document in the company can carry
+- Draft the deck skeleton: title slide, section slide, and content slide layouts in the brand look, ready for any department to fill
+- Draft the social frame: one reusable post layout in the brand look, delivered to the outbox for the founder to fill and send - sending stays with the founder
+- Audit three existing company pieces against the new kit and file one fix task per mismatch found

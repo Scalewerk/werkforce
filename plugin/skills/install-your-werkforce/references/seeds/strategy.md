@@ -1,0 +1,2 @@
+# Strategy ledger - recommendations, deliberations, verdicts
+<!-- LEDGER. Dated H2 entries "## YYYY-MM-DD - {topic}": a Recommendation (with reasons citing the business model) or a deliberation (seat-prefixed turns like [CEO], [CMO], ending in "Joint recommendation:"), each ending "Founder's verdict: Ratified|Declined|Pending - reason". Deliberations live here and nowhere else. Entries are never edited. -->

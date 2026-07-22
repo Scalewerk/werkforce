@@ -1,0 +1,34 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "werkforce",
+  "id": "werkforce",
+  "owner": {
+    "name": "Scalewerk",
+    "email": "austin@scalewerk.com",
+    "url": "https://scalewerk.com"
+  },
+  "metadata": {
+    "description": "The official Werkforce marketplace - the single Werkforce plugin, versioned and installable.",
+    "version": "3.0.4"
+  },
+  "plugins": [
+    {
+      "name": "werkforce",
+      "source": "./plugin",
+      "description": "Your own agentic workforce - a complete company operating system installed as skills. Boards, receipts, an independent review triangle, a founder decision boundary, and an additive upgrade path.",
+      "version": "3.0.4",
+      "author": {
+        "name": "Scalewerk",
+        "email": "austin@scalewerk.com"
+      },
+      "keywords": [
+        "agentic-workforce",
+        "operating-system",
+        "company-in-a-box",
+        "governance"
+      ],
+      "category": "workflow",
+      "sha": "sha256:a07921e03a9929ceb9934dede95276b0550e16b655d8c1bc5e8cf1683e8e7f33 (content digest of werkforce-plugin-3.0.4.tgz; git-ref sha stamped by founder at publish)"
+    }
+  ]
+}

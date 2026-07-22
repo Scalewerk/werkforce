@@ -1,0 +1,55 @@
+{
+  "hooks": {
+    "SessionStart": [
+      {
+        "matcher": "startup|clear|compact",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash \"${CLAUDE_PLUGIN_ROOT}/hooks/scripts/session-start.sh\"",
+            "async": false
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash \"${CLAUDE_PLUGIN_ROOT}/hooks/scripts/hook-exec.sh\" \"${CLAUDE_PLUGIN_ROOT}/hooks/scripts/guard-delete.mjs\""
+          },
+          {
+            "type": "command",
+            "command": "bash \"${CLAUDE_PLUGIN_ROOT}/hooks/scripts/hook-exec.sh\" \"${CLAUDE_PLUGIN_ROOT}/hooks/scripts/guard-codex-collision.mjs\""
+          }
+        ]
+      },
+      {
+        "matcher": "mcp__.*(send|mail|message|post)|.*Send.*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash \"${CLAUDE_PLUGIN_ROOT}/hooks/scripts/hook-exec.sh\" \"${CLAUDE_PLUGIN_ROOT}/hooks/scripts/guard-send.mjs\""
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash \"${CLAUDE_PLUGIN_ROOT}/hooks/scripts/hook-exec.sh\" \"${CLAUDE_PLUGIN_ROOT}/hooks/scripts/guard-receipts.mjs\""
+          },
+          {
+            "type": "command",
+            "command": "bash \"${CLAUDE_PLUGIN_ROOT}/hooks/scripts/hook-exec.sh\" \"${CLAUDE_PLUGIN_ROOT}/hooks/scripts/guard-claims.mjs\""
+          }
+        ]
+      }
+    ]
+  }
+}

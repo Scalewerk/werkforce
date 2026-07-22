@@ -1,0 +1,20 @@
+{
+  "name": "werkforce",
+  "version": "3.0.4",
+  "description": "Your own agentic workforce - a complete company operating system installed as skills, run from plain files you own. Boards, receipts, an independent review triangle, a founder decision boundary, and an additive upgrade path - an OS under the work, not just knowledge beside it.",
+  "author": {
+    "name": "Scalewerk",
+    "email": "austin@scalewerk.com",
+    "url": "https://scalewerk.com"
+  },
+  "homepage": "https://scalewerk.com",
+  "license": "SEE-LICENSE",
+  "keywords": [
+    "agentic-workforce",
+    "operating-system",
+    "solo-founder",
+    "company-in-a-box",
+    "governance",
+    "workflow"
+  ]
+}

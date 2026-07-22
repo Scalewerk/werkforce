@@ -1,0 +1,5 @@
+- Sweep `company/customers/` for every name at `paid` and build the onboarding checklist for the newest one - activation defined, every step ending in a dated checkpoint
+- Run the first promised-vs-delivered read across every open promise and file the delivery status report to the outbox
+- Draft the welcome-and-what-happens-next note for your most recent paid customer (draft only - the founder sends)
+- Turn the last piece of client work you finished into a proper handover artifact: what was produced, where it lives, what the customer does next
+- Draft the checkpoint check-in message for any customer whose next onboarding step is due this week (draft only - the founder sends)

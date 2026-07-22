@@ -1,0 +1,5 @@
+- Write the one-paragraph definition of what we sell today - offer, who it is for, what the current version does and does not include - grounded in `company/business-model.md`, with every unknown filed as a question for the founder instead of a guess
+- Harvest every product ask from `company/customers/` and `inbox.md` into a dated ask list, each line quoting its source and carrying a claim label
+- Sort the ask list into In / Next / Not planned and draft the first roadmap one-pager to `drafts/`, ready for the Product Manager's review
+- Draft a plain-language "what is in the current version" page for the outbox - a draft only; publishing or sending anything is the founder's reserved decision
+- Write one pricing observation with reasons citing named business-model fields and queue it to `company/decision-log.md` as a recommendation - the price itself never moves here

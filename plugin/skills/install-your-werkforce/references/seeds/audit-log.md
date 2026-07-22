@@ -1,0 +1,2 @@
+# Audit log - everything this system has ever done
+<!-- LEDGER (append-only, the master audit log). One line per action or event, from install onward: - YYYY-MM-DD HH:MM [{type}] [{owner}] [{scope}] what happened - pointer. Times in the HQ timezone, never UTC. Types: install | onboarding | task | review | decision | send | spend | hire | warning | session | skill | archive | backup | upgrade | note. If it is not here, it did not happen. -->
