@@ -28,7 +28,7 @@
         "governance"
       ],
       "category": "workflow",
-      "sha": "sha256:e3e30cbd8fec50714507eecb46289ced9d5695e443376d5d0d6f099354bc310e (content digest of werkforce-plugin-3.0.5.tgz; git-ref sha NOT yet stamped - awaits the push commit)"
+      "sha": "sha256:e3e30cbd8fec50714507eecb46289ced9d5695e443376d5d0d6f099354bc310e (content digest of werkforce-plugin-3.0.5.tgz); git-ref 45e16b0236475cc2d4de2509afe30b9e11dd30b2 stamped at publish 2026-07-24"
     }
   ]
 }
