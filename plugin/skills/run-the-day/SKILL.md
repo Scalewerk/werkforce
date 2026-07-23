@@ -71,7 +71,7 @@ Then the inbox line itself gets ` -> adopted: what it became` appended at its en
 
 ### Step 4 - Open with money
 
-The standup starts with one line: the single task on any board most likely to move money today - an ask to draft, a deliverable a customer is waiting on, a follow-up going cold. Then the day's queue, department by department: what is Filed, what is In progress, what sits Blocked and what its recheck says, what is due or overdue, what waits In review. If a board has nothing workable, I say so instead of inventing work, and I suggest one real task drawn from your profile - **brief-writer** turns it into a filed brief if you want it on the board properly.
+The standup starts with one line: the single task on any board most likely to move money today - an ask to draft, a deliverable a customer is waiting on, a follow-up going cold. Then the day's queue, department by department: what is Filed, what is In progress, what sits Blocked and what its recheck says, what is due or overdue, what waits Manager review. If a board has nothing workable, I say so instead of inventing work, and I suggest one real task drawn from your profile - **brief-writer** turns it into a filed brief if you want it on the board properly.
 
 ### Step 5 - Work the queues, by autonomy level
 
@@ -98,7 +98,7 @@ Every Blocked row carries its own instructions in the Receipt cell: `blocked by 
 
 Nothing sits. Before the run ends, every open row on every Active board does exactly one of four things:
 
-1. Advances a stage - Filed to In progress, In progress to In review, In review to Done with a receipt.
+1. Advances a stage - Filed to In progress, In progress to Manager review, Manager review to Operator review, Operator review to Done with a receipt.
 2. Gets a due date it did not have.
 3. Goes to Blocked, with `blocked by {what} - recheck {how}` written into its Receipt cell - a real parking spot with a posted return time, not a place to forget things.
 4. Goes to Dropped, with the reason written in the row. Dropped is never relabeled Done.

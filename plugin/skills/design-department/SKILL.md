@@ -74,7 +74,7 @@ I hand the brief to a delegated agent playing the Design Specialist seat and sta
 - **Templates** - the doc header, the deck skeleton, the social frame. Built once, produced from forever; they live in the outbox where any department lifts them without asking.
 - **Assets** - the pieces briefs actually ask for, each produced from a template where one exists.
 
-Every deliverable ships self-contained - one file that opens anywhere, nothing linked that breaks when it moves. Every claim carries its label: "matches the kit" is `[checked]` only after a side-by-side look this session. Handoff moves the file toward `outbox/`, flips the row to In review, and states which checks pass and what still worries the builder.
+Every deliverable ships self-contained - one file that opens anywhere, nothing linked that breaks when it moves. Every claim carries its label: "matches the kit" is `[checked]` only after a side-by-side look this session. Handoff moves the file toward `outbox/`, flips the row to Manager review, and states which checks pass and what still worries the builder.
 
 Anything a real person outside the company might see - a filled-in social frame, a client-facing look - is draft-shaped on purpose. I draft; you send.
 

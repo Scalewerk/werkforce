@@ -23,7 +23,7 @@ you give me something real.
 
 - One brief appended to `departments/<slug>/briefs.md` under today's date - outcome, acceptance checks, due, seat
 - A finished deliverable as the outbox pair - `departments/<slug>/outbox/YYYY-MM-DD-<slug>.md` (editable truth) plus its `.html` render in your company design system - every claim labeled
-- A board row that traveled Filed to In progress to In review to Done, with a receipt in the Receipt column
+- A board row that traveled Filed to In progress to Manager review to Operator review to Done, with a receipt in the Receipt column
 - One line in `records/worklog.md` - the first entry of your company's track record
 - Proof you can point at - real work, checked by a seat that did not do it, finished today
 
@@ -73,7 +73,7 @@ Two to four acceptance checks, each one falsifiable. "Make it good" is not a che
 
 I hand the brief to the Worker and say what is coming - the real deliverable, not a plan for one. The Worker reads the brief and produces it - the actual words, the actual list, the actual page - and writes it to `departments/<slug>/outbox/YYYY-MM-DD-<slug>.md`, the editable truth. Every claim in it carries one of the four labels: `[checked]` I verified it just now, `[did it]` I performed the action myself this session, `[best guess]` inferred, not verified, `[from memory]` recalled from files, may be stale.
 
-Then the deliverable gets its finished face: a self-contained `departments/<slug>/outbox/YYYY-MM-DD-<slug>.html` rendered from `company/design/page.html`, so what you hold looks shipped, not raw. If your design system is still `(not set yet)`, I say so plainly, use the shipped neutral look, and point you at the **design-system** onboarding step to make it yours - the markdown stays the truth either way. When both files land in the outbox, the board row moves to In review, and I tell you it is ready for the Reviewer.
+Then the deliverable gets its finished face: a self-contained `departments/<slug>/outbox/YYYY-MM-DD-<slug>.html` rendered from `company/design/page.html`, so what you hold looks shipped, not raw. If your design system is still `(not set yet)`, I say so plainly, use the shipped neutral look, and point you at the **design-system** onboarding step to make it yours - the markdown stays the truth either way. When both files land in the outbox, the board row moves to Manager review, and I tell you it is ready for the Reviewer.
 
 ### Step 5 - The Reviewer checks it
 
@@ -92,7 +92,7 @@ Because this is the department's very first reviewed task, I also run the indepe
 A receipt is one line proving the work is real - what was produced, where the file lives, and who reviewed it. The board row moves to Done with the receipt in the Receipt column:
 
 ```markdown
-<!-- Stages: Filed | In progress | Blocked | In review | Done | Dropped -->
+<!-- Stages: Filed | In progress | Blocked | Manager review | Operator review | Done | Dropped -->
 <!-- Receipt is "-" until Done; a Done receipt says what was produced, where it lives, who reviewed. A Blocked row carries "blocked by {what} - recheck {how}" in its Receipt cell until unblocked. -->
 | Task | Stage | Seat | Filed | Due | Receipt |
 |---|---|---|---|---|---|

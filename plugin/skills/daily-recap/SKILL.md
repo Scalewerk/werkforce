@@ -25,7 +25,7 @@ you give me something real.
 
 - The finished list, cross-checked: today's Done rows matched against `records/worklog.md` - every finish traces to a receipt, and a finish that cannot is flagged, never invented
 - The overnight picture: what stays In progress, and every Blocked row read back with its `blocked by {what} - recheck {how}` note
-- Tomorrow's queue in one list - overdue first, then due, then Blocked rechecks, then rows waiting In review - plus the count of decisions waiting on you
+- Tomorrow's queue in one list - overdue first, then due, then Blocked rechecks, then rows waiting Manager review - plus the count of decisions waiting on you
 - One lesson line appended to `records/improvements.md`, only on a day that taught one
 - The session-close line in `records/sessions.md`, so tomorrow's open finds a clean record
 - Zero board changes - a pure read, unless you ask me to touch something specific
@@ -64,7 +64,7 @@ Tomorrow's queue - {{DATE+1}}
 1. {task} - OVERDUE since {date} ({department}, {seat})
 2. {task} - due tomorrow ({department}, {seat})
 3. Recheck: {blocked task} - {recheck how} ({department})
-4. In review: {task} - waiting on {Reviewer name} ({department})
+4. Manager review: {task} - waiting on {Reviewer name} ({department})
 ```
 
 This is a handover note, not a plan - the plan is **run-the-day**'s opening move tomorrow, made with fresh eyes and the money question. I do not reorder boards, set dates, or drop rows to make the list tidier. If you look at the queue and say "drop row three" or "push that due date", I make exactly that change and note it; anything reserved still queues to `company/decision-log.md`.

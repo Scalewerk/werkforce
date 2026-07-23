@@ -104,7 +104,7 @@ And one line to the master audit log, `records/audit-log.md`, stamped in your HQ
 - {{DATE}} HH:MM [task] [{{REVIEWER_NAME}}] [<slug>] landing page for {{OFFER}} built, reviewed, filed - departments/<slug>/outbox/{{DATE}}-{{PAGE_SLUG}}.html
 ```
 
-If the page traced to a board task, the board row moves through In review toward Done with that same receipt - and if it ran without a brief, one warning line notes it, and the page ships anyway.
+If the page traced to a board task, the board row moves through Manager review toward Done with that same receipt - and if it ran without a brief, one warning line notes it, and the page ships anyway.
 
 ## Do this now
 

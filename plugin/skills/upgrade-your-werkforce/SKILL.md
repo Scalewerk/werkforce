@@ -7,7 +7,7 @@ description: Bring an older HQ up to the current operating system - session-led,
 
 Upgrades have a bad reputation because most of them are demolitions: the new version moves in by throwing the old one out. Your HQ cannot be treated that way - those files are your company's memory, and some of them hold months of decisions, receipts, and hard-won lessons. So this migration runs under one law: everything the new version needs gets ADDED, and nothing you already have gets deleted or overwritten. Your boards keep their rows, your charters keep their names, your worklog keeps every line.
 
-The version stamp lives in `os/VERSION` - one line, only this skill ever writes it. The current operating system is `3.0`. An HQ with no VERSION file is a first-generation HQ, a `2.0` HQ is one generation back, and neither is a problem - each is just a starting point this migration climbs from. You watch the whole migration happen, change by change, and the record of what moved goes on the worklog before the new version number does. If anything ever looks wrong afterward, the dated backup from minute one takes you straight back.
+The version stamp lives in `os/VERSION` - one line, only this skill ever writes it. The current operating system is `3.1`. An HQ with no VERSION file is a first-generation HQ, a `2.0` HQ is two generations back, a `3.0` HQ is one minor step back, and none is a problem - each is just a starting point this migration climbs from. You watch the whole migration happen, change by change, and the record of what moved goes on the worklog before the new version number does. If anything ever looks wrong afterward, the dated backup from minute one takes you straight back.
 
 ## Personalization
 
@@ -23,7 +23,7 @@ you give me something real.
 
 - A dated, verified backup of your whole HQ before a single byte changes
 - Every file the current version expects added from the shipped seeds - every file you already have left exactly as it is
-- The OS files refreshed from the current references: `os/charter.md`, `os/formats.md`, `os/manifest.md`, and `os/VERSION` stamped to `3.0` (the constitution and the format law only ever change through this skill)
+- The OS files refreshed from the current references: `os/charter.md`, `os/formats.md`, `os/manifest.md`, and `os/VERSION` stamped to `3.1` (the constitution and the format law only ever change through this skill)
 - A `Timezone:` line added to `HQ.md` from your answer - so every date the system writes and speaks is in your time, never UTC
 - The v3 additions seeded from the shipped seeds: `records/audit-log.md` (the master audit log), `company/onboarding.md` (with the steps your HQ has already completed marked Done from the evidence on disk), and `company/design/` (the design system, owned by **design-system**)
 - `company/org-chart.md` grown to the full shape: the Governance table, plus a Planned row for each of the twelve standard departments it was missing
@@ -72,12 +72,17 @@ For every founder-data file the current version expects, one rule decides everyt
 The v3 additions land here too, seeded from the shipped references and skipped if they already exist:
 
 - `records/audit-log.md` - the master audit log, seeded with its header and format comment. From this migration onward every action lands one timestamped line here; the migration itself writes the first one in Step 7.
+- `records/operator-reviews.md` - the 3.1 addition: the append-only ledger where every founder sign-off and send-back at the desk is recorded, and the data source the review-gap analysis reads. Seeded with its header and format comment, skipped if it already exists.
 - `company/design/design-system.md` and `company/design/page.html` - the company design system that every rendered deliverable reads, owned by the **design-system** skill. Seeded at the neutral shipped look with unknowns left `(not set yet)`; the onboarding step points you at design-system to make it yours.
 - `company/onboarding.md` - the numbered onboarding checklist, owned by the **onboarding** skill. I seed it, then mark each step Done only where the thing it builds already exists on disk (a filled profile, an Active department), so a mature HQ does not get told to redo work it finished long ago; the earliest unfinished step is set to `Next`.
 
 Four OS files are refreshed rather than skipped, because the constitution and the format law only ever change through this skill: `os/charter.md` and `os/formats.md` are copied exactly from the current references, `os/manifest.md` is rewritten to the current pack version and expected tree, and `os/VERSION` is stamped last of all in Step 7. Your founder data is never touched by this refresh - only the OS spine moves.
 
-One scaffold gets refreshed too: the comment line at the top of each board that names the stages. The current stage list carries `Blocked` between In progress and In review, so I update that one comment line to the current law - your task rows are not touched, and no existing stage word changes meaning.
+One scaffold gets refreshed on every board: the comment line at the top that names the stages. The 3.1 stage law is `Filed | In progress | Blocked | Manager review | Operator review | Done | Dropped` - `In review` is renamed to `Manager review` and a new `Operator review` stage sits between it and `Done`, because in 3.1 `Done` means operator-signed, not the Reviewer's word alone. I rewrite that one comment line to the current law.
+
+The 3.0 -> 3.1 step also makes one narrow, sanctioned edit inside the task table, the only in-place row edit this migration ever performs: every board row whose Stage cell reads `In review` is renamed to `Manager review` - same task, same seat, same meaning (the Reviewer's gate), just the current word. No row moves stage otherwise, and I show you each rename before it lands.
+
+Existing `Done` rows are grandfathered. A row already at `Done` predates the operator-sign-off gate, so I never reopen it or push it back to `Operator review` - it stays `Done`, and the migration record notes those rows as `operator-signed-by-grandfather` so the history is honest about why they carry no operator-review line. A grandfathered `Done` row is never retroactively reopened without your explicit say-so as founder.
 
 ### Step 4 - The org chart grows
 
@@ -116,13 +121,19 @@ Every change from this session becomes one dated migration record appended to `r
 - YYYY-MM-DD [company] Migrated HQ 2.0 -> 3.0 - receipt: backup werkforce-backup-YYYY-MM-DD.tar.gz verified; refreshed os/charter.md, os/formats.md, os/manifest.md; seeded records/audit-log.md, company/onboarding.md (N steps marked Done from evidence), company/design/; added Timezone line to HQ.md; org chart gained Governance table and N Planned rows; seat words mapped to Planner/Worker/Reviewer across N charters and N boards; N legacy departments kept and marked; role cards seeded for N departments; reviewed by {founder}
 ```
 
+A 3.0 -> 3.1 minor step is smaller and its record says exactly what moved:
+
+```markdown
+- YYYY-MM-DD [company] Migrated HQ 3.0 -> 3.1 - receipt: backup werkforce-backup-YYYY-MM-DD.tar.gz verified; refreshed os/formats.md, os/manifest.md; seeded records/operator-reviews.md; refreshed the stage-comment line on N boards to the 7-stage law; renamed N task-row Stage cells In review -> Manager review across N boards; N existing Done rows grandfathered as operator-signed-by-grandfather (not reopened); reviewed by {founder}
+```
+
 The migration also writes the first line into the master audit log it just seeded, `records/audit-log.md`, timed in your new HQ timezone:
 
 ```markdown
 - YYYY-MM-DD HH:MM [upgrade] [upgrade-your-werkforce] [company] migrated HQ 2.0 -> 3.0 - records/worklog.md
 ```
 
-Then, last of all, `os/VERSION` gets its one line - `3.0`. Last on purpose: if a migration is ever interrupted halfway, the HQ never claims a version it has not earned - the next run reads the old stamp, sees what already landed, skips it, and finishes the rest. Done means the record shows it, and the stamp comes after the record.
+Then, last of all, `os/VERSION` gets its one line - `3.1`. Last on purpose: if a migration is ever interrupted halfway, the HQ never claims a version it has not earned - the next run reads the old stamp, sees what already landed, skips it, and finishes the rest. Done means the record shows it, and the stamp comes after the record.
 
 ## Do this now
 

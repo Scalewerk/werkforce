@@ -148,11 +148,19 @@ checkup warning - every seat is defined to the bar of an elite hire, in full.
 ## departments/<slug>/board.md - LIVING
 H1 `# {Department} board`, two comment lines (stages; receipt law), one table:
 `| Task | Stage | Seat | Filed | Due | Receipt |`
-Stages exactly: `Filed | In progress | Blocked | In review | Done | Dropped`.
+Stages exactly: `Filed | In progress | Blocked | Manager review | Operator
+review | Done | Dropped`. The live flow is Filed -> In progress -> [Blocked is a
+parking lot off In progress] -> Manager review -> Operator review -> Done, with
+Dropped reachable from any stage. `Manager review` is the Reviewer's gate (the
+old `In review`, renamed); a task that passes it moves to `Operator review`,
+where it waits for the founder's sign-off at the desk. `Done` means
+operator-signed - the founder signed it off - never the Reviewer's word alone.
 Seat = the agent's given name. Receipt is `-` until Done; a Done row's receipt
 says what was produced, where it lives, who reviewed. A Blocked row carries
 `blocked by {what} - recheck {how}` in its Receipt cell until unblocked (then
-`-` again). Dropped is never relabeled Done.
+`-` again). An operator send-back returns the row from `Operator review` to `In
+progress` and is recorded verbatim in records/operator-reviews.md. Dropped is
+never relabeled Done.
 
 ## departments/<slug>/briefs.md - LEDGER
 H1 plus comment. Dated H3 entries matching board task names:
@@ -201,6 +209,17 @@ H1 plus comment. One line per finished piece of work:
 `- YYYY-MM-DD [department] Task - receipt: what was produced, where it lives,
 who reviewed`. `[company]` for HQ-level work; migration and upgrade records land
 here too.
+
+## records/operator-reviews.md - LEDGER (append-only, the review-gap data source)
+H1 plus comment. One line per operator decision at the desk, appended the moment
+the founder signs off or sends a task back:
+`- YYYY-MM-DD [department] TASK-ID signed-off | sent-back: {operator's reasons
+verbatim}`. A signed-off line ends after `signed-off` (the task moves to Done); a
+sent-back line carries the founder's reasons word for word after `sent-back:` so
+the review-gap analysis can read why work bounced. Written only when the founder
+speaks at the founders-desk; the operator-review queue page shows the decision
+but never writes here (generated-view law holds - no write-back forms). Lines are
+never edited or deleted.
 
 ## records/warnings.md - LEDGER
 H1 plus comment. `- YYYY-MM-DD [skill-name] finding - action taken`. A warning

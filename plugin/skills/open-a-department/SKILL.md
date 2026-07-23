@@ -138,7 +138,7 @@ Then the rest of the department, in one pass:
 
 ```markdown
 # {{DEPARTMENT}} board
-<!-- Stages: Filed | In progress | Blocked | In review | Done | Dropped -->
+<!-- Stages: Filed | In progress | Blocked | Manager review | Operator review | Done | Dropped -->
 <!-- Receipt is "-" until Done; a Done receipt says what was produced, where it lives, who reviewed. A Blocked row carries "blocked by {what} - recheck {how}" in its Receipt cell until unblocked (then "-" again). Dropped is never relabeled Done. -->
 
 | Task | Stage | Seat | Filed | Due | Receipt |

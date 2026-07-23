@@ -21,7 +21,7 @@ you give me something real.
 
 ## What you get
 
-- One board row worked from In progress to In review - never to Done, that call belongs to the Reviewer
+- One board row worked from In progress to Manager review - never to Done, that call belongs to the Reviewer
 - The deliverable built in `departments/<slug>/drafts/`, then handed off to `departments/<slug>/outbox/` as the `YYYY-MM-DD-<slug>.md` + `.html` pair
 - Every claim in it carrying one of the four labels: `[checked]` `[did it]` `[best guess]` `[from memory]`
 - A handoff note mapping each acceptance check to the evidence that it passes, plus a drafted receipt ready for the reviewer
@@ -71,7 +71,7 @@ One honest limit, said out loud: this pass makes the work worth reviewing - it i
 
 ### Step 5 - Hand off with evidence
 
-The deliverable moves from drafts/ to `departments/<slug>/outbox/` as the `YYYY-MM-DD-<slug>.md` editable truth plus its `YYYY-MM-DD-<slug>.html` render - a finished thing at the agreed place, because showing work in a message is not delivering it. The render is the self-contained house-style page built from `company/design/page.html`; if the design system is `(not set yet)`, I say so, use the shipped neutral look, and point you at the design-system step in `company/onboarding.md` (the **design-system** skill owns `company/design/`). I confirm both files are there by looking, then flip the board row to In review and tell you where it landed.
+The deliverable moves from drafts/ to `departments/<slug>/outbox/` as the `YYYY-MM-DD-<slug>.md` editable truth plus its `YYYY-MM-DD-<slug>.html` render - a finished thing at the agreed place, because showing work in a message is not delivering it. The render is the self-contained house-style page built from `company/design/page.html`; if the design system is `(not set yet)`, I say so, use the shipped neutral look, and point you at the design-system step in `company/onboarding.md` (the **design-system** skill owns `company/design/`). I confirm both files are there by looking, then flip the board row to Manager review and tell you where it landed.
 
 The handoff note carries three things:
 
@@ -81,7 +81,7 @@ Checks: 1. {check} - {the evidence it passes} / 2. {check} - {evidence} / a chec
 Draft receipt: what was produced, where it lives, reviewed by (pending)
 ```
 
-A receipt is one line proving the work is real - what was produced, where the file lives, and who reviewed it. I draft it; the Reviewer earns the last field. The handoff also restates anything load-bearing I learned mid-build and every scope question I flagged - nothing the reviewer needs stays stranded in my working notes. And it uses no close language: the work is a claim awaiting review, so the row sits at In review until **review-desk** rules. This seat never grades its own homework.
+A receipt is one line proving the work is real - what was produced, where the file lives, and who reviewed it. I draft it; the Reviewer earns the last field. The handoff also restates anything load-bearing I learned mid-build and every scope question I flagged - nothing the reviewer needs stays stranded in my working notes. And it uses no close language: the work is a claim awaiting review, so the row sits at Manager review until **review-desk** rules. This seat never grades its own homework.
 
 ### Step 6 - Take the correction
 
@@ -100,7 +100,7 @@ The lesson outlives the task. One dated line to `departments/<slug>/memory.md` -
 And one line to the Worker's own `## Seat memory` in `departments/<slug>/seats/<role-slug>.md` when the lesson belongs to the seat - a phrasing that landed, a source that was stale, a check I nearly skipped. Then one line to the master audit log, `records/audit-log.md`, in the pinned shape, timestamped in your HQ timezone (never UTC):
 
 ```markdown
-- YYYY-MM-DD HH:MM [task] [{worker name}] [{department}] worked {task} to In review - departments/<slug>/outbox/YYYY-MM-DD-<slug>.md
+- YYYY-MM-DD HH:MM [task] [{worker name}] [{department}] worked {task} to Manager review - departments/<slug>/outbox/YYYY-MM-DD-<slug>.md
 ```
 
 All three are ledgers: lines append under dates, nothing gets edited or overwritten. The worklog line comes later, from the review - finished work enters the record when the Reviewer approves it, not when the worker feels done.
@@ -109,7 +109,7 @@ All three are ledgers: lines append under dates, nothing gets edited or overwrit
 
 1. Pick one board row at In progress - or move a Filed row there - and say "run the worker desk".
 2. Watch the grounding pass run before a single word gets made, and see what the brief got stale on.
-3. Take the handoff: a real .md + .html pair in outbox/, every check mapped to evidence, receipt drafted, row at In review.
+3. Take the handoff: a real .md + .html pair in outbox/, every check mapped to evidence, receipt drafted, row at Manager review.
 4. Send it through **review-desk** and watch the two seats do their separate jobs.
 
 Homework: open the last thing you personally finished this week and run Step 4 on it - the four hostile questions, in writing. Count what a reviewer would have caught.

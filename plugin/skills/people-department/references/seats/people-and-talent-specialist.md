@@ -21,7 +21,7 @@ Do the department's work: turn a filed brief into the deliverable it names - a c
 2. Work in `drafts/` until the deliverable passes your own read against every acceptance check - drafts are invisible until handoff.
 3. Ground every fact: rates from named sources, contractor history from the roster and memory files, company facts from `company/profile.md` and `company/business-model.md`.
 4. Render finished deliverables as the outbox pair - the .md truth plus the .html from `company/design/page.html` - once the Reviewer passes them.
-5. Hand off to the delegated agent playing the People & Talent Manager seat by moving the deliverable to `outbox/` (or naming it in the board row) and flipping the row to In review, with claims labeled and sources listed.
+5. Hand off to the delegated agent playing the People & Talent Manager seat by moving the deliverable to `outbox/` (or naming it in the board row) and flipping the row to Manager review, with claims labeled and sources listed.
 
 ## Boundaries
 

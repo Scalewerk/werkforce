@@ -3,22 +3,61 @@
 All notable changes to the Werkforce plugin. Versions track the pack (semver);
 each HQ's `os/VERSION` governs the instance separately.
 
-## 3.0.5 — 2026-07-23 (PATCH)
+## 3.1.0 - 2026-07-23
 
-Checkup refuses to guess which HQ it is checking.
+The founder's sign-off becomes a real stage. Work is not Done until you say so.
 
+- **Your review is now a step on every board.** The old task path was Filed → In
+  progress → In review → Done. As of 3.1 it is **Filed → In progress → (Blocked as
+  parking) → Manager review → Operator review → Done**, plus **Dropped**. "In
+  review" is renamed **Manager review** (your workforce's own review triangle), and
+  a new **Operator review** stage sits in front of Done — that stage is *you*.
+  Nothing reads Done until it has been signed off at Operator review.
+- **A new skill walks your sign-off queue.** Say **"werkforce, sign-offs"** (or
+  "operator review") and your workforce reads every board for rows waiting at
+  Operator review, shows you each finished deliverable one at a time, and records
+  your call. A sign-off flips the row to Done with a receipt. A send-back reopens
+  the row to In progress and writes your reason — verbatim — into a new file,
+  `records/operator-reviews.md`, so nothing is ever lost or guessed.
+- **The boards gain the full 7-stage scaffold.** run-the-day, first-win,
+  open-a-department, status-report, werkforce-checkup, install-your-werkforce, and
+  upgrade-your-werkforce all now understand the Operator-review stage and the
+  operator-reviews.md record. New HQs are seeded with it; existing HQs get it on
+  update (see MIGRATION).
+- **The checkup safety rail from 3.0.5 is included.** `checkup.sh --hq <path>` (and
+  `WERKFORCE_HQ`) ship here too — 3.1 is a superset of 3.0.5, so updating to 3.1
+  carries that fix forward. You do not need 3.0.5 separately if you take 3.1.
 
-- **`werkforce, checkup` got a safety rail.** You can now point the health check at
-  a specific HQ with `checkup.sh --hq <path>` (or the `WERKFORCE_HQ` environment
-  variable). If the path you name has no `HQ.md`, the checkup stops and tells you
-  the path looks wrong — it will **not** quietly fall back to a different HQ and
-  check the wrong company. Without a flag it behaves exactly as before (the HQ
-  under your current folder, else `~/werkforce`).
-- **Why it matters.** On a machine with more than one HQ, the old "guess the HQ"
-  fallback was the root cause of a stray 25-line append into the wrong files
-  during a migration. An explicit, fail-loud target closes that hole.
-- **Nothing else changed.** No new skills, no HQ-schema change, no migration. This
-  is a skill-content-only PATCH; your `os/VERSION` and boards are untouched.
+**Why it matters.** Until now "Done" meant your workforce's own triangle passed it —
+your sign-off was a convention (SOP 14), not a structural gate. 3.1 makes the
+founder boundary part of the machine: the board itself will not call anything Done
+without your recorded sign-off, and every send-back keeps your reason on the record.
+
+---
+
+### MIGRATION — what happens to a live 3.0 HQ when you update
+
+This is a **schema move** (`os/VERSION` 3.0 → 3.1), so unlike a patch it changes
+your HQ's structure. It is designed to be **additive and safe**, but it is a real
+migration and it is worth knowing exactly what runs.
+
+- **Nothing changes until you update.** A 3.0 HQ keeps working untouched. The new
+  workflow arrives only when you pull 3.1 and run the upgrade.
+- **How you take it (two surfaces):**
+  1. **Marketplace / plugin install:** `claude plugin update werkforce` pulls the
+     3.1 plugin. This refreshes the skills you run.
+  2. **Your HQ files:** say **"upgrade my werkforce"**. The `upgrade-your-werkforce`
+     skill backs up your HQ first (backup-your-werkforce), then **additively** adds
+     the 7-stage scaffold to your boards, creates `records/operator-reviews.md` if
+     it is missing, modernizes the seat/stage wording, stamps `os/VERSION` to 3.1,
+     and writes the migration to the worklog. It **keeps every department and every
+     row you already built** — it does not rewrite history or drop legacy work.
+- **What you should see afterward.** Each board carries the Operator-review stage,
+  `records/operator-reviews.md` exists, `os/VERSION` reads 3.1, and the command
+  center regenerates with the new stage.
+- **If anything looks wrong, roll back.** The pre-migration backup restores your
+  boards exactly. The plugin can revert with `claude plugin update` back to the
+  prior version. There is no destructive step to unwind.
 
 ## 3.0.4 — 2026-07-22
 

@@ -61,7 +61,7 @@ Then I speak the synthesis at the desk, in this exact shape:
 # {{COMPANY}} - status - {{DATE}}
 
 ## Boards
-| Department | Filed | In progress | Blocked | In review | Done | Dropped | Total |
+| Department | Filed | In progress | Blocked | Manager review | Operator review | Done | Dropped | Total |
 |---|---|---|---|---|---|---|---|
 | Marketing | 2 | 1 | 1 | 1 | 4 | 0 | 9 |
 All counts [checked] - counted from the live boards this run.

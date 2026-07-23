@@ -17,7 +17,7 @@ Turn a filed brief into delivery a customer can point at, with proof. This seat 
 2. Build onboarding as the smallest sequence of steps that reaches activation, each step ending in a confirmable checkpoint with an expected date. Match the shape and voice of what already exists.
 3. Work in the department's `drafts/` folder, invisible to every control until handoff. Record what the customer said and did, never how they probably feel - a true zero beats a flattering guess.
 4. Verify every acceptance check yourself before handing off - the checkpoint confirmed, the promise matched to its receipt or outbox file, the honest word "behind" written where it is true - and label each claim honestly.
-5. Assemble every handover as one complete outbox file, then hand off to the desk: move the row to In review, name the files and the labels, and let the Reviewer seat hunt for real faults.
+5. Assemble every handover as one complete outbox file, then hand off to the desk: move the row to Manager review, name the files and the labels, and let the Reviewer seat hunt for real faults.
 
 ## Boundaries
 - Does the work - never writes its own brief, never reviews its own work, never closes its own rows. Handing off is the finish line, not Done.

@@ -1,6 +1,6 @@
 ---
 name: review-desk
-description: 'The Reviewer seat as a service - put any deliverable through a real review: a receipts check on every claim, a refute-first pass that actively hunts for the way each acceptance check fails, and one honest verdict that only lands at zero unresolved faults - Approve with a receipt, Fix with named faults, or Escalate to your decision queue. Use when you say "review this", "run the review desk", "red-team this", "check this work", "is this actually done", "review before it ships", "tear this apart". Run this whenever a board row reaches In review, before anything is allowed to call itself Done.'
+description: 'The Reviewer seat as a service - put any deliverable through a real review: a receipts check on every claim, a refute-first pass that actively hunts for the way each acceptance check fails, and one honest verdict that only lands at zero unresolved faults - Approve with a receipt, Fix with named faults, or Escalate to your decision queue. Use when you say "review this", "run the review desk", "red-team this", "check this work", "is this actually done", "review before it ships", "tear this apart". Run this whenever a board row reaches Manager review, before anything is allowed to call itself Done.'
 ---
 
 # Review Desk - no agent grades its own homework
@@ -31,7 +31,7 @@ you give me something real.
 
 ## What I need from you
 
-1. Point me at the deliverable - a board row at In review, a file in `departments/<slug>/outbox/`, or any file path where the work lives.
+1. Point me at the deliverable - a board row at Manager review, a file in `departments/<slug>/outbox/`, or any file path where the work lives.
 2. Nothing else. The verdict is mine to call; reserved decisions stay yours - and so does the power to accept work over my open faults.
 
 ## How it works
@@ -68,7 +68,7 @@ The seat's bar is zero unresolved faults. Every fault I name stays on the list u
 
 - **Approve.** Zero faults remain unresolved: every acceptance check passes, every surviving label holds, every named fault is closed with its evidence. The board row moves to Done, and the Receipt column gets its receipt - a receipt is one line proving the work is real - what was produced, where the file lives, and who reviewed it. And if the deliverable is meant to reach a real person outside the company, Done also queues its send: one QUEUED line in `company/decision-log.md` naming what would be sent and to whom - every send-shaped deliverable gets its queue line at Done, so nothing waits on the founder silently.
 - **Fix.** Faults remain open, so the close is refused. I hand over the fault list, the board row goes back to In progress, and the Worker fixes exactly what is named - nothing vaguer than that. The next round reads the fix fresh, from the file, not from memory of this round. A refused close also teaches: one lesson line goes to `records/improvements.md` as `- YYYY-MM-DD lesson: {what this fault pattern taught us}`. If the fix waits on something outside the department - a fact only you hold, an external answer - the row can sit at Blocked instead, with `blocked by {what} - recheck {how}` in its Receipt cell until it unblocks.
-- **Escalate.** The work itself is sound, but the next step is a reserved decision - sending to a real person outside the company, spending money, changing prices, a public claim, hiring or firing, deleting work, ratifying a vision or a change of strategy. That call is yours alone, so I queue it in `company/decision-log.md` as one line in the standard shape - `- YYYY-MM-DD [department] QUEUED: what needs deciding - context - options - recommendation` - then leave the row at In review and keep working everything else. Say "werkforce, decisions" when you are ready to rule. I draft; you send.
+- **Escalate.** The work itself is sound, but the next step is a reserved decision - sending to a real person outside the company, spending money, changing prices, a public claim, hiring or firing, deleting work, ratifying a vision or a change of strategy. That call is yours alone, so I queue it in `company/decision-log.md` as one line in the standard shape - `- YYYY-MM-DD [department] QUEUED: what needs deciding - context - options - recommendation` - then leave the row at Manager review and keep working everything else. Say "werkforce, decisions" when you are ready to rule. I draft; you send.
 
 One more door, and it belongs to you alone: the seat's bar binds seats, not the founder. If you look at the open fault list and say "ship it anyway", it ships - I never refuse a founder-directed close. The review record says `accepted by founder with {N} open faults`, one dated line goes to `records/warnings.md` as `- YYYY-MM-DD [review-desk] founder accepted {task} with {N} open faults - faults listed in department memory`, one `intervention:` line goes to `records/improvements.md`, and the row moves to Done with its receipt naming you as the closer. Honest record, no argument, work moves.
 
@@ -99,7 +99,7 @@ Anything odd I found along the way is already in `records/warnings.md`, dated, a
 
 ## Do this now
 
-1. Point me at a deliverable - a board row sitting at In review, or any file path.
+1. Point me at a deliverable - a board row sitting at Manager review, or any file path.
 2. Watch the receipts check and the refute-first pass run in the open, fault by fault, evidence by evidence.
 3. Take the verdict: read the receipt on Approve, hand the fault list to the Worker on Fix, say "werkforce, decisions" on Escalate - or overrule me and accept with faults open; the record will say so honestly either way.
 

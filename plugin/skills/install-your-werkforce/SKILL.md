@@ -81,9 +81,9 @@ into the templates. I say what I am writing as I go:
   `{{COMPANY}}`, `{{FOUNDER}}`, `{{TIMEZONE}}`, `{{DATE}}` filled
 - `inbox.md`, `company/visions.md`, `company/outcomes.md`,
   `company/strategy.md`, `company/playbooks.md`, `company/metrics.md`,
-  `records/audit-log.md`, `records/worklog.md`, `records/warnings.md`,
-  `records/reviews.md`, `records/sessions.md`, `records/improvements.md` -
-  copied verbatim from `references/seeds/`
+  `records/audit-log.md`, `records/worklog.md`, `records/operator-reviews.md`,
+  `records/warnings.md`, `records/reviews.md`, `records/sessions.md`,
+  `records/improvements.md` - copied verbatim from `references/seeds/`
 - `skills/STANDARD.md` and `skills/CATALOG.md` - from
   `references/seeds/skills-STANDARD.md` and `skills-CATALOG.md`
 - empty folders: `company/customers/`, `company/design/`, `departments/`,
