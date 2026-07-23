@@ -3,6 +3,23 @@
 All notable changes to the Werkforce plugin. Versions track the pack (semver);
 each HQ's `os/VERSION` governs the instance separately.
 
+## 3.0.5 — 2026-07-23 (PATCH)
+
+Checkup refuses to guess which HQ it is checking.
+
+
+- **`werkforce, checkup` got a safety rail.** You can now point the health check at
+  a specific HQ with `checkup.sh --hq <path>` (or the `WERKFORCE_HQ` environment
+  variable). If the path you name has no `HQ.md`, the checkup stops and tells you
+  the path looks wrong — it will **not** quietly fall back to a different HQ and
+  check the wrong company. Without a flag it behaves exactly as before (the HQ
+  under your current folder, else `~/werkforce`).
+- **Why it matters.** On a machine with more than one HQ, the old "guess the HQ"
+  fallback was the root cause of a stray 25-line append into the wrong files
+  during a migration. An explicit, fail-loud target closes that hole.
+- **Nothing else changed.** No new skills, no HQ-schema change, no migration. This
+  is a skill-content-only PATCH; your `os/VERSION` and boards are untouched.
+
 ## 3.0.4 — 2026-07-22
 
 Banner regression fix + operator-consented dependency install.

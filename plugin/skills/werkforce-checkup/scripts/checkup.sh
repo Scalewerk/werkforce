@@ -4,13 +4,44 @@
 # A warning is a flag on the play, never a stopped game.
 set -u
 
-# Locate HQ: werkforce/ under the current folder, else ~/werkforce
-if [ -f "./werkforce/HQ.md" ]; then
+# HQ target - explicit beats guessing (multi-HQ safety). Precedence:
+#   1. --hq <path>         (this run)
+#   2. $WERKFORCE_HQ        (env, for a fixed HQ)
+#   3. ./werkforce/HQ.md    (an HQ under the current folder)
+#   4. $HOME/werkforce      (the last-resort default)
+# An explicit target that has no HQ.md is a hard error, never a silent fall
+# back to ~/werkforce - that fallback was the root cause of the 25-line stray
+# append during the 3.1 migration (lesson 2026-07-22).
+HQ_FLAG=""
+while [ $# -gt 0 ]; do
+  case "$1" in
+    --hq) HQ_FLAG="${2:-}"; shift 2 ;;
+    --hq=*) HQ_FLAG="${1#--hq=}"; shift ;;
+    -h|--help)
+      echo "usage: checkup.sh [--hq <path-to-HQ>]"
+      echo "  --hq <path>   check this HQ explicitly (dir containing HQ.md)."
+      echo "                Also settable via WERKFORCE_HQ. Without either,"
+      echo "                checkup uses ./werkforce, else ~/werkforce."
+      exit 0 ;;
+    *) echo "checkup.sh: unknown argument: $1" >&2; exit 2 ;;
+  esac
+done
+
+TARGET="${HQ_FLAG:-${WERKFORCE_HQ:-}}"
+if [ -n "$TARGET" ]; then
+  TARGET="${TARGET%/}"
+  if [ -f "$TARGET/HQ.md" ]; then
+    HQ="$TARGET"
+  else
+    echo "WARN explicit HQ target '$TARGET' has no HQ.md - refusing to fall back to another HQ; check the path"
+    exit 0
+  fi
+elif [ -f "./werkforce/HQ.md" ]; then
   HQ="./werkforce"
 elif [ -f "$HOME/werkforce/HQ.md" ]; then
   HQ="$HOME/werkforce"
 else
-  echo "WARN no HQ found (no werkforce/HQ.md here and none at ~/werkforce) - run install-your-werkforce to create one"
+  echo "WARN no HQ found (no --hq/WERKFORCE_HQ, no werkforce/HQ.md here, none at ~/werkforce) - run install-your-werkforce to create one"
   exit 0
 fi
 
