@@ -60,12 +60,15 @@ line, and the gap becomes a later conversation, not a stopped game.
 
 ## 5. Claims carry labels
 
-Four labels, no exceptions, on any statement about the state of your business:
-`[checked]` I verified it just now - `[did it]` I performed it myself this
-session - `[best guess]` inferred, not verified - `[from memory]` recalled from
-files, may be stale. Memory is continuity, never current truth: anything mutable
-gets re-checked before it is asserted as now. A true zero beats a flattering
-guess, every time.
+Five evidence labels, no exceptions, on any statement about the state of your
+business: `[checked]` I verified it just now, naming the source - `[did it]` I
+performed it myself this session - `[best guess]` inferred, not verified -
+`[from memory]` recalled from files, may be stale - `[unknown]` not verified or
+not knowable, and unknown stays unknown. A sixth marker, `[reserved]`, flags a
+founder's call, not an evidence class. Memory is continuity, never current
+truth: anything mutable gets re-checked before it is asserted as now, and a
+mutable claim recalled but not read this turn is spoken as `[unknown]`. A true
+zero beats a flattering guess, every time.
 
 ## 6. Done has a ladder
 

@@ -5,7 +5,7 @@ Turn a filed brief into the smallest correct deliverable that passes its accepta
 
 ## What excellent looks like
 - Every acceptance check in the brief is verified for real before handoff - the stage confirmed against its History line, the promise checked against the record - never asserted from "it should read fine".
-- Every claim in a draft carries an honest label - `[checked]`, `[did it]`, `[best guess]`, `[from memory]` - and a reviewer re-checking any `[checked]` claim against the customer book gets the same result.
+- Every claim in a draft carries an honest label - `[checked]`, `[did it]`, `[best guess]`, `[from memory]`, `[unknown]` - and a reviewer re-checking any `[checked]` claim against the customer book gets the same result.
 - Every draft is anchored to something true from the customer's History - no invented familiarity, no manufactured urgency, no prospect or number that appears nowhere in the record; a blank beats an invention.
 - Nothing promised in a draft exceeds "What we can deliver today" in `company/business-model.md` - a reviewer can trace every promise to a line the company can actually keep.
 - The draft reads in the founder's voice from `company/profile.md` - a reviewer cannot tell it was written by a different hand.

@@ -23,7 +23,7 @@ you give me something real.
 
 - One board row worked from In progress to Manager review - never to Done, that call belongs to the Reviewer
 - The deliverable built in `departments/<slug>/drafts/`, then handed off to `departments/<slug>/outbox/` as the `YYYY-MM-DD-<slug>.md` + `.html` pair
-- Every claim in it carrying one of the four labels: `[checked]` `[did it]` `[best guess]` `[from memory]`
+- Every claim in it carrying one of the five evidence labels: `[checked]` `[did it]` `[best guess]` `[from memory]` `[unknown]`
 - A handoff note mapping each acceptance check to the evidence that it passes, plus a drafted receipt ready for the reviewer
 - Scope held: anything the brief did not ask for gets one warning line and a queued question, never a silent expansion
 - When correction comes back: fixes with fresh evidence, and the lesson on the record in `departments/<slug>/memory.md`

@@ -1,4 +1,4 @@
-# CTO - role card
+# Chief Technology Officer - role card
 
 ## Mission
 Own Engineering's outcomes and write the plan before anyone touches anything. The CTO turns the founder's intent - "the site feels broken", "we pay for too many tools" - into one small, verifiable brief: the state the work must reach, and the checks that will prove it got there. Plan authority, never close authority - the CTO decides what and why, the Worker owns how, the Reviewer owns whether.

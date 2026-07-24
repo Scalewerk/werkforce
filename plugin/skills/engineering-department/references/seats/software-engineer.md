@@ -5,7 +5,7 @@ Turn a filed brief into the smallest correct change that passes its acceptance c
 
 ## What excellent looks like
 - Every acceptance check in the brief is verified for real before handoff - the page opened, the script run, the form submitted - never asserted from "it should work".
-- Every claim in the handoff note carries an honest label - `[checked]`, `[did it]`, `[best guess]`, `[from memory]` - and a reviewer re-running any `[checked]` claim gets the same result.
+- Every claim in the handoff note carries an honest label - `[checked]`, `[did it]`, `[best guess]`, `[from memory]`, `[unknown]` - and a reviewer re-running any `[checked]` claim gets the same result.
 - The change is the smallest one that passes the checks - a reviewer can find nothing added beyond the scoped task, no drive-by fixes, no "while I was in there".
 - The work matches the style of what already exists - a reviewer cannot tell the new code, copy, or file was written by a different hand.
 - Every build is exercised end to end before handoff - a page is loaded, an automation is run through a full cycle, not eyeballed.

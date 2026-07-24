@@ -103,7 +103,7 @@ Numbers come from you or files you point at - never invented.
 ## company/org-chart.md - LIVING
 H1 `# {company} - Org chart`, comment lines, `## Governance` table
 `| Seat | Status | Name |` with exactly two rows (Founder - always Active;
-CEO - Planned until activated). `## Departments` table, exactly these columns:
+Chief Executive Officer - Planned until activated). `## Departments` table, exactly these columns:
 `| Department | Status | Planner | Worker | Reviewer | Autonomy |`
 Exactly twelve rows in this order: Engineering, Marketing, Sales, Product,
 Design, Client Delivery, Finance, People & Talent, Operations, Legal,
@@ -129,7 +129,7 @@ delivered|dormant`, `Promised:`, `Paid:`, `Next touch:` (edited in place), then
 H1 `# {Department} - charter`, `Mission:` line, `Opened: {date} | Autonomy:
 Level {n} - {name}` line, `## KPIs` bullets, `## The three seats` table
 `| Seat | Role | Name | Role card |` rows Planner / Worker / Reviewer
-(Role = the role title, for example CMO; Role card = one line; the full card
+(Role = the role title, for example Chief Marketing Officer; Role card = one line; the full card
 lives in seats/), `## Department rules` numbered, `## Graduation record` dated
 bullets, append-only.
 
@@ -216,10 +216,18 @@ the founder signs off or sends a task back:
 `- YYYY-MM-DD [department] TASK-ID signed-off | sent-back: {operator's reasons
 verbatim}`. A signed-off line ends after `signed-off` (the task moves to Done); a
 sent-back line carries the founder's reasons word for word after `sent-back:` so
-the review-gap analysis can read why work bounced. Written only when the founder
-speaks at the founders-desk; the operator-review queue page shows the decision
-but never writes here (generated-view law holds - no write-back forms). Lines are
-never edited or deleted.
+the review-gap analysis can read why work bounced. A decline never lands
+reasonless: the desk asks once for the reason at the moment of the decline; if
+none lands yet, the line is filed flagged `sent-back: reason pending` and the
+morning run rechecks it until the verbatim reason lands as a fresh appended
+`sent-back:` line (the pending line stays; lines are never edited). Finished
+means every
+decline in this ledger carries either a verbatim reason or a live reason-pending
+flag being rechecked - the reason is the review-gap system's raw material, and
+without it Managers can never learn the operator's bar. Written only when the
+founder speaks at the founders-desk; the operator-review queue page shows the
+decision but never writes here (generated-view law holds - no write-back forms).
+Lines are never edited or deleted.
 
 ## records/warnings.md - LEDGER
 H1 plus comment. `- YYYY-MM-DD [skill-name] finding - action taken`. A warning

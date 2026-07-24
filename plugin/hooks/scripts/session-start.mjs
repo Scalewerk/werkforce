@@ -36,8 +36,14 @@ try {
     out.push(`=== Werkforce is booted (plugin ${pluginVer}) ===`);
     if (hq) {
       out.push(`An HQ is present at ${dirname(hq)} (os/VERSION ${osVer}).`);
-      if (osVer !== "unknown" && osVer !== pluginVer) {
-        out.push(`NOTE: HQ os/VERSION (${osVer}) differs from plugin (${pluginVer}) - run upgrade-your-werkforce to migrate additively.`);
+      // Option B (founder-adopted 2026-07-23): compare on the MINOR line only.
+      // os/VERSION is a MAJOR.MINOR schema stamp; a PATCH-only gap is skill
+      // content with no migration, so it shows no NOTE. Fire only when the
+      // plugin's MAJOR.MINOR exceeds the HQ's os/VERSION.
+      const mm = (v) => { const m = String(v).match(/^(\d+)\.(\d+)/); return m ? [Number(m[1]), Number(m[2])] : null; };
+      const p = mm(pluginVer), o = mm(osVer);
+      if (p && o && (p[0] > o[0] || (p[0] === o[0] && p[1] > o[1]))) {
+        out.push(`NOTE: HQ os/VERSION (${osVer}) trails the plugin's schema line (${p[0]}.${p[1]}, plugin ${pluginVer}) - run upgrade-your-werkforce to migrate additively.`);
       }
     }
     out.push("The constitution below is in force. Read before you write; the HQ record outranks memory.");

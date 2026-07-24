@@ -43,9 +43,9 @@ I read `company/org-chart.md` and show you the roster - twelve departments, in t
 
 | Department | Led by | What it exists to do |
 |---|---|---|
-| Engineering | CTO | your website, tools, and automations |
-| Marketing | CMO | gets you seen by the right people |
-| Sales | CRO | turns interest into money - referrals and partnerships first |
+| Engineering | Chief Technology Officer | your website, tools, and automations |
+| Marketing | Chief Marketing Officer | gets you seen by the right people |
+| Sales | Chief Revenue Officer | turns interest into money - referrals and partnerships first |
 | Product | Chief Product Officer | what you sell and where it goes next |
 | Design | Chief Experience Officer | how everything looks and feels |
 | Client Delivery | Chief Delivery Officer | keeps every promise you sold |
@@ -80,9 +80,9 @@ This is the fun part, so we do it properly. Three seats, three hires, and you na
 - **Worker** - does the work. Hands in deliverables with every claim labeled and files the receipts.
 - **Reviewer** - reviews the work adversarially, hunting for real faults - and never reviews work it did itself. No agent grades its own homework.
 
-Each seat also carries a role title from its card - in Marketing your Planner is the CMO, your Worker the Content Marketer, your Reviewer the Content Manager; in Sales it is the CRO, the Account Executive, and the Sales Manager. One reading note so nothing trips you later: "Account Executive" is a Sales role title; the seat words are Planner, Worker, Reviewer.
+Each seat also carries a role title from its card - in Marketing your Planner is the Chief Marketing Officer, your Worker the Content Marketer, your Reviewer the Content Manager; in Sales it is the Chief Revenue Officer, the Account Executive, and the Sales Manager. One reading note so nothing trips you later: "Account Executive" is a Sales role title; the seat words are Planner, Worker, Reviewer. Role titles are written out in full - Chief Marketing Officer, Chief Revenue Officer, Chief Technology Officer, never the initials - so every agent's official name matches how your org chart already lists every other seat.
 
-Named seats matter because they make every task traceable - you always know who planned it, who built it, and who checked it. Pick names you will enjoy saying every morning - people you would actually hire, characters you love, whatever makes you grin. I echo the roster back to you: "{{NAME_1}} is your CMO and plans, {{NAME_2}} makes, {{NAME_3}} checks." Say it out loud once. That is your team.
+Named seats matter because they make every task traceable - you always know who planned it, who built it, and who checked it. Pick names you will enjoy saying every morning - people you would actually hire, characters you love, whatever makes you grin. I echo the roster back to you: "{{NAME_1}} is your Chief Marketing Officer and plans, {{NAME_2}} makes, {{NAME_3}} checks." Say it out loud once. That is your team.
 
 The moment the names exist, this department is Hired - Level 0 on the autonomy ladder. The rest of this session takes it to Level 1.
 
@@ -102,7 +102,7 @@ Opened: {{DATE}} | Autonomy: Level 1 - Supervised
 ## The three seats
 | Seat | Role | Name | Role card |
 |---|---|---|---|
-| Planner | CMO | {{NAME_1}} | plans the work, writes every brief and its checks - full card in seats/cmo.md |
+| Planner | Chief Marketing Officer | {{NAME_1}} | plans the work, writes every brief and its checks - full card in seats/cmo.md |
 | Worker | Content Marketer | {{NAME_2}} | does the work, labels claims, files receipts - full card in seats/content-marketer.md |
 | Reviewer | Content Manager | {{NAME_3}} | reviews adversarially; never reviews their own work - full card in seats/content-manager.md |
 

@@ -3,6 +3,37 @@
 All notable changes to the Werkforce plugin. Versions track the pack (semver);
 each HQ's `os/VERSION` governs the instance separately.
 
+## 3.2.0 - 2026-07-24 (release candidate — founder push pending)
+
+Verification laws for how your workforce speaks and declines, one honest
+claim-label family, and third-party installs that learn to stay current.
+
+- **Status claims are reads, not memory (SOP 18).** Any claim about a task's
+  stage, verdict, or history said to you now requires a same-turn read of the
+  board row, quotable as proof; state not read this turn is spoken as `[unknown]`,
+  never from memory. A spoken status claim is a board write in disguise.
+- **A decline never lands reasonless (SOP 15).** A send-back at Operator review
+  keeps your reason verbatim; if none lands in the moment the line is flagged
+  `reason pending` and each morning asks once until your words land — the flag is
+  never dropped and the ledger never rewritten.
+- **One claim-label family.** Every place stating the claim-label rule names the
+  same six markers — `[checked]` (source named), `[did it]`, `[best guess]`,
+  `[from memory]`, `[unknown]`, plus `[reserved]` for your call. `[unknown]` is
+  now a label the Reviewer accepts, not a fault.
+- **Third-party install currency.** Install and upgrade now explain that Claude
+  Code keeps auto-update OFF for third-party marketplaces by default, and give
+  `/plugin marketplace update werkforce` plus the enable-auto-update steps.
+- **Full official seat names.** Where a seat is officially named — the org-chart
+  seed, the role-card headers, and the hiring listings in open-a-department — the
+  three holdout titles are spelled out to match every other seat: Chief Technology
+  Officer, Chief Marketing Officer, Chief Revenue Officer, plus the governance
+  seat as Chief Executive Officer. Running prose may still abbreviate ("the CMO
+  reviews it"); wake phrases ("activate my CEO"), skill IDs, seat-tags, template
+  variables, and seat-card file names are unchanged.
+- **Schema move (os 3.1 → 3.2), additive migration.** MINOR: `upgrade my
+  werkforce` carries the claim-label law into your charter and the decline-reason
+  law into your operator-reviews ledger. Every task already Done stays Done.
+
 ## 3.1.0 - 2026-07-23
 
 The founder's sign-off becomes a real stage. Work is not Done until you say so.

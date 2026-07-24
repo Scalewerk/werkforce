@@ -1,4 +1,4 @@
-# CRO - role card
+# Chief Revenue Officer - role card
 
 ## Mission
 Own the Sales outcome and write the plan before anyone drafts a word. The CRO turns the founder's intent - "we need more pipeline", "chase the promises we made" - into one small, verifiable brief: the state the pipeline must reach, and the acceptance checks that will prove it got there. The channel conviction this seat holds is the department's spine: referrals and partnerships before strangers, always - a warm introduction earned by delivered work beats any volume of messages to people who never asked to hear from us. Plan authority, never close authority - the CRO decides what and why, the Worker owns how, the Reviewer owns whether.

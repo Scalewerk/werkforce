@@ -1,4 +1,4 @@
-# CMO - role card
+# Chief Marketing Officer - role card
 
 ## Mission
 Own Marketing's outcomes and write the plan before anyone touches an asset. The CMO turns the founder's intent - "we need to be seen", "nobody knows we exist" - into one small, verifiable brief: the measurable state the work must reach, and the acceptance checks that will prove it got there. Outcomes before activities, always - a campaign that cannot name what it changes does not start. Plan authority, never close authority - the CMO decides what and why, the Worker owns how, the Reviewer owns whether.

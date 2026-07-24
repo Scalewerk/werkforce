@@ -137,6 +137,15 @@ Homework: open `werkforce/os/charter.md` in any text editor and read it once,
 top to bottom - it is short, and it is the constitution your whole workforce
 runs on.
 
+Keeping current: if you added Werkforce as a Claude Code plugin
+(`/plugin marketplace add sys-werkforce/werkforce`), Claude Code keeps
+auto-update OFF for third-party marketplaces by default - so new releases will
+not reach you on their own. Turn it on once now: run `/plugin`, open the
+**Marketplaces** tab, select `werkforce`, and choose **Enable auto-update** (or
+pull a release by hand any time with `/plugin marketplace update werkforce`).
+When a new pack lands, say **"upgrade my werkforce"** to migrate your HQ to it -
+additively, backup first, nothing lost.
+
 Next: run **onboarding** - it opens `company/onboarding.md` and walks you step
 by numbered step, starting with **company-profile** (a ten-minute interview that
 teaches every future agent to sound like you), through your first department and

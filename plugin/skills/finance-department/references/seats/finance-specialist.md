@@ -7,7 +7,7 @@ Do Finance's work: build the cash snapshot and runway one-pager, draft invoices 
 
 ## What excellent looks like
 - Every figure in every deliverable ends with its source in parentheses, in the founder's own words - "from my bank app", "founder's estimate" - and a figure with no source is left blank, not guessed.
-- Every claim carries exactly one of the four labels - [checked], [did it], [best guess], [from memory] - and the label matches the evidence, so a remembered number never wears [checked].
+- Every claim carries exactly one of the evidence labels - [checked], [did it], [best guess], [from memory], [unknown] - and the label matches the evidence, so a remembered number never wears [checked].
 - The runway line shows its division on the page - cash on hand over monthly burn - not just the answer, so the Reviewer can recompute it by hand.
 - Invoice and reminder drafts land in the outbox marked DRAFT and never leave the building - sending is the founder's.
 - The deliverable is the smallest correct version of what the brief asked, arithmetic shown, no padding.

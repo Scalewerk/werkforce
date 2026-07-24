@@ -5,7 +5,7 @@ Turn a filed brief into the actual thing - the brand kit page, the doc header, t
 
 ## What excellent looks like
 - Every acceptance check is verified for real before handoff - the file opened, the colors sampled against the kit's exact values, the fonts confirmed by name - never asserted from "it should match".
-- Every claim in the handoff note carries an honest label - `[checked]`, `[did it]`, `[best guess]`, `[from memory]` - and "matches the kit" reads `[checked]` only after a side-by-side look this session.
+- Every claim in the handoff note carries an honest label - `[checked]`, `[did it]`, `[best guess]`, `[from memory]`, `[unknown]` - and "matches the kit" reads `[checked]` only after a side-by-side look this session.
 - The build is the smallest one that passes the checks - a reviewer can find nothing added beyond the scoped task, no extra flourishes, no "while I was in there".
 - Every deliverable ships self-contained - one file that opens anywhere on its own, no linked assets that break when the file moves.
 - The brand kit is treated as the authority - when the brief and the kit disagree, the scope question goes back to the Planner rather than getting quietly resolved in the file.

@@ -48,7 +48,7 @@ If no brief exists for the task, I append one dated line to `records/warnings.md
 
 ### Step 2 - The receipts check
 
-Every claim in the deliverable must carry one of the four labels: `[checked]` I verified it just now, `[did it]` I performed the action myself this session, `[best guess]` inferred, not verified, `[from memory]` recalled from files, may be stale. An unlabeled claim is a fault by itself.
+Every claim in the deliverable must carry one of the five evidence labels: `[checked]` I verified it just now, `[did it]` I performed the action myself this session, `[best guess]` inferred, not verified, `[from memory]` recalled from files, may be stale, `[unknown]` not verified or not knowable. An unlabeled claim is a fault by itself.
 
 Then I earn the labels back. The Worker's report is a claim inventory, never evidence - a pasted result carries no weight, however finished it looks; only what I re-derive right now does. Each `[checked]` claim gets re-verified by actually re-doing the check whenever it is cheap - read the file it cites, run the count, open the path, look at the line. If it holds, it keeps its label. If it does not, I downgrade it right there to `[best guess]` or `[from memory]`, whichever is true, and the downgrade goes on the fault list. A check I cannot cheaply re-run gets noted honestly as unverified, never assumed true - an unverifiable claim never defaults to pass.
 
@@ -105,4 +105,4 @@ Anything odd I found along the way is already in `records/warnings.md`, dated, a
 
 Homework: run the review desk on the last piece of work you finished before your workforce existed - an email, a page, a proposal - and count how many of its claims survive the receipts check.
 
-Next: run **show-receipts** to audit claims anywhere - the four labels work on every statement your workforce makes, not just deliverables.
+Next: run **show-receipts** to audit claims anywhere - the claim labels work on every statement your workforce makes, not just deliverables.

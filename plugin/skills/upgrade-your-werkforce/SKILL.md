@@ -35,7 +35,7 @@ you give me something real.
 ## What I need from you
 
 1. An HQ, any version. No VERSION file means first-generation, `2.0` means one generation back - both are exactly what this skill is for.
-2. The current pack installed, so the shipped seeds and role cards are on hand to copy from.
+2. The current pack installed, so the shipped seeds and role cards are on hand to copy from. If you run Werkforce as a Claude Code plugin, Claude Code keeps auto-update OFF for third-party marketplaces by default, so a new release does not arrive on its own - pull it first with `/plugin marketplace update werkforce`, and turn auto-update on once (run `/plugin`, open the **Marketplaces** tab, select `werkforce`, choose **Enable auto-update**) so future releases arrive automatically. Only a pack this skill can already see carries the new seeds it migrates you to.
 3. Your timezone, once - the current version records it in `HQ.md` so every date speaks your time; I ask you for it plainly during the run.
 4. Ten minutes of your attention. This migration is session-led on purpose: you see every change as it lands, and the things that involve your company's identity - your timezone, names on the org chart, anything about retiring a department - go through you.
 

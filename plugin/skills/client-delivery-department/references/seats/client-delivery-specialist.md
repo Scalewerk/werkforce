@@ -5,7 +5,7 @@ Turn a filed brief into delivery a customer can point at, with proof. This seat 
 
 ## What excellent looks like
 - Every acceptance check in the brief is verified for real before handoff - the checkpoint confirmed, the file assembled, the promise matched to its evidence - never asserted from "it should be fine".
-- Every claim in the handoff note carries an honest label - `[checked]`, `[did it]`, `[best guess]`, `[from memory]` - and a reviewer re-running any `[checked]` claim gets the same result.
+- Every claim in the handoff note carries an honest label - `[checked]`, `[did it]`, `[best guess]`, `[from memory]`, `[unknown]` - and a reviewer re-running any `[checked]` claim gets the same result.
 - Onboarding is built as the smallest sequence of steps that reaches activation, each ending in a confirmable checkpoint with an expected date - a reviewer can find no step that ends in a feeling.
 - Every status line records what the customer said or did, never how they probably feel - invented sentiment, usage, or commitments appear nowhere.
 - A promise with no written record is flagged to the founder as unknown, never papered over with a confident guess - unknowns are written as unknowns.

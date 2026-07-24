@@ -44,7 +44,7 @@ I read the `## Governance` table in `company/org-chart.md`. It has exactly two r
 | Seat | Status | Name |
 |---|---|---|
 | Founder | Active | {{FOUNDER}} |
-| CEO | Active | {{CEO_NAME}} |
+| Chief Executive Officer | Active | {{CEO_NAME}} |
 ```
 
 Say the roster out loud once: "{{FOUNDER}} decides, {{CEO_NAME}} advises." That sentence is the whole constitution of this seat. If the row is already Active, we skip straight to work; if the org chart is missing or malformed, I append `- YYYY-MM-DD [ceo-seat] finding - action taken` to `records/warnings.md`, tell you in one sentence, and keep going. A warning is a flag on the play, never a stopped game.

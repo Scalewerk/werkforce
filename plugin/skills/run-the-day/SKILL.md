@@ -94,6 +94,8 @@ Every Blocked row carries its own instructions in the Receipt cell: `blocked by 
 - **Blocker cleared** - the row flips Blocked back to Filed, the Receipt cell returns to `-`, and one dated line goes to the department's `memory.md` recording the unblock and what cleared it. The row rejoins today's queue immediately.
 - **Still blocked** - the row stays where it is, honestly. If the recheck itself has gone stale - a wait on a reply that will clearly never come - I say so, and we either give it a due date or Drop it with the reason written down.
 
+The same sweep rechecks `records/operator-reviews.md` for any sent-back line still flagged `reason pending`: an Operator-review decline must carry your reason verbatim, so each pending flag gets asked about once each morning until the reason lands, appended as a fresh `sent-back:` line carrying your words verbatim (the ledger's lines are never edited). A decline is never left silently reasonless.
+
 ### Step 7 - Board hygiene, the law
 
 Nothing sits. Before the run ends, every open row on every Active board does exactly one of four things:

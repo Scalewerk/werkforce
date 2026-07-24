@@ -1,11 +1,11 @@
 ---
 name: show-receipts
-description: The truth discipline of your whole workforce - the four claim labels every agent must use, and an audit that puts any report, board, or message under the light. Teach mode tours the labels in two minutes; audit mode re-verifies every [checked] claim, re-checks stale memory against the live files, marks what has no backing, and hands back a receipts-checked version with honest downgrades. Use when you say "show me receipts", "is this real", "audit this report", "did my workforce actually do this", "check these claims", "teach me the labels". Run this early so the labels become habit, and any time a report sounds better than your week felt.
+description: The truth discipline of your whole workforce - the claim labels every agent must use, and an audit that puts any report, board, or message under the light. Teach mode tours the labels in two minutes; audit mode re-verifies every [checked] claim, re-checks stale memory against the live files, marks what has no backing, and hands back a receipts-checked version with honest downgrades. Use when you say "show me receipts", "is this real", "audit this report", "did my workforce actually do this", "check these claims", "teach me the labels". Run this early so the labels become habit, and any time a report sounds better than your week felt.
 ---
 
 # Show Receipts - trust the reports because you can check them
 
-A workforce becomes dangerous when it is confidently wrong and you steer the business on it. That is why every claim in your HQ carries one of four labels - a plain marker of how much weight the sentence can hold - and why Done on any board requires a receipt. This skill is where that discipline lives: learn the labels in two minutes, or point me at anything your workforce produced and I will audit every claim in it.
+A workforce becomes dangerous when it is confidently wrong and you steer the business on it. That is why every claim in your HQ carries one of five evidence labels - a plain marker of how much weight the sentence can hold - and why Done on any board requires a receipt. This skill is where that discipline lives: learn the labels in two minutes, or point me at anything your workforce produced and I will audit every claim in it.
 
 The rule that makes it all work: an unlabeled claim is a [best guess] wearing a suit. Strip the suit, check the claim, and what survives is a report you can act on without re-checking it yourself.
 
@@ -21,7 +21,7 @@ you give me something real.
 
 ## What you get
 
-- The four claim labels, each with one concrete example, learned in a two-minute tour
+- The claim labels, each with one concrete example, learned in a two-minute tour
 - The memory rule that keeps old files from posing as today's truth
 - A receipts-checked version of any report, board, or message, saved as a new file in the department's outbox - the original is never touched
 - Every `[checked]` claim re-verified against its source, right now, not trusted on its label
@@ -39,7 +39,7 @@ you give me something real.
 
 I read your HQ, then ask one question if you have not already answered it: learn or audit? If anything in the HQ looks off along the way - a missing file, a malformed board - I append one dated line to `records/warnings.md` as `- YYYY-MM-DD [show-receipts] finding - action taken`, tell you in one sentence, and keep moving. A warning is a flag on the play, never a stopped game.
 
-### Step 2 - Teach mode: the four labels in two minutes
+### Step 2 - Teach mode: the labels in two minutes
 
 Every factual claim any agent makes carries exactly one of these:
 
@@ -47,6 +47,7 @@ Every factual claim any agent makes carries exactly one of these:
 - `[did it]` I performed the action myself this session. Example: "Drafted the prospect email and saved it [did it] - `departments/sales/outbox/2026-07-20-prospect-email.md`."
 - `[best guess]` inferred, not verified. Example: "Tuesday looks like your strongest posting day [best guess] - inferred from two good Tuesdays, which is a hunch, not a finding."
 - `[from memory]` recalled from files, may be stale. Example: "Your offer is priced at $500 [from memory] - recalled from `company/profile.md`, and it may have changed since that was written."
+- `[unknown]` not verified or not knowable, and unknown stays unknown. Example: "Whether last month's invoice cleared is [unknown] - I have not opened the bank feed this session, so I will not guess." A mutable claim recalled but not read this turn is spoken as `[unknown]`, never dressed up as `[checked]`.
 
 The `[from memory]` label carries its own law, and it is worth saying twice: memory is continuity, never current truth. Files remember so your workforce does not start from zero each morning - but anything mutable that matters gets re-checked at the live source before it is asserted as now. "The client was at the promised stage last week [from memory]" is honest; "the client is at promised, let me quote them the price" without opening `company/customers/` is a guess in a memory costume.
 
@@ -68,6 +69,7 @@ Label by label, no exceptions:
 - `[did it]` - the thing itself must exist: the file in the outbox, the row on the board, the line in the log. Found, it stands. Missing, it drops to `[best guess]` with a note saying nothing was found on disk.
 - `[from memory]` - I open the file it recalls from. If the file agrees, it stands. If the file says otherwise or says nothing, the claim gets corrected or marked "no backing found." And when a memory claim is being asserted as the current state of something mutable - a price, a customer's stage, this week's numbers - agreeing with an old file is not enough: I re-check the live authority for that fact and the claim either upgrades to `[checked]` or gets rewritten as what it really is, a recollection.
 - `[best guess]` - honest already. It stays, clearly marked, so nobody downstream mistakes it for a fact.
+- `[unknown]` - honest already, like `[best guess]`: it names a gap rather than papering over one, so it stays as written. If the gap is now cheaply closeable, I close it and the claim upgrades to `[checked]`; otherwise unknown stays unknown.
 
 The record spine gets read too, when the claims call for it. A claim about work done or time spent - "we ran three sessions on this", "the follow-ups went out Tuesday" - gets checked against `records/sessions.md` and `records/worklog.md`, because sessions and receipts are where that truth lives. A claim that a lesson was captured or a fix landed gets checked against `records/improvements.md`. A report that says "we learned from last week" while the improvements ledger sits silent is over-claiming, and it gets marked like anything else.
 

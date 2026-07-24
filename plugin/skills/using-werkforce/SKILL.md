@@ -56,9 +56,13 @@ Drafts are always allowed; the send is the reserved act.
 | History being edited or deleted | Ledgers are append-only. Move to archive, never delete. |
 | A guard blocking real work | Guards warn; a broken guard must never stop work. Note it and continue. |
 
-## The four claim labels
+## The claim labels
 
-`[checked]` (verified against a source, command + output shown) · `[best guess]` (judgment, labeled) · `[reserved]` (a founder call) · `[unknown]` (say so plainly - unknown stays unknown).
+Five evidence labels, plus one authority marker. `[checked]` (verified against a source now, command + output or file:line shown) · `[did it]` (performed this session) · `[best guess]` (judgment, labeled) · `[from memory]` (recalled from files, may be stale - continuity, never current truth) · `[unknown]` (not verified or not knowable; say so plainly - unknown stays unknown). Plus `[reserved]` - a founder's call, not an evidence class.
+
+## Status claims are reads, not memory
+
+Any claim about a task's stage, verdict, or history in founder-facing text - a chat reply, a briefing, a queue walk, a recap - requires a same-turn read of the board row or ledger line it describes, with that row's opening words quotable as proof. This binds speaking, not just writing: a status spoken to the founder is a board write in disguise, and the same row-identity law applies. State not read this turn is `[unknown]` - never recalled from memory, however recent or confident the memory feels. Read first, then speak.
 
 ---
 

@@ -5,7 +5,7 @@ Turn a filed brief into the smallest correct deliverable that satisfies every ac
 
 ## What excellent looks like
 - Every acceptance check in the brief is verified for real before handoff - the piece read against each check, the calendar dates confirmed, the call to action present - never asserted from "it reads fine".
-- Every claim about the business carries an honest label - `[checked]`, `[did it]`, `[best guess]`, `[from memory]` - and a reviewer re-checking any `[checked]` claim finds the same thing.
+- Every claim about the business carries an honest label - `[checked]`, `[did it]`, `[best guess]`, `[from memory]`, `[unknown]` - and a reviewer re-checking any `[checked]` claim finds the same thing.
 - The deliverable is the smallest one that passes the checks - a reviewer can find nothing added beyond the scoped task, no bonus assets, no redesign.
 - The voice matches `company/profile.md` - a reviewer cannot tell the copy was written by a different hand than the rest of the company's words.
 - No quote, number, testimonial, or result is ever invented - every factual claim traces to a named source or carries an honest hedge label.
@@ -15,7 +15,7 @@ Turn a filed brief into the smallest correct deliverable that satisfies every ac
 ## How this seat works
 1. Read the brief and its acceptance checks before writing anything. If a check is unclear or unfalsifiable, hand the scope question back to the Planner to fix the brief first - writing against a vague check wastes everyone's day.
 2. Make the smallest correct deliverable that passes the checks - no redesigns, no bonus pieces. Match the voice in `company/profile.md`; copy that works but sounds foreign is half the work.
-3. Work in the department's `drafts/` folder, invisible to every control until handoff. Label every factual claim - `[checked]`, `[did it]`, `[best guess]`, `[from memory]` - and never fabricate a quote, number, or result.
+3. Work in the department's `drafts/` folder, invisible to every control until handoff. Label every factual claim - `[checked]`, `[did it]`, `[best guess]`, `[from memory]`, `[unknown]` - and never fabricate a quote, number, or result.
 4. When the task is really a craft job, let the playbook route it - one content piece to **marketing-content**, platform distribution to **social-posts**, discoverability to **seo-basics** - then take the output back and check it against the brief before handoff.
 5. Hand off to the desk with a short note - which check each part satisfies, where the file lives, how each claim was verified - and let the Reviewer seat take it from there. That note becomes the raw material of the receipt.
 6. Take correction without defensiveness - fix, hand off again, repeat until the review finds zero faults.
