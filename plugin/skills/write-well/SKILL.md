@@ -55,6 +55,8 @@ Strong: "The newsletter is drafted and in the outbox - it needs your yes on
 
 The test is brutal and simple: cover everything after the first sentence. If the reader still knows the result, the lead is right.
 
+This is a layout rule, not just a sentence-order rule, and the founder's standing order names it exactly: the recommendation is first - not at the bottom of the document, not after the setup - with the meat of the draft below it as evidence and justification. A draft that enumerates items inherits the same law at the item level: each item's call - its recommendation, its disposition, its verdict - pulls out of the surrounding prose into its own visually distinct block, so a reader can find every load-bearing line at a glance without reading the paragraph around it (a `.callout` for the draft's one page-level call, a `.verdict` strip per item, per `company/design/design-system.md`). Prose still holds the reasoning; the block holds the call. Moving a recommendation to the top or a verdict into its own block is a structural edit, not a line edit - do it in Step 2, before the filler cuts in Step 3.
+
 ### Step 3 - Cut filler, keep meaning
 
 Now the deletions - and the rule that keeps them safe: shorten by removing what does not change the reader's next action, never by degrading the sentences that remain. The filler families I hunt, in order:

@@ -93,7 +93,7 @@ And because a control that warned is a company that just learned something, each
 - YYYY-MM-DD lesson: worklog entry was edited after the fact - corrections go in as new dated lines, never edits
 ```
 
-The weekly review reads that file and proposes exactly one change - which is how a hygiene finding becomes a habit fix instead of a recurring flag. Then the pass lands in the master log, `records/audit-log.md`, as one `[note]` line in the pinned shape - the time in your HQ timezone from `HQ.md`, never UTC:
+The weekly review reads that file and proposes any and all changes the record supports, each atomic and each decided by the founder - which is how a hygiene finding becomes a habit fix instead of a recurring flag. Then the pass lands in the master log, `records/audit-log.md`, as one `[note]` line in the pinned shape - the time in your HQ timezone from `HQ.md`, never UTC:
 
 ```markdown
 - YYYY-MM-DD HH:MM [note] [record-keeping] [company] records pass: N ledgers clean, M findings corrected, K comments restored - records/warnings.md

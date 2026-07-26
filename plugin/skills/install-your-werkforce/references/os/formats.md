@@ -10,9 +10,15 @@ overwritten).
 ## HQ.md - LIVING
 H1 `# {company} - Workforce HQ`, `Founder:`, `Timezone:` (the founder's named
 timezone, for example `America/New_York (EST/EDT)` - every timestamp anywhere
-in the HQ is written and spoken in this timezone, never UTC), and `Opened:`
-lines, `## Wake phrases` (the nine, verbatim from the seed), `## Standing
-orders` (numbered; additions append at the end, numbered on).
+in the HQ is written and spoken in this timezone, never UTC), `Werkforce
+type:` (`business` | `job` - the B45 setting; `business` is the shipped
+default and a business HQ's line reads `business`. A third value, `personal`,
+is named in the the job-type design but not yet installable by any shipped skill - it
+is not a live value until its own build lands), and `Opened:` lines, `##
+Wake phrases` (the nine, verbatim from the seed), `## Standing orders`
+(numbered; additions append at the end, numbered on). A `job`-type HQ carries
+one additional numbered standing order, the W2 employment boundary, shipped
+verbatim from `references/seeds/HQ-job.md.tmpl`.
 
 ## inbox.md - LEDGER
 H1 plus comment. One line per drop: `- YYYY-MM-DD note/idea/ask in your own
@@ -22,6 +28,15 @@ fact until intake converts it.
 
 ## os/charter.md, os/formats.md - shipped verbatim; never edited by skills
 Changes arrive only through upgrade-your-werkforce, recorded in the worklog.
+
+## os/type.md - shipped verbatim per type; never edited by skills
+The B45 lens: apex title, roster note, and vocabulary map for the HQ's
+werkforce type. Install copies the chosen profile verbatim from
+`install-your-werkforce/references/types/<type>.md`; changes to what a type
+means arrive only through upgrade-your-werkforce, recorded in the worklog,
+same law as `os/charter.md` and `os/formats.md`. `HQ.md`'s `Werkforce type:`
+line is the one authority for which type this HQ is; this file is the
+rendered lens that line points to - one authority, no second copy to drift.
 
 ## os/manifest.md - LIVING (rewritten by install/upgrade only)
 H1, `Pack version:` line, `## Skills installed` (one bullet per skill name),
@@ -64,7 +79,19 @@ find us, Unit economics, Constraints right now, What we can deliver today.
 The last section holds three bullet lists: Yes (proven), Now (can do on
 request), Not yet (do not claim). Every filled line ends with its source in
 parentheses, in your words ("from my Stripe dashboard", "founder's estimate").
-Blanks stay `(not set yet)`.
+Blanks stay `(not set yet)`. Business-type HQs only; a `job`-type HQ's
+capability floor is `company/role-scorecard.md` instead (see below) - this
+file is not seeded for `job` or `personal`.
+
+## company/role-scorecard.md - LIVING (job-type HQs only)
+H1, then H2s in order: Who I serve, My responsibilities and how they're
+measured, How I find out what's expected of me, Constraints right now, What I
+can commit to today. The last section holds three bullet lists: Yes (proven),
+Now (can do on request), Not yet (needs my manager or more standing). Same
+shape as `company/business-model.md`'s capability floor, so any skill reading
+that shape finds it here instead under `job`. Every filled line ends with its
+source in parentheses. Blanks stay `(not set yet)`. Seeded only when
+`os/type.md` names `job`; a `business`-type HQ never has this file.
 
 ## company/visions.md - LEDGER
 H1 plus comment. One H2 per vision: `## V{n} - {short name}`, one paragraph
@@ -103,10 +130,13 @@ Numbers come from you or files you point at - never invented.
 ## company/org-chart.md - LIVING
 H1 `# {company} - Org chart`, comment lines, `## Governance` table
 `| Seat | Status | Name |` with exactly two rows (Founder - always Active;
-Chief Executive Officer - Planned until activated). `## Departments` table, exactly these columns:
+the apex seat - Planned until activated). The apex seat's title follows the
+HQ's werkforce type, read from `os/type.md`: `Chief Executive Officer` for
+`business`, `Chief of Staff` for `job`. The seat's behavior is identical
+either way - only the title differs. `## Departments` table, exactly these columns:
 `| Department | Status | Planner | Worker | Reviewer | Autonomy |`
 Exactly twelve rows in this order: Engineering, Marketing, Sales, Product,
-Design, Client Delivery, Finance, People & Talent, Operations, Legal,
+Design, Client Delivery, Finance, Agent Resources, Operations, Legal,
 Information Security, Strategy. Status `Planned` or `Active`; seat cells hold
 given names (`-` when Planned); Autonomy `-` or `{0-3} - {Hired|Supervised|
 Trusted|Autonomous}`.
@@ -248,7 +278,29 @@ H1 plus comment. `- YYYY-MM-DD lesson|fix|idea|intervention: {one line}` -
 lesson when a control warned or a close was refused, fix when something got
 repaired, idea for a capability the company wants, intervention when the
 founder overrode a seat law. The weekly review reads this file and proposes
-exactly one change.
+any and all changes the record supports, each atomic.
+
+## records/artifact-registry.md - LEDGER
+H1 plus comment. Every deliverable also publishes as a claude.ai artifact
+(founder law, 2026-07-23) - one line here per publish event, appended the
+moment the publish lands (or is deferred). Three shapes appear in this file,
+in the order the desk's practice actually moved through them - only the third
+is written going forward, and the earlier two stand as valid, never-rewritten
+history:
+
+1. **Born shape** (2026-07-23): `- {path} -> {url} ({date})`
+2. **Bulk-publish shape** (2026-07-24, the plurality of the file's lines): `- {date} {path} -> {url} ({context, e.g. "sign-off walk publish"})`
+3. **Current shape** (written going forward): `- YYYY-MM-DD HH:MM AM/PM — {Department}: {one-line description} — {artifact URL} — source: {repo-relative .html path}` - em-dash-delimited, because descriptions and paths both contain ordinary hyphens and a hyphen separator would be ambiguous where an em dash is not.
+
+Times are in the HQ timezone, never UTC. A republish to an already-registered
+path reuses its existing artifact URL (never a new URL for the same path) and
+gets its own fresh line noting the republish and why. A publish the platform's
+daily cap defers writes `CAP-QUEUED` in place of the URL; run-the-day's
+morning sweep drains CAP-QUEUED lines oldest-first, same shape as its
+reason-pending recheck, and the real URL line supersedes it when the publish
+lands. The latest line for a path is current; earlier lines are history and
+are never edited or deleted. Disk pairs stay canonical; the artifact is a
+derived, republishable snapshot, same standing as the .html render.
 
 ## records/github-map.md - skill-owned (share-to-github only)
 H1 plus comment, three H2 sections: `## Repos we mirror` (one bullet per

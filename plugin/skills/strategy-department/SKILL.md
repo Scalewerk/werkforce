@@ -62,11 +62,17 @@ I hand the teardown to the delegated agent playing your Strategy Specialist. Spe
 
 ### Step 4 - Ship the dossier to the outbox
 
-Once the review in Step 5 passes, the finished dossier ships to the outbox as the pair `YYYY-MM-DD-teardown-<competitor-slug>.md` (the editable truth) plus `YYYY-MM-DD-teardown-<competitor-slug>.html` (the finished render from `company/design/page.html`, self-contained). If your design system is still `(not set yet)`, I say so, use the shipped neutral look, and point you at the **design-system** onboarding step. The markdown:
+Once the review in Step 5 passes, the finished dossier ships to the outbox as the pair `YYYY-MM-DD-teardown-<competitor-slug>.md` (the editable truth) plus `YYYY-MM-DD-teardown-<competitor-slug>.html` (the finished render from `company/design/page.html`, self-contained). If your design system is still `(not set yet)`, I say so, use the shipped neutral look, and point you at the **design-system** onboarding step.
+
+The dossier opens with an **Evidence-Label** line, the same convention **research-desk** stamps on its briefs: how far the dossier as a whole can be trusted, as a property on the artifact rather than something you have to reconstruct claim by claim. It counts every labeled claim in the dossier by class - `checked` (seen directly, with source and date), `best guess` (unverified) - and states the promotion ladder beneath it: this dossier is evidence, nothing more; it becomes a landed pattern only after Step 5's review passes and a finding graduates into `company/playbooks.md`. No teardown auto-changes a price, a message, or a live decision just by existing in the outbox. The markdown:
 
 ```markdown
 # Teardown: {competitor}
 Date: YYYY-MM-DD | Brief: Teardown: {competitor} | Seat: {Worker's given name}
+
+## Evidence-Label
+checked: {N} · best guess: {N}
+Promotion ladder: evidence -> reviewed pattern (Strategy Manager review, Step 5) -> company/playbooks.md. No artifact here auto-mutates a price, message, or decision; it is evidence until a named person promotes it.
 
 ## What they sell
 {the offer in plain words - each claim: source, date, label}

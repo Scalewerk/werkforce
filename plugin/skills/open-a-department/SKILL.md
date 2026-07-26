@@ -50,13 +50,13 @@ I read `company/org-chart.md` and show you the roster - twelve departments, in t
 | Design | Chief Experience Officer | how everything looks and feels |
 | Client Delivery | Chief Delivery Officer | keeps every promise you sold |
 | Finance | Chief Financial Officer | invoices, cash, runway |
-| People & Talent | Chief Human Resources Officer | contractors and helping hands |
+| Agent Resources | Chief Agent Resources Officer | hiring, onboarding, and improving your agents |
 | Operations | Chief Operating Officer | the company's own machinery |
 | Legal | General Counsel | contracts and renewals, in plain language |
 | Information Security | Chief Information Security Officer | accounts, access, and customer data |
 | Strategy | Chief Strategy Officer | the market, watched honestly |
 
-Every one of these comes fully specified. Each department has a sibling skill of its own - **marketing-department**, **sales-department**, **engineering-department**, and so on (People & Talent lives in **people-department**, Information Security in **security-department**) - and that skill ships a `references/` folder next to its SKILL.md holding five things I consume today:
+Every one of these comes fully specified. Each department has a sibling skill of its own - **marketing-department**, **sales-department**, **engineering-department**, and so on (Agent Resources lives in **agent-resources-department**, Information Security in **security-department**) - and that skill ships a `references/` folder next to its SKILL.md holding five things I consume today:
 
 - `references/mission-and-kpis.md` - the mission line and the KPIs the charter carries
 - `references/seats/` - three role cards, one per seat, each exhaustive to the elite-hire bar with the six H2s the format law names (Mission, What excellent looks like, How this seat works, Boundaries, Anti-patterns, Escalation)
@@ -102,7 +102,7 @@ Opened: {{DATE}} | Autonomy: Level 1 - Supervised
 ## The three seats
 | Seat | Role | Name | Role card |
 |---|---|---|---|
-| Planner | Chief Marketing Officer | {{NAME_1}} | plans the work, writes every brief and its checks - full card in seats/cmo.md |
+| Planner | Chief Marketing Officer | {{NAME_1}} | plans the work, writes every brief and its checks - full card in seats/chief-marketing-officer.md |
 | Worker | Content Marketer | {{NAME_2}} | does the work, labels claims, files receipts - full card in seats/content-marketer.md |
 | Reviewer | Content Manager | {{NAME_3}} | reviews adversarially; never reviews their own work - full card in seats/content-manager.md |
 
@@ -118,7 +118,7 @@ Opened: {{DATE}} | Autonomy: Level 1 - Supervised
 
 (The Role column shows Marketing's titles as the example - yours come from the department you picked.) The mission and KPIs come straight from `references/mission-and-kpis.md`, or from our custom interview.
 
-Then the hires get their own files. For each of the three, I copy the role card from the department skill's `references/seats/` verbatim - byte for byte, all six H2s (Mission, What excellent looks like, How this seat works, Boundaries, Anti-patterns, Escalation) untouched, so each seat lands defined to the bar of an elite hire - into `departments/<slug>/seats/<role-slug>.md`, then append the two sections that make it THIS hire:
+Then the hires get their own files. For each of the three, I copy the role card from the department skill's `references/seats/` verbatim - byte for byte, all six H2s (Mission, What excellent looks like, How this seat works, Boundaries, Anti-patterns, Escalation) untouched, so each seat lands defined to the bar of an elite hire - into `departments/<slug>/seats/<role-slug>.md`, then append the two sections that make it THIS hire. Step 3's skip-what-exists rule applies here judged by the seat, not by the file name: if that seat already holds a card under any file name, I skip it and leave your file where it is, so a re-run never hands you a second card for a seat you already have:
 
 ```markdown
 ## This seat

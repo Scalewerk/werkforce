@@ -77,7 +77,7 @@ If today held a teachable moment - a control warned, a review refused a close, t
 - YYYY-MM-DD lesson: {what the day taught, in one line}
 ```
 
-One lesson at most, and zero is common - most days just run. This is not journaling for its own sake: **weekly-review** reads this file at week's end and proposes exactly one change, and tonight's line is the raw material it works from.
+One lesson at most, and zero is common - most days just run. This is not journaling for its own sake: **weekly-review** reads this file at week's end and proposes any and all changes the record supports, each atomic, and tonight's line is the raw material it works from.
 
 ### Step 6 - Log it
 

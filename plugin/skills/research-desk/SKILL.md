@@ -85,11 +85,17 @@ Every claim carries a label and a pointer:
 - Anything recalled from your HQ files is `[from memory]` - continuity, never current truth.
 - "No such thing exists" is only ever written when a lookup came back empty, and the brief names that lookup.
 
-Every borrowed particular - number, price, name, date, quote - gets re-checked against its source before it goes in, or gets marked unverified. The desk hands the writing to a delegated agent and stays with you while it runs; if this runtime cannot spawn a delegated agent, I play the seat in turn and say so out loud. The draft lands in the serving department's `drafts/` folder for your read, where the Reviewer seat - never the seat that wrote it - checks the citations hold before anything is called Done, and moves to `departments/<slug>/outbox/YYYY-MM-DD-<slug>.md` when you are happy with it:
+Every borrowed particular - number, price, name, date, quote - gets re-checked against its source before it goes in, or gets marked unverified. The desk hands the writing to a delegated agent and stays with you while it runs; if this runtime cannot spawn a delegated agent, I play the seat in turn and say so out loud. The draft lands in the serving department's `drafts/` folder for your read, where the Reviewer seat - never the seat that wrote it - checks the citations hold before anything is called Done, and moves to `departments/<slug>/outbox/YYYY-MM-DD-<slug>.md` when you are happy with it.
+
+The brief opens with an **Evidence-Label** line - how far the brief as a whole can be trusted becomes a property on the artifact, not something a reader has to reconstruct from memory. It counts the claims by class (a claim is one labeled line in Findings): `checked` (source read this session), `best guess` (a source's own unconfirmed assertion, or my inference), `from memory` (recalled from HQ files, continuity not current truth). Directly beneath it, the **promotion ladder** states the rule out loud: this brief is evidence, nothing more - it becomes a reviewed finding only once the Reviewer checks the citations, a reviewed finding becomes a backlog item only when someone files it there, and no research artifact ever auto-mutates a live process, price, or belief just by existing. That ladder is what stops a brief from quietly becoming authority the moment it is filed.
 
 ```markdown
 # {Question} - research brief
 Date: YYYY-MM-DD | Question: {the one sentence from Step 1} | For: {the decision}
+
+## Evidence-Label
+checked: {N} · best guess: {N} · from memory: {N}
+Promotion ladder: evidence -> reviewed finding (Reviewer checks citations) -> backlog item (someone files it) -> implemented. No artifact here auto-mutates behavior; it is evidence until a named person promotes it.
 
 ## Answer up front
 {2-4 sentences, each claim labeled and pointing at a numbered source}

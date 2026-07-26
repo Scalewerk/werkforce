@@ -23,7 +23,7 @@ you give me something real.
 
 - A new skill at `werkforce/skills/<name>/SKILL.md` - drafted with you, tested against the four hostile tests in `werkforce/skills/STANDARD.md` before it ever touches the shelf
 - One new row in `werkforce/skills/CATALOG.md` - lifecycle `candidate`, with an honest residual risk in its own words, never polished away
-- The go-live move: your new skill reaches your AI runtime the next time you run the same one-line install command from your install guide - it picks up your own skills too, and a fresh session loads them
+- The go-live move: your new skill reaches your AI runtime the next time you run the same one-line install command from your install guide - it picks up your own skills too, and a fresh session loads them. Until you do both, the skill is inert - cataloged, but invisible to your runtime.
 - The promotion rule, on the record: `candidate` flips to `proven` only after a reviewed deliverable used the skill - never self-promoted
 - One line in `records/worklog.md` - the minting, with a receipt
 
@@ -110,16 +110,18 @@ What never happens: a skill promoting itself, or me promoting a skill because th
 
 ### Step 6 - Log it
 
-Before I close, I say what I am recording and where. I append one line to `records/worklog.md`:
+Before I close, I say what I am recording and where - and I say it plainly, not implied: **{{skill-name}} is inert right now.** It sits on the shelf, cataloged, but your AI runtime cannot see it yet. It goes live only after you (1) re-run your one-line install command from your install guide and (2) start a fresh session - until then, saying its trigger phrase does nothing. This is the same line for every mint, every time, because the cost of skipping it is a skill everyone believes is live for days while it is actually inert.
+
+I append one line to `records/worklog.md`, the inert status named in the receipt itself so the record still says it days later:
 
 ```markdown
-- {{DATE}} [company] Minted the {{skill-name}} skill - receipt: SKILL.md at werkforce/skills/{{skill-name}}/, CATALOG.md row added as candidate, reviewed by {{FOUNDER}}
+- {{DATE}} [company] Minted the {{skill-name}} skill - receipt: SKILL.md at werkforce/skills/{{skill-name}}/, CATALOG.md row added as candidate, reviewed by {{FOUNDER}} - INERT until install command re-run and a fresh session starts
 ```
 
 And one line to the master audit log, `records/audit-log.md`, timestamped in the HQ timezone from `HQ.md` - never UTC - in the shape `os/formats.md` pins (the type is `skill`):
 
 ```markdown
-- YYYY-MM-DD HH:MM [skill] [founder] [company] Minted {{skill-name}} as candidate - werkforce/skills/{{skill-name}}/SKILL.md
+- YYYY-MM-DD HH:MM [skill] [founder] [company] Minted {{skill-name}} as candidate, INERT until install command re-run - werkforce/skills/{{skill-name}}/SKILL.md
 ```
 
 You are the reviewer of record - a new tool entered your company today, and you read it before it landed. When the skill later earns its flip, the promotion gets its own worklog line citing the review that earned it.

@@ -3,6 +3,36 @@
 All notable changes to the Werkforce plugin. Versions track the pack (semver);
 each HQ's `os/VERSION` governs the instance separately.
 
+## 3.3.0 - 2026-07-25 (MINOR; os 3.2 -> 3.3) - release candidate — founder push pending
+
+Your werkforce can now be set up as a business, a job, or (soon) a personal
+assistant, every deliverable also publishes as a claude.ai artifact, People &
+Talent becomes Agent Resources, and four small doctrine folds.
+
+- **Werkforce type (B45).** business (default) / job (W2 role) / personal
+  (not yet available). `os/type.md` is the one lens every vocabulary-reading
+  skill defers to.
+- **People & Talent renamed to Agent Resources (B23).**
+- **Artifact mandate (B41).** Every finished deliverable also publishes as a
+  shareable claude.ai page; the URL is appended to `records/artifact-registry.md`.
+- **New skill: `release-notes` (B59).** Briefs the operator on what shipped,
+  reading only its own installed version and changelog. Fails open to
+  `unknown`, never a guess; no network call.
+- **Recommendation-first document order.** `report-craft` and `write-well`.
+- **A design sign-off now always spawns its build row.** `operator-review`.
+- **A freshly minted skill discloses it is inert until activated.**
+  `grow-a-skill`.
+- **Reference manifest healed**; three holdout C-suite titles spelled in full.
+- **Cut scope, on the record.** A `connect-a-tool` skill and a
+  `chat-surface-bridge` reference sat in canonical source at assembly time.
+  Both have since passed their reviews - this is not a quality statement.
+  Neither was founder-signed as of the snapshot this release cuts from; both
+  ride the next cut.
+- **Schema move (os 3.2 → 3.3), additive migration.** `upgrade my werkforce`
+  seeds `records/artifact-registry.md`, writes `os/type.md` (defaulting
+  `business`), carries the artifact-publish law into your charter and format
+  law. Every task already Done stays Done.
+
 ## 3.2.0 - 2026-07-24 (release candidate — founder push pending)
 
 Verification laws for how your workforce speaks and declines, one honest

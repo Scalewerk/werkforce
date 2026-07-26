@@ -93,7 +93,7 @@ Lessons this month: 3 lessons, 1 fix, 1 idea - repeat lesson: briefs filed witho
 Gaps: no churn number provided; continuity check on customer count passed.
 ```
 
-I summarize; I do not prescribe. Picking the one change to make is **weekly-review**'s job, and anything strategy-sized waits for **quarterly-strategy**. If a repeating pattern deserves a decision from you, it goes to `company/decision-log.md` as a QUEUED line with a recommendation attached - nothing waits on you silently.
+I summarize; I do not prescribe. Picking which changes to make is **weekly-review**'s job, and anything strategy-sized waits for **quarterly-strategy**. If a repeating pattern deserves a decision from you, it goes to `company/decision-log.md` as a QUEUED line with a recommendation attached - nothing waits on you silently.
 
 ### Step 7 - Log it
 

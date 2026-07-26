@@ -82,7 +82,7 @@ Every status is your report, labeled and dated - never my claim. "Not sure" beco
 
 ### Step 4 - The customer-data map
 
-Same discipline, next asset: every place customer information lives - inboxes, spreadsheets, the client book, invoicing tools, notes apps, a contractor's laptop - and who can see each one. From the map, the Specialist drafts your customer-data handling rules in plain language: what we store, where it is allowed to live, who may see it, what we never do with it. Rules that change who can access something, or that you would announce to customers, queue in `company/decision-log.md` - access and public claims are yours. If a contractor from People & Talent appears on the map, the map names them; their brief and rate stay in that department's room.
+Same discipline, next asset: every place customer information lives - inboxes, spreadsheets, the client book, invoicing tools, notes apps, a contractor's laptop - and who can see each one. From the map, the Specialist drafts your customer-data handling rules in plain language: what we store, where it is allowed to live, who may see it, what we never do with it. Rules that change who can access something, or that you would announce to customers, queue in `company/decision-log.md` - access and public claims are yours. If a contractor from Agent Resources appears on the map, the map names them; their brief and rate stay in that department's room.
 
 ### Step 5 - The phishing drill
 

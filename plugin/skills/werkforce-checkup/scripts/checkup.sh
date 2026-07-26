@@ -108,9 +108,15 @@ if [ -f "$HQ/company/org-chart.md" ]; then
     warn "org-chart.md uses v2 seat words (Executive/Contributor/Manager) - run upgrade-your-werkforce; the current facets are Planner, Worker, Reviewer"
   grep -q "| Founder |" "$HQ/company/org-chart.md" || warn "org-chart.md has no Founder governance row"
   for dept in Engineering Marketing Sales Product Design "Client Delivery" Finance \
-              "People & Talent" Operations Legal "Information Security" Strategy; do
+              Operations Legal "Information Security" Strategy; do
     grep -q "^| $dept |" "$HQ/company/org-chart.md" || warn "org-chart.md missing the $dept row"
   done
+  # People & Talent became Agent Resources. The rename is offered, never forced, so
+  # for one version EITHER name satisfies this check and an install that declined
+  # the migration is not nagged about it.
+  grep -q "^| Agent Resources |" "$HQ/company/org-chart.md" || \
+    grep -q "^| People & Talent |" "$HQ/company/org-chart.md" || \
+    warn "org-chart.md missing the Agent Resources row (or its pre-rename People & Talent row)"
   # every Departments-table row carries exactly the 6 standard columns
   in_dept=0
   while IFS= read -r line; do
@@ -174,8 +180,17 @@ DEPT_COUNT=0
 if [ -d "$HQ/departments" ]; then
   for d in "$HQ/departments"/*/; do
     [ -d "$d" ] || continue
-    DEPT_COUNT=$((DEPT_COUNT + 1))
     name="$(basename "$d")"
+    # A renamed department leaves a forwarding stub at its old path so the ledger
+    # lines and receipt paths that can never be corrected still resolve in one hop.
+    # A stub holds nothing but MOVED.md and is not a department - checking it for a
+    # charter, a board, and an Active org-chart row reports eight faults that are
+    # all the stub doing its job.
+    if [ -f "${d}MOVED.md" ] && [ ! -f "${d}charter.md" ]; then
+      ok "departments/$name/ is a forwarding stub (MOVED.md) - not checked as a department"
+      continue
+    fi
+    DEPT_COUNT=$((DEPT_COUNT + 1))
     for f in charter.md playbook.md briefs.md board.md memory.md; do
       if [ -f "$d$f" ]; then ok "departments/$name/$f present"; else warn "departments/$name/$f missing"; fi
     done
@@ -195,17 +210,36 @@ if [ -d "$HQ/departments" ]; then
       done
     fi
 
-    # Deliverables ship the .md + .html pair (finished render beside the source)
+    # Deliverables ship the .md + .html pair (finished render beside the source), and the render
+    # must stay current with its markdown - the .md is the authority, the .html a derived view.
     if [ -d "${d}outbox" ]; then
       for md in "${d}outbox"/[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]-*.md; do
         [ -f "$md" ] || continue
-        [ -f "${md%.md}.html" ] || warn "departments/$name/outbox/$(basename "$md") has no .html render - a deliverable ships as the .md + .html pair"
+        html="${md%.md}.html"
+        if [ -f "$html" ]; then
+          if [ "$md" -nt "$html" ]; then
+            warn "departments/$name/outbox/$(basename "$md") is newer than its .html render - the render is stale and should be regenerated from this markdown before the deliverable ships"
+          fi
+        else
+          warn "departments/$name/outbox/$(basename "$md") has no .html render - a deliverable ships as the .md + .html pair"
+        fi
+
+        # Technical-burden phrasing - founder-facing deliverables should never tell the founder
+        # to run git, merge a PR, read CI, or edit a file directly (charter §14, "plain language").
+        # A blunt phrase match, not judgment - false positives are possible and fine, this WARNs
+        # and never blocks.
+        if grep -Eiq 'run git|git (commit|push|merge|rebase)|merge (the |this )?(pr|pull request)\b|open a pull request|read (the )?ci\b|edit the file at|edit [^ ]*\.(ts|py|sh|mjs)\b' "$md"; then
+          warn "departments/$name/outbox/$(basename "$md") reads like it asks the founder to touch git/CI/code directly - founder-facing text should describe the outcome in plain language, never the plumbing"
+        fi
       done
     fi
 
     # Org chart should know this department
     if [ -f "$HQ/company/org-chart.md" ]; then
       case "$name" in
+        agent-resources) pretty="Agent Resources" ;;
+        # Pre-rename slug: still recognised so an install that declined the
+        # Agent Resources migration keeps passing this check.
         people-and-talent) pretty="People & Talent" ;;
         *) pretty="$(echo "$name" | tr '-' ' ')" ;;
       esac
@@ -258,6 +292,217 @@ if [ -d "$HQ/departments" ]; then
   done
 fi
 [ "$DEPT_COUNT" -eq 0 ] && warn "no departments opened yet - run open-a-department when you're ready to hire"
+
+# 4. Hook health - every registered hook script exists, can run, and has a footprint.
+# Lesson 2026-07-24: both of this HQ's hooks sat non-executable for a full day and their
+# fail-open design hid it - a dead tripwire looks exactly like a quiet one. WARN-only per
+# the enforcement floor: nothing found here ever blocks a turn.
+# Two channels are read: hooks registered in settings files, and hooks a plugin registers
+# in its own hooks/hooks.json (which never appear in any settings file). A command's
+# script is found by scanning its tokens for the ones that name a real path - so the
+# common wrapper forms (bash "<script>", node "<script>", bash launcher.sh guard.mjs)
+# are probed, not skipped, and a launcher and its payload each get their own line.
+# "Since install" is read as "since the hook script was last changed" (its mtime) - the
+# honest proxy this script can actually see. NOTE lines are neither OK nor WARN: they mark
+# a hook the probe deliberately cannot judge.
+note() { echo "NOTE $1"; }
+
+hook_mtime_date() { date -r "$1" +%F 2>/dev/null || stat -c %y "$1" 2>/dev/null | cut -c1-10; }
+
+# Evidence that a hook has actually run. Two signals, weakest last, each labelled in the
+# line it prints. Signal 1: the hook declares where its footprints land, with a
+#   `# checkup-evidence: <path or glob, relative to the HQ>`
+# comment in its own source; a matching file newer than the script proves a successful run.
+# Signal 2: a dated `[<script-name>]` line in records/warnings.md on or after the script's
+# date - a fail-loud hook that wrote a warning certainly ran, though that run reported
+# trouble. No signal is NOT proof the hook is dead; it is the honest absence of proof.
+hook_footprint() {
+  script="$1"; stem="$(basename "$script")"; stem="${stem%.*}"
+  decl="$(grep -m1 -E '^(#|//)[[:space:]]*checkup-evidence:' "$script" 2>/dev/null \
+          | sed -E 's%^(#|//)[[:space:]]*checkup-evidence:[[:space:]]*%%')"
+  if [ -n "$decl" ]; then
+    newest="$(find "$HQ"/$decl -type f -newer "$script" 2>/dev/null | head -1)"
+    if [ -n "$newest" ]; then
+      echo "has fired since its last change [checked: declared footprint $decl holds $(basename "$newest"), newer than the script]"
+      return 0
+    fi
+  fi
+  sdate="$(hook_mtime_date "$script")"
+  if [ -f "$WARNINGS_FILE" ] && \
+     grep -F "[$stem]" "$WARNINGS_FILE" 2>/dev/null | awk -v d="${sdate:-0000-00-00}" '$2 >= d' | grep -q .; then
+    echo "has fired since its last change [checked: records/warnings.md carries a dated [$stem] line on or after $sdate - it ran, and that run reported trouble]"
+    return 0
+  fi
+  return 1
+}
+
+HOOK_SETTINGS=()
+HOOK_SETTINGS_N=0   # bash 3.2 refuses ${#arr[@]} on an empty array under set -u
+HOOK_SETTINGS_SEEN=""
+HQ_PARENT="$(cd "$HQ/.." 2>/dev/null && pwd || echo "")"
+for s in "$HQ/.claude/settings.json" "$HQ/.claude/settings.local.json" \
+         "$HQ_PARENT/.claude/settings.json" "$HQ_PARENT/.claude/settings.local.json" \
+         "$HOME/.claude/settings.json" "$HOME/.claude/settings.local.json"; do
+  [ -f "$s" ] || continue
+  case "$HOOK_SETTINGS_SEEN" in *"|$s|"*) continue ;; esac   # the same file can sit on two of these paths
+  HOOK_SETTINGS_SEEN="$HOOK_SETTINGS_SEEN|$s|"
+  HOOK_SETTINGS+=("$s"); HOOK_SETTINGS_N=$((HOOK_SETTINGS_N + 1))
+done
+
+if [ "$HOOK_SETTINGS_N" -eq 0 ]; then
+  note "no settings.json found beside the HQ, above it, or in ~/.claude - no hooks to probe"
+elif ! command -v python3 >/dev/null 2>&1; then
+  note "python3 not found - the hook probe needs it to read hook commands safely, so hooks were not probed this run"
+else
+  # Rows: channel <tab> source <tab> event <tab> kind <tab> path
+  # kind: direct | via:<launcher> | INLINE | VARPATH | PARSEFAIL | NOINSTALLED
+  # The reader lives in its own variable rather than inline in a $( ) command
+  # substitution: bash 3.2 scans a here-document body for quotes when the heredoc sits
+  # inside $( ), so one apostrophe in a comment breaks the whole script.
+  HOOK_PY=""
+  read -r -d "" HOOK_PY <<'PY' || true
+import json, os, shlex, sys
+
+def emit(*fields):
+    print("\t".join(str(f) for f in fields))
+
+def walk(obj, channel, source, root=None):
+    hooks = obj.get("hooks") or {}
+    if not isinstance(hooks, dict):
+        return
+    for event, groups in hooks.items():
+        if not isinstance(groups, list):
+            continue
+        for group in groups:
+            if not isinstance(group, dict):
+                continue
+            for hook in group.get("hooks") or []:
+                if not (isinstance(hook, dict) and hook.get("type") == "command" and hook.get("command")):
+                    continue
+                cmd = hook["command"]
+                if root:
+                    cmd = cmd.replace("${CLAUDE_PLUGIN_ROOT}", root).replace("$CLAUDE_PLUGIN_ROOT", root)
+                try:
+                    toks = shlex.split(cmd)
+                except ValueError:
+                    toks = cmd.split()
+                if not toks:
+                    continue
+                # Every token that names a path is a script this probe can check. The
+                # first token is the command itself (its exec bit matters); a later one
+                # is run through that launcher (its exec bit does not).
+                found = [(i, t) for i, t in enumerate(toks) if "/" in t]
+                if not found:
+                    emit(channel, source, event, "INLINE", cmd[:60])
+                    continue
+                for i, tok in found:
+                    if "$" in tok:
+                        emit(channel, source, event, "VARPATH", tok)
+                        continue
+                    kind = "direct" if i == 0 else "via:" + os.path.basename(toks[0])
+                    emit(channel, source, event, kind, os.path.abspath(os.path.expanduser(tok)))
+
+enabled = {}
+for path in sys.argv[1:]:
+    try:
+        with open(path) as fh:
+            data = json.load(fh)
+    except Exception:
+        emit("settings", path, "-", "PARSEFAIL", "-")
+        continue
+    walk(data, "settings", path)
+    for key, on in (data.get("enabledPlugins") or {}).items():
+        enabled.setdefault(key, on)   # settings were collected most-specific first
+
+# Plugin-provided hooks: registered in the plugin's own hooks/hooks.json, never in a
+# settings file. Only plugins the settings actually enable are probed.
+if any(enabled.values()):
+    ip = os.path.expanduser("~/.claude/plugins/installed_plugins.json")
+    try:
+        with open(ip) as fh:
+            installed = json.load(fh).get("plugins") or {}
+    except Exception:
+        installed = {}
+        emit("plugin", ip, "-", "NOINSTALLED", "-")
+    for key, on in sorted(enabled.items()):
+        if not on:
+            continue
+        for entry in installed.get(key) or []:
+            root = entry.get("installPath")
+            if not root:
+                continue
+            hj = os.path.join(root, "hooks", "hooks.json")
+            if not os.path.isfile(hj):
+                continue
+            try:
+                with open(hj) as fh:
+                    data = json.load(fh)
+            except Exception:
+                emit("plugin", key, "-", "PARSEFAIL", hj)
+                continue
+            walk(data, "plugin", "%s %s" % (key, entry.get("version", "?")), root)
+PY
+  HOOK_ROWS="$(printf '%s\n' "$HOOK_PY" | python3 - "${HOOK_SETTINGS[@]}" 2>/dev/null || true)"
+
+  HOOK_SEEN=""
+  HOOK_TOTAL=0
+  PLUGIN_SILENT=0
+  PLUGIN_SILENT_LIST=""
+  while IFS=$'\t' read -r channel source event kind path; do
+    [ -n "${kind:-}" ] || continue
+    case "$kind" in
+      PARSEFAIL)
+        warn "hook settings $source could not be parsed as JSON - its hooks cannot be probed, and may not be loading either"
+        continue ;;
+      NOINSTALLED)
+        note "plugins are enabled but $source could not be read - plugin-provided hooks were not probed"
+        continue ;;
+      INLINE)
+        note "hook on $event runs an inline command, not a script file - not probed: $path"
+        continue ;;
+      VARPATH)
+        note "hook on $event uses a variable this probe cannot expand ($path) - not probed"
+        continue ;;
+    esac
+    case "$HOOK_SEEN" in *"|$path|"*) continue ;; esac   # one script, one report, however many events it sits on
+    HOOK_SEEN="$HOOK_SEEN|$path|"
+    HOOK_TOTAL=$((HOOK_TOTAL + 1))
+    hname="$(basename "$path")"
+    where="$([ "$channel" = plugin ] && echo "plugin $source" || echo "$(basename "$source")")"
+    if [ ! -f "$path" ]; then
+      warn "hook $hname is registered on $event by $where but its script is not on disk: $path"
+      continue
+    fi
+    # The executable bit only matters when the hook command runs the script itself.
+    # A script handed to bash/node/python by a launcher runs mode 644 by design -
+    # every plugin ships them that way - and warning about it would be noise.
+    if [ "$kind" = direct ]; then
+      ok "hook $hname present ($where, $event)"
+      if [ -x "$path" ]; then
+        ok "hook $hname is executable"
+      else
+        warn "hook $hname is NOT executable ($(ls -l "$path" | awk '{print $1}')) - it is registered but cannot run, and a fail-open hook makes that silent. Fix: chmod +x \"$path\", then fire it once to confirm"
+      fi
+    else
+      ok "hook $hname present ($where, $event) - run through ${kind#via:}, so its executable bit is not required"
+    fi
+    if evidence="$(hook_footprint "$path")"; then
+      ok "hook $hname $evidence"
+    elif [ "$channel" = plugin ]; then
+      # A plugin guard that passes is silent by design - it writes nothing anywhere, so
+      # there is no footprint to read. Counted into one line rather than repeated per
+      # hook: a wall of identical notes is how a report stops being read.
+      PLUGIN_SILENT=$((PLUGIN_SILENT + 1))
+      PLUGIN_SILENT_LIST="$PLUGIN_SILENT_LIST $hname"
+    else
+      warn "hook $hname shows no evidence it has fired since its last change [unknown] - it may be running silently and leaving no trace, or it may be dead. Fire it once by hand as an install check, or give it a '# checkup-evidence: <path>' line naming where its output lands"
+    fi
+  done <<< "$HOOK_ROWS"
+  [ "$HOOK_TOTAL" -eq 0 ] && note "no hook scripts found to probe in the settings files or enabled plugins"
+  if [ "$PLUGIN_SILENT" -gt 0 ]; then
+    note "$PLUGIN_SILENT plugin-provided hook scripts are installed and registered but leave no footprint this HQ can read - a plugin guard is silent when it passes, so whether each has fired is [unknown]: reported for visibility, not judged -$PLUGIN_SILENT_LIST"
+  fi
+fi
 
 echo
 echo "Checkup done: $OK_COUNT ok, $WARN_COUNT warnings. Warnings are logged in records/warnings.md - nothing is blocked."

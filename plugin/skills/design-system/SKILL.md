@@ -63,6 +63,20 @@ company name, content styles for headings, tables, callouts, and cards, a
 footer that stamps the date in your timezone. Self-contained, double-click
 openable. I open it (or tell you exactly how) so you see the real thing.
 
+Every template I compile obeys one non-negotiable rule, whatever your brand
+turns out to be: **no sideways scrolling.** A page you open on a phone never
+asks you to drag it left and right - text wraps, tables wrap, and long
+unbroken strings like URLs and file paths wrap. I never solve a wide table
+with `overflow-x: auto`, because a horizontal rail parks your content out of
+sight behind a gesture most readers never make. The technique is
+`table-layout: fixed` with `width: 100%` so columns share the space,
+`overflow-wrap: anywhere` on text and cells, `white-space: pre-wrap` on code
+blocks, `max-width: 100%` on media, and `min-width: 0` on flex items - and it
+goes last in the stylesheet so nothing above it can reintroduce a rail. I
+check the compiled template at a 390px viewport before showing it to you: it
+passes only when the page's scroll width does not exceed its client width, in
+both light and dark. This rule survives every re-run and every rebrand.
+
 ### Step 4 - Your verdict
 
 You say yes, or you say what is off and we adjust. Only your yes makes this

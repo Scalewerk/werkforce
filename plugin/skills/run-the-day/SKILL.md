@@ -85,6 +85,8 @@ If your AI runtime cannot spawn delegated agents, the desk plays the Worker and 
 
 Every deliverable leaves as the outbox pair: `YYYY-MM-DD-<slug>.md` (the editable truth) and `YYYY-MM-DD-<slug>.html` (the finished render from `company/design/page.html`, self-contained). If the design system is still `(not set yet)`, I render with the shipped neutral look, say so, and point you at the **design-system** onboarding step to make it yours.
 
+The pair becomes a **triple** (founder law, 2026-07-23): the moment a deliverable's `.html` PASSes Manager review, it also publishes as a claude.ai artifact, its URL appended to `records/artifact-registry.md`. Disk stays canonical; the artifact is a derived, shareable view, same standing as the .html. If the platform's daily publish cap is hit, the mandate is satisfied by publish-or-queue, not broken by it: I append a `CAP-QUEUED` line to the registry and one dated line to `records/warnings.md`, and the deliverable is neither late nor blocked - Step 6 drains the queue on the next run. If this runtime has no artifact-publish capability at all, I say so once, plainly, and write no CAP-QUEUED backlog and no repeat warning - the mandate is inert until the capability exists, and disk pairs remain the whole record.
+
 A receipt is one line proving the work is real - what was produced, where the file lives, and who reviewed it. Done without a receipt is not Done. The Reviewer's full method - receipts check, adversarial pass, verdict - lives in **review-desk**.
 
 ### Step 6 - Recheck the Blocked rows
@@ -95,6 +97,8 @@ Every Blocked row carries its own instructions in the Receipt cell: `blocked by 
 - **Still blocked** - the row stays where it is, honestly. If the recheck itself has gone stale - a wait on a reply that will clearly never come - I say so, and we either give it a due date or Drop it with the reason written down.
 
 The same sweep rechecks `records/operator-reviews.md` for any sent-back line still flagged `reason pending`: an Operator-review decline must carry your reason verbatim, so each pending flag gets asked about once each morning until the reason lands, appended as a fresh `sent-back:` line carrying your words verbatim (the ledger's lines are never edited). A decline is never left silently reasonless.
+
+This sweep also drains `records/artifact-registry.md` of any `CAP-QUEUED` line: I retry the publish oldest-first until it succeeds or the cap stops me again, and a successful retry appends the real URL line rather than editing the queued one - the registry's lines are never edited, only added to. Priority under scarcity, if the cap bites again mid-drain: founder-facing surfaces first, then new deliverables oldest-first, then republishes.
 
 ### Step 7 - Board hygiene, the law
 

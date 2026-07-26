@@ -88,7 +88,7 @@ The postmortem line - the whole incident in one honest breath, appended to `reco
 - YYYY-MM-DD fix: {what broke} - {why, per the evidence} - {what now prevents it}
 ```
 
-The weekly review reads this file and proposes exactly one change, which is how a single bad Tuesday becomes a permanently smarter company. Then the repair goes on the record in `records/worklog.md`:
+The weekly review reads this file and proposes any and all changes the record supports, each atomic, which is how a single bad Tuesday becomes a permanently smarter company. Then the repair goes on the record in `records/worklog.md`:
 
 ```markdown
 - YYYY-MM-DD [department] Fixed {what} - receipt: cause and fix, where the repaired work lives, verified by re-running the failure, reviewed by {who}

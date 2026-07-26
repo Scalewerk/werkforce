@@ -1,13 +1,13 @@
 ---
 name: weekly-review
-description: Your workforce's honest weekly tally - what actually got Done, what sat all week, which warnings repeat, and whether each department is on pace to graduate the autonomy ladder. Every number is counted from your files, never estimated, and if nothing got done the review says so in the first line. Reads what the company learned in records/improvements.md, measures last week's change, and proposes exactly one change for your yes. Use when you say "werkforce, week", "weekly review", "how did the week go", "run my review", "score my departments", "what got done this week", "is my department on pace". Run this once a week, after the last board of the week closes and before you plan the next one.
+description: Your workforce's honest weekly tally - what actually got Done, what sat all week, which warnings repeat, and whether each department is on pace to graduate the autonomy ladder. Every number is counted from your files, never estimated, and if nothing got done the review says so in the first line. Reads what the company learned in records/improvements.md, measures last week's changes, and proposes ANY and ALL changes the record supports - each for your yes or no (founder-amended 2026-07-24; was exactly-one). Use when you say "werkforce, week", "weekly review", "how did the week go", "run my review", "score my departments", "what got done this week", "is my department on pace". Run this once a week, after the last board of the week closes and before you plan the next one.
 ---
 
 # Weekly Review - the week the files can prove
 
-By Friday your memory of the week is a mood. The files have no mood. Every finished task left a receipt in `records/worklog.md`, every flag landed in `records/warnings.md`, every lesson landed in `records/improvements.md`, every stalled item is still sitting on a board with a date next to it. This skill reads all of it and tells you the week as the record shows it - Done counts, sat items by name, repeat warnings, decisions still waiting on you - then checks whether last week's change happened and proposes exactly one change for next week.
+By Friday your memory of the week is a mood. The files have no mood. Every finished task left a receipt in `records/worklog.md`, every flag landed in `records/warnings.md`, every lesson landed in `records/improvements.md`, every stalled item is still sitting on a board with a date next to it. This skill reads all of it and tells you the week as the record shows it - Done counts, sat items by name, repeat warnings, decisions still waiting on you - then checks whether last week's changes happened and proposes every change the record supports - each decided by you, none bundled.
 
-This is the founder's fifteen minutes. **run-the-day** works the boards every morning; this skill answers the only two weekly questions that matter: is the work real, and is each department earning more rope? And it improves the company the only way anything really improves - one change at a time, measured the week after.
+This is the founder's fifteen minutes. **run-the-day** works the boards every morning; this skill answers the only two weekly questions that matter: is the work real, and is each department earning more rope? And it improves the company the only way anything really improves - by every change the record supports, each one decided by you and measured the week after.
 
 ## Personalization
 
@@ -25,7 +25,7 @@ you give me something real.
 - A tally counted only from the record: `records/worklog.md`, `records/warnings.md`, every Active department's `board.md`, and `company/decision-log.md`
 - A department scorecard - one line per Active department: Done count, rework count, oldest sitting item, autonomy level and days at it
 - A plain autonomy verdict per department - on pace, ahead, or behind the 30-day calendar - and the one thing that would move it
-- The week's lessons read out of `records/improvements.md`, last week's change measured, and exactly ONE new change proposed for your yes
+- The week's lessons read out of `records/improvements.md`, last week's changes measured, and ANY and ALL new changes the record supports proposed - each for your yes or no
 - A one-sentence nudge if the calendar says the month or the quarter is due - never a detour
 - The whole review appended to `records/reviews.md` under today's date - next week's baseline
 
@@ -33,7 +33,7 @@ you give me something real.
 
 1. Fifteen minutes at the end of your week - same day, same time, ideally.
 2. One answer the files cannot hold: of everything that shipped this week, what did you actually use? Used means sent, posted, applied, followed.
-3. A yes or no on the one change - or your own change in its place. Your call is final.
+3. A yes or no on EACH proposed change - or your own in its place. Your call is final, per change.
 
 ## How it works
 
@@ -74,7 +74,7 @@ Rework counts tasks the Reviewer sent back this week, wherever the record shows 
 
 For each Active department I read the graduation record in `charter.md` and check its graduation checklist against the 30-day calendar - both live with **autonomy-ladder**, which owns graduation itself; this skill only measures. The verdict is plain: **on pace**, **ahead**, or **behind** - plus the one thing that would move it, for example "behind - two Done rows have thin receipts; a clean receipt week is what graduates Level 1 - Supervised to Level 2 - Trusted." If **autonomy-ladder** is not installed yet, I judge from the graduation record and days at level alone, and I say that is what I did.
 
-### Step 5 - The hill-climb: one change
+### Step 5 - The hill-climb: the proposed changes
 
 First, the pattern. I say "the logs show X" only when they do - like "the logs show every task that finished had a due date, and every task that sat did not." If one week is too little data to call a pattern, the review says that instead, and next week's entry deepens the record.
 
@@ -82,7 +82,7 @@ Then I open `records/improvements.md` and read every line dated this week - less
 
 Before proposing anything new, I measure the last change: the previous review entry names it, and this week's record shows whether it happened and what it moved. That verdict goes in today's entry - no proposing change two while change one sits unmeasured.
 
-Then exactly one adjustment for next week - one, not three - drawn from the strongest signal in the improvements file and the tally. Small enough to actually do, concrete enough that next week's review can check whether it happened and whether it helped. You say yes, or you replace it with your own; what lands in the file is yours. One change a week, measured the week after - that is how a company climbs a hill without falling off it.
+Then ANY and ALL adjustments the record supports (founder-amended 2026-07-24; the old law capped this at one) - each drawn from a real signal in the improvements file and the tally, each atomic per the one-item-one-atom rule, each small enough to do and concrete enough that next week's review can check it. You decide each one separately - yes, no, or your own in its place; what lands in the file is yours. Every accepted change is measured the week after.
 
 ### Step 6 - Log it
 
@@ -116,14 +116,14 @@ Verdict: {{the honest week in one line}}
 ### Last week's change
 {{happened and what it moved | did not happen - why the record says so | "first review, nothing to measure yet"}}
 
-### One change
-{{exactly one adjustment for next week - Founder said yes, or Founder replaced it with their own}}
+### Proposed changes
+{{every adjustment the record supports, one line each - each marked with the Founder's yes / no / replacement}}
 ```
 
 Then one line goes to `records/audit-log.md`, timestamped in your HQ timezone from `HQ.md` (never UTC), so the week's review shows up in the dashboard's activity feed:
 
 ```markdown
-- YYYY-MM-DD HH:MM [review] [weekly-review] [company] weekly review filed - one change proposed - records/reviews.md
+- YYYY-MM-DD HH:MM [review] [weekly-review] [company] weekly review filed - {N} changes proposed, {N} accepted - records/reviews.md
 ```
 
 I read the entry back to you in one screen, and the review is done. Next week's run starts exactly here - and the first thing it measures is the change you just approved.
@@ -132,7 +132,7 @@ I read the entry back to you in one screen, and the review is done. Next week's 
 
 1. Say "werkforce, week" and let me read the record.
 2. Answer the one question - what shipped work did you actually use?
-3. Approve the one change, or set your own, then read the entry in `records/reviews.md`.
+3. Decide each proposed change - yes, no, or your own - then read the entry in `records/reviews.md`.
 
 Homework: put a recurring slot on your real calendar - same day, same time, every week - named "werkforce, week".
 

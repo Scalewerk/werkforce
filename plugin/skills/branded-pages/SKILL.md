@@ -77,11 +77,11 @@ When `company/design/` is `(not set yet)`, I fall back to the shipped neutral te
   a{color:var(--signal);text-underline-offset:.15em;}
   code{font-family:var(--mono);font-size:.85em;background:var(--card);
     padding:.1rem .35rem;border-radius:2px;}
-  pre{background:var(--card);padding:1.1rem 1.3rem;overflow-x:auto;margin:1.2rem 0;}
+  pre{background:var(--card);padding:1.1rem 1.3rem;margin:1.2rem 0;}
   pre code{background:none;padding:0;}
   blockquote{font-style:italic;font-size:1.2rem;border-left:3px solid var(--ink);
     padding-left:1.4rem;margin:1.4rem 0;max-width:40ch;}
-  .table-wrap{overflow-x:auto;margin:1.2rem 0;}
+  .table-wrap{margin:1.2rem 0;}
   table{border-collapse:collapse;width:100%;font-size:.9rem;}
   th{font-family:var(--mono);font-size:.625rem;letter-spacing:.18em;
     text-transform:uppercase;font-weight:400;color:var(--ink-soft);text-align:left;
@@ -92,19 +92,34 @@ When `company/design/` is `(not set yet)`, I fall back to the shipped neutral te
     text-transform:uppercase;color:var(--ink-soft);line-height:2;}
   @media print{body{background:#fff;color:#000;}.sheet{padding:0;max-width:none;}
     a{color:#000;text-decoration:none;}tr,pre,blockquote{page-break-inside:avoid;}}
+  /* No sideways scroll - a rendered page never asks the reader to scroll left
+     and right. Content wraps to the viewport; nothing hides behind a rail.
+     Last block in the sheet so it wins. Never add overflow-x:auto above it. */
+  html,body{max-width:100%;}
+  body{overflow-wrap:break-word;}
+  h1,h2,h3,h4,h5,h6,p,li,dt,dd,blockquote,figcaption{overflow-wrap:anywhere;}
+  a,code,kbd,samp{overflow-wrap:anywhere;}
+  pre{white-space:pre-wrap;overflow-wrap:anywhere;}
+  img,svg,video,canvas,iframe{max-width:100%;height:auto;}
+  table{table-layout:fixed;width:100%;}
+  th,td{overflow-wrap:anywhere;}
+  /* This fallback ships no stat tiles, pills, or stacked tables, so it carries no
+     .stat/.pill/.stack rules. If you ever add a flex row here (stat tiles are the
+     usual culprit), give its items min-width:0 - a flex item that will not shrink
+     below its content width overflows the row and reintroduces sideways scroll. */
 </style>
 </head>
 <body>
 <div class="sheet">
 <p class="house">{{COMPANY_NAME}}</p>
 {{RENDERED_CONTENT}}
-<p class="footer">Source of authority: {{SOURCE_PATH}} - rendered by branded-pages - {{COMPANY_NAME}}</p>
+<p class="footer">Source of authority: {{SOURCE_PATH}} - generated, do not hand-edit: ask branded-pages to re-render {{SOURCE_PATH}} - rendered by branded-pages - {{COMPANY_NAME}}</p>
 </div>
 </body>
 </html>
 ```
 
-The rules inside that fallback template are a deliberately neutral look: paper and ink, one signal color on links only, serif body, mono uppercase eyebrows, every table wrapped so wide data scrolls instead of breaking the page - a stand-in until your real design system takes over. The page title comes from the doc's first H1. Nothing external, ever - no font links, no image URLs fetched from the web, no analytics, no scripts. A render made today opens identically in ten years on an airplane.
+The rules inside that fallback template are a deliberately neutral look: paper and ink, one signal color on links only, serif body, mono uppercase eyebrows, and no sideways scrolling anywhere - wide tables and long unbroken strings wrap to the screen instead of parking content behind a horizontal rail. A stand-in until your real design system takes over. The page title comes from the doc's first H1. Nothing external, ever - no font links, no image URLs fetched from the web, no analytics, no scripts. A render made today opens identically in ten years on an airplane.
 
 The source `.md` is never touched. Not one character. I read it; I do not write it.
 

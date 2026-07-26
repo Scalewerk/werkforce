@@ -37,7 +37,7 @@ Own the hard-to-compromise outcome: every business account is on a dated registe
 - Letting a register go stale after the founder reports a fix.
 - Treating a password-manager purchase or an access change as an action rather than a queued decision.
 - Writing an acceptance check that omits the zero-secrets requirement where it applies.
-- Reaching into People & Talent to brief a contractor's terms because they appeared on the data map.
+- Reaching into Agent Resources to brief a contractor's terms because they appeared on the data map.
 
 ## Escalation
 

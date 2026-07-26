@@ -24,9 +24,11 @@ you give me something real.
 - A dated, verified backup of your whole HQ before a single byte changes
 - Every file the current version expects added from the shipped seeds - every file you already have left exactly as it is
 - The OS files refreshed from the current references: `os/charter.md`, `os/formats.md`, `os/manifest.md`, and `os/VERSION` stamped to `3.1` (the constitution and the format law only ever change through this skill)
+- A `Werkforce type:` line added to `HQ.md` and `os/type.md` copied in - `business` by default on no answer, `job` only on your explicit confirmation after I say what I see on your org chart (B45; see Step 3)
 - A `Timezone:` line added to `HQ.md` from your answer - so every date the system writes and speaks is in your time, never UTC
 - The v3 additions seeded from the shipped seeds: `records/audit-log.md` (the master audit log), `company/onboarding.md` (with the steps your HQ has already completed marked Done from the evidence on disk), and `company/design/` (the design system, owned by **design-system**)
 - `company/org-chart.md` grown to the full shape: the Governance table, plus a Planned row for each of the twelve standard departments it was missing
+- The 3.2 full official seat names OFFERED, never applied on my own initiative - `CEO` -> `Chief Executive Officer`, and `CTO`/`CMO`/`CRO` written out where they name a seat on your org chart, charters, and role cards - shown cell by cell and moved only if you say yes, because that roster is yours
 - Seat words modernized in place to the current facets - **Planner**, **Worker**, **Reviewer** - mapped from whatever older words your HQ carried, with role titles left untouched and the old words still understood forever
 - Every department you built that is not one of the twelve kept and marked as a legacy department, its files untouched
 - Role cards seeded into `departments/<slug>/seats/` wherever a matching department skill ships them
@@ -44,6 +46,8 @@ you give me something real.
 ### Step 1 - Read the version, then look before touching
 
 I read `os/VERSION`. If it already matches the current version, I tell you so in one sentence and stop - a finished migration run twice changes nothing, ever. If it is absent or older, I do not trust the stamp alone: I walk the actual tree and compare what is really there against what the current version expects. Files beat labels - if the stamp and the folder disagree, I believe the folder, append one dated line to `records/warnings.md`, and plan from what actually exists.
+
+I also read `records/worklog.md` for the migration records of earlier runs, because anything you have already declined stays declined - an offer you turned down is not put back in front of you on the next run.
 
 Then I show you the change list before anything moves: every file to be added, every table to be grown, every word to be mapped, every legacy department to be kept. You read it, you say go. Nothing in this migration is a surprise by design.
 
@@ -73,14 +77,23 @@ The v3 additions land here too, seeded from the shipped references and skipped i
 
 - `records/audit-log.md` - the master audit log, seeded with its header and format comment. From this migration onward every action lands one timestamped line here; the migration itself writes the first one in Step 7.
 - `records/operator-reviews.md` - the 3.1 addition: the append-only ledger where every founder sign-off and send-back at the desk is recorded, and the data source the review-gap analysis reads. Seeded with its header and format comment, skipped if it already exists.
+- `records/artifact-registry.md` - the ledger where every published claude.ai artifact URL is recorded (the artifact mandate, founder law 2026-07-23). Seeded with its header and format comment, skipped if it already exists - and your HQ's existing registry, if you already had one, is exactly that case: untouched.
 - `company/design/design-system.md` and `company/design/page.html` - the company design system that every rendered deliverable reads, owned by the **design-system** skill. Seeded at the neutral shipped look with unknowns left `(not set yet)`; the onboarding step points you at design-system to make it yours.
 - `company/onboarding.md` - the numbered onboarding checklist, owned by the **onboarding** skill. I seed it, then mark each step Done only where the thing it builds already exists on disk (a filled profile, an Active department), so a mature HQ does not get told to redo work it finished long ago; the earliest unfinished step is set to `Next`.
 
 Four OS files are refreshed rather than skipped, because the constitution and the format law only ever change through this skill: `os/charter.md` and `os/formats.md` are copied exactly from the current references, `os/manifest.md` is rewritten to the current pack version and expected tree, and `os/VERSION` is stamped last of all in Step 7. Your founder data is never touched by this refresh - only the OS spine moves.
 
+**The werkforce type (B45, new in this build).** Every HQ this skill touches gets exactly one of three outcomes, decided in this order, and lands here in Step 3 - before `os/VERSION` is stamped in Step 7, so a half-finished migration is still readable:
+
+1. **`HQ.md` already carries a `Werkforce type:` line.** Your answer, once given, is never asked again - but I still check that `os/type.md` exists and matches the line, and add it from `references/types/<type>.md` if it is missing. A half-migrated HQ that gained the line in an earlier, interrupted run but never got its lens file does not stay broken forever; this is the one thing that "changes" in this case, and only when the file is actually absent.
+2. **No `Werkforce type:` line, and nothing on the org chart suggests otherwise.** I ask once. **Silence default: `business`.** No answer, or an explicit decline, becomes a `business` HQ and gains only the `Werkforce type: business` line plus `os/type.md` - zero other bytes move. This is the whole safety story: every pre-B45 HQ in the world is a `business` HQ until its founder says otherwise.
+3. **No `Werkforce type:` line, but the org chart's apex-seat cell already holds a non-CEO title** (the pattern the early job-type HQ was hand-patched into before this setting existed). I *say what I see* - name the cell and its title - and ask; I never infer and silently write `job`. **Silence default: same as case 2 - `business`.** No answer, or an explicit decline, still becomes a `business` HQ; the only difference from case 2 is that the migration record notes the apex-title evidence I saw and that you were asked and declined, so a later run does not ask again on the same evidence. If you confirm `job`, I add the `Werkforce type: job` line, copy `os/type.md` from `references/types/job.md`, and add `company/role-scorecard.md` from its seed **only if that file does not already exist** - same skip-if-present rule as every other founder-data file in this step. **I do not re-head your existing `company/profile.md` or rewrite its "What we sell"-style headings to the job vocabulary**, even after you confirm `job` - your own words under a shipped heading are founder-authored divergence, untouchable by this migration. Re-heading an existing profile is offered as a separate, one-at-a-time edit you approve later, never bundled into the type confirmation.
+
+`personal` is never offered by this migration - the the job-type design holds that profile behind a founder conversation that has not happened, so no upgrade path infers or offers it.
+
 One scaffold gets refreshed on every board: the comment line at the top that names the stages. The 3.1 stage law is `Filed | In progress | Blocked | Manager review | Operator review | Done | Dropped` - `In review` is renamed to `Manager review` and a new `Operator review` stage sits between it and `Done`, because in 3.1 `Done` means operator-signed, not the Reviewer's word alone. I rewrite that one comment line to the current law.
 
-The 3.0 -> 3.1 step also makes one narrow, sanctioned edit inside the task table, the only in-place row edit this migration ever performs: every board row whose Stage cell reads `In review` is renamed to `Manager review` - same task, same seat, same meaning (the Reviewer's gate), just the current word. No row moves stage otherwise, and I show you each rename before it lands.
+The 3.0 -> 3.1 step also makes one narrow, sanctioned edit inside the task table - the only one this migration performs without asking you first: every board row whose Stage cell reads `In review` is renamed to `Manager review` - same task, same seat, same meaning (the Reviewer's gate), just the current word. No row moves stage otherwise, and I show you each rename before it lands.
 
 Existing `Done` rows are grandfathered. A row already at `Done` predates the operator-sign-off gate, so I never reopen it or push it back to `Operator review` - it stays `Done`, and the migration record notes those rows as `operator-signed-by-grandfather` so the history is honest about why they carry no operator-review line. A grandfathered `Done` row is never retroactively reopened without your explicit say-so as founder.
 
@@ -89,8 +102,32 @@ Existing `Done` rows are grandfathered. A row already at `Done` predates the ope
 Your org chart gains its full shape without losing a cell:
 
 - If there is no `## Governance` table, it is added - Founder, Active, your name; CEO, Planned. The CEO seat arriving as Planned changes nothing until you choose to activate it.
-- Each of the twelve standard departments missing from the table gets its row, status Planned: Engineering, Marketing, Sales, Product, Design, Client Delivery, Finance, People & Talent, Operations, Legal, Information Security, Strategy. A Planned row is a job posting, not a hire - **open-a-department** still owns activation, and hiring stays a reserved decision.
-- Every row you already have keeps its status, its names, and its autonomy level exactly as written.
+- Each of the twelve standard departments missing from the table gets its row, status Planned: Engineering, Marketing, Sales, Product, Design, Client Delivery, Finance, Agent Resources, Operations, Legal, Information Security, Strategy. A Planned row is a job posting, not a hire - **open-a-department** still owns activation, and hiring stays a reserved decision.
+- Every row you already have keeps its status, its names, and its autonomy level exactly as written - the one thing that can change a name is the offer below, and only if you say yes to it.
+
+**The 3.1 -> 3.2 step offers the full official seat names - offered, never forced.** In 3.2 a seat's official name is written out in full: the org-chart governance row reads `Chief Executive Officer`, and the three department heads that were still abbreviated read `Chief Technology Officer`, `Chief Marketing Officer`, and `Chief Revenue Officer`, matching every other department head, which shipped spelled out all along - Chief Product Officer, Chief Financial Officer, General Counsel, and the rest. This is a naming law about official names only. Everyday prose is untouched: "the CMO reviews it" is still correct in 3.2, and your wake phrases - "activate my CEO" - are unchanged.
+
+Your `company/org-chart.md` is yours. It is the roster of your company with your people's names in it, so this migration never rewrites it on its own initiative. Instead I show you the exact cells and the exact replacement text, and ask you once. The offer covers:
+
+- the `## Governance` table's `Seat` cell, `CEO` -> `Chief Executive Officer` - that cell is the schema's own row label, not anybody's name
+- any `## Departments` seat cell that holds `CTO`, `CMO`, or `CRO` as the agent's name, which is true of every HQ that named its seats after their titles
+- the matching department charter's three-seats table `Role` cell, so the charter and the chart never say different things
+- the matching role card's `# CTO - role card` header, and its `## This seat` `Name:` line where that line holds the abbreviation rather than a person's name
+
+Say yes and those cells move together, so no two files disagree afterward. Say no and every one of them stays exactly as you wrote it - and your no is written into the migration record as a decline, which is the one place a later run looks before it makes this offer again. Once the record carries your answer, you are not asked twice. The honest limit: if it does not carry your answer - an interrupted run, a record that never got written - a re-run asks once more rather than quietly deciding for you. Either answer leaves the rest alone: a seat cell holding a person's name is never touched, the seat-card file names already in your HQ stay exactly as they are (this migration renames no files), statuses and autonomy levels and hire dates are untouched, the seat words stay Planner, Worker, Reviewer, and every line already written under `records/` keeps its old wording - ledgers are append-only, and history gets quoted, never corrected.
+
+**The 3.2 -> 3.3 step offers the Agent Resources rename - offered, never forced.** In 3.3 the People & Talent department becomes **Agent Resources**, and its subject changes with its name: it hires, onboards, maintains, and continuously improves the agent seats in your company, and keeps human-contractor work as a named secondary lane. The three seats become Chief Agent Resources Officer, Agent Resources Specialist, and Agent Resources Manager.
+
+What the offer covers depends entirely on what your HQ actually holds, and I look before I ask:
+
+- **A Planned row and no department folder** - the common case. This is a one-line edit: the `## Departments` row's name cell, `People & Talent` -> `Agent Resources`. Nothing else exists to move.
+- **An Active department with a folder.** Then the offer is the whole migration, and I show you every part of it before you answer: the charter's mission and KPIs replaced with the four-lane text, the playbook's SOPs replaced (your contractor SOPs kept, renumbered beneath the new ones), the three seat cards retitled, the folder moved from `departments/people-and-talent/` to `departments/agent-resources/` with all its outbox files and ledgers carried intact, and a `MOVED.md` stub left behind so every ledger line and receipt path that points at the old folder still resolves in one hop.
+
+Say yes and all of it moves together, so no two files disagree afterward. Say no and everything stays exactly as you built it - and your no is written into the migration record as a decline, so a later run does not ask again. **For one version, `werkforce-checkup` accepts either name without warning**, so an HQ that declines is never nagged about it.
+
+The limits are the same ones that govern every migration here, and they matter more in this one because it moves a folder. No dated outbox file is renamed - a dated deliverable is a receipt, and receipts are quoted, never corrected. No ledger line is rewritten: `records/` keeps every word it already carries, including the old department name and the old seat names, which is why the MOVED stub exists. Closed board rows keep their Seat cells; only open rows are updated. And every seat card's `## Seat memory` section moves byte-identical, so its pre-rename bullets still say "People & Talent Specialist" - that is correct and intended.
+
+If your HQ runs a real contractor bench through this department, the honest note is that nothing about the human lane is being removed - it stays, in writing, as a named secondary lane. If you would rather it lived in Operations instead, that is a re-home rather than a rename, and it is your call to make separately.
 
 ### Step 5 - Seat words map, legacy departments stay
 
@@ -100,7 +137,7 @@ I map whatever older words your HQ carried to the current three, in place, acros
 
 Then two additions where they fit:
 
-- **Role cards.** For each Active department matching one of the twelve, I seed `departments/<slug>/seats/<role-slug>.md` from that department skill's shipped role cards - the card copied verbatim, then `## This seat` with the agent's existing given name and hire date from the charter, then an empty `## Seat memory`. A seats file that already exists is skipped, like everything else.
+- **Role cards.** For each Active department matching one of the twelve, I seed `departments/<slug>/seats/<role-slug>.md` from that department skill's shipped role cards - the card copied verbatim, then `## This seat` with the agent's existing given name and hire date from the charter, then an empty `## Seat memory`. A seats file that already exists is skipped, like everything else - and "already exists" is judged by the seat, not by the file name. That distinction matters now that some shipped cards carry their full official name (`chief-technology-officer.md` where an older HQ holds `seats/cto.md`): a plain name-match would hand you a second card for a seat you already have. It does not. Where your HQ already holds that seat's card under any name, I skip it and leave your file exactly where it is.
 - **Legacy departments.** Any department you built that is not one of the twelve - a first-generation Content department is the classic case - STAYS. Its row is kept and marked `(legacy department)`, its charter, board, and memory are untouched, and one dated line goes to `records/warnings.md` noting the chart carries rows beyond the standard twelve. If you want to retire one someday, that is closing a department - a reserved decision - so I QUEUE it in `company/decision-log.md` with a recommendation attached and **archive-work** does the moving after you decide. A migration never fires anyone.
 
 ### Step 6 - Your timezone, on the record
@@ -125,6 +162,12 @@ A 3.0 -> 3.1 minor step is smaller and its record says exactly what moved:
 
 ```markdown
 - YYYY-MM-DD [company] Migrated HQ 3.0 -> 3.1 - receipt: backup werkforce-backup-YYYY-MM-DD.tar.gz verified; refreshed os/formats.md, os/manifest.md; seeded records/operator-reviews.md; refreshed the stage-comment line on N boards to the 7-stage law; renamed N task-row Stage cells In review -> Manager review across N boards; N existing Done rows grandfathered as operator-signed-by-grandfather (not reopened); reviewed by {founder}
+```
+
+Any run that lands a werkforce-type outcome (B45) says which one, explicitly, in the same record - never silently:
+
+```markdown
+- YYYY-MM-DD [company] Migrated HQ ... - receipt: ...; werkforce type set to business (no answer, default applied) | werkforce type set to job (org chart apex cell read "{title}", founder confirmed) | werkforce type line already present, unchanged; reviewed by {founder}
 ```
 
 The migration also writes the first line into the master audit log it just seeded, `records/audit-log.md`, timed in your new HQ timezone:

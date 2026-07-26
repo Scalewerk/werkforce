@@ -1,11 +1,12 @@
 # OS manifest - what this version installs
 <!-- LIVING (rewritten by install/upgrade only). The checkup compares this against the tree and warns on drift. -->
 
-Pack version: 3.1.0
+Pack version: 3.3.0
 
 ## Skills installed
 - archive-work
 - autonomy-ladder
+- backlog
 - backup-your-werkforce
 - branded-pages
 - brief-writer
@@ -27,7 +28,9 @@ Pack version: 3.1.0
 - founders-desk
 - grow-a-skill
 - hire-an-agent
+- install-dependencies
 - install-your-werkforce
+- karpathy-guidelines
 - landing-pages
 - onboarding
 - legal-department
@@ -37,15 +40,17 @@ Pack version: 3.1.0
 - offers-and-proposals
 - open-a-department
 - operations-department
+- operator-review
 - outcome-desk
 - partner-outreach
-- people-department
+- agent-resources-department
 - plan-desk
 - playbook-library
 - product-department
 - quarterly-strategy
 - rebrand
 - record-keeping
+- release-notes
 - report-craft
 - research-desk
 - restore-your-werkforce
@@ -64,6 +69,7 @@ Pack version: 3.1.0
 - strategy-department
 - teach-your-workforce
 - upgrade-your-werkforce
+- using-werkforce
 - weekly-review
 - worker-desk
 - werkforce-checkup
@@ -77,6 +83,7 @@ Pack version: 3.1.0
 - os/formats.md
 - os/manifest.md
 - os/VERSION
+- os/type.md
 - company/onboarding.md
 - company/design/design-system.md
 - company/design/page.html
@@ -98,6 +105,7 @@ Pack version: 3.1.0
 - records/reviews.md
 - records/sessions.md
 - records/improvements.md
+- records/artifact-registry.md
 - skills/STANDARD.md
 - skills/CATALOG.md
 - archive/
