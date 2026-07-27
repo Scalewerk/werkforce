@@ -14,6 +14,7 @@ Pack version: 0.1.1
 - ceo-seat
 - client-delivery-department
 - company-profile
+- connect-a-tool
 - customer-book
 - customer-care
 - daily-recap

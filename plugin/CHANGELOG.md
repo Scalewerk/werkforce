@@ -17,6 +17,10 @@
   per run, or a NOTE saying why it was skipped - absence is loud.
 - The checkup no longer flags the kernel/ folder the 0.1.0 pack itself
   installs as an unexpected top-level folder.
+- The connect-a-tool skill ships - the onboarding checklist's step 6 named it,
+  but the 0.1.0 pack left it out (it was founder-signed on 2026-07-25 and
+  excluded from the 3.3 assembly only by the signed-content boundary). The pack
+  now holds 72 skills.
 - The upgrade now seeds TREES.md and verifies every file it promises
   (records/artifact-registry.md included) actually landed, reporting any still
   missing by name; fresh installs place TREES.md too.
