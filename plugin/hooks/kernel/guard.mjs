@@ -13,6 +13,11 @@ const protectedPatterns = [
   /^records\/writer-receipts(?:\/|$)/,
 ];
 const mutationWords = String.raw`(?:>>|>|tee\b|sed\s+-i(?:\.\w+)?|perl\s+-pi|writeFileSync|open\([^)]*,\s*["']w|cp\b|mv\b|dd\b|truncate\b|install\b|ln\s+-s)`;
+// Every denial names the guard version, so a stale armed copy identifies
+// itself in its own message (the 0.1.2 field reports carried a 0.1.0-only
+// message, which is how the stale-guard vector was proven).
+const GUARD_VERSION="0.1.2";
+const deny=r=>({allow:false,reason:`${r} [kernel guard ${GUARD_VERSION}]`});
 const KERNEL_VERBS=["file-task","move-stage","record-receipt","queue-decision","decide","signoff","sendback","dispatch","report","note","project","import-v1"];
 
 // The HQ is never taken from an unverified root: a directory only counts as the
@@ -90,7 +95,17 @@ function splitCommand(command) {
     if (ch === '"') {
       let j = i + 1, body = "";
       for (; j < command.length && command[j] !== '"'; j++) {
-        if (command[j] === "\\" && j + 1 < command.length) { body += command[j + 1]; j++; continue; }
+        // POSIX semantics: inside double quotes a backslash escapes only
+        // $ ` " \ - before anything else it is a LITERAL character. The 0.1.1
+        // handler ate every backslash, which mangled quoted Windows launcher
+        // paths ("C:\HQ\os\werkforce-kernel" -> "C:HQoswerkforce-kernel"),
+        // so kernel-control was never detected and unknown verbs were
+        // admitted (first external install, 0.1.2 regression, 2026-07-27).
+        if (command[j] === "\\" && j + 1 < command.length) {
+          const nx = command[j + 1];
+          if (nx === '"' || nx === "\\" || nx === "$" || nx === "`") { body += nx; j++; continue; }
+          body += command[j]; continue;
+        }
         if (command[j] === "`") return { bad: "a backtick inside double quotes (command substitution runs even when quoted)" };
         if (command[j] === "$" && command[j + 1] === "(") return { bad: "a $( substitution inside double quotes (it runs even when quoted)" };
         body += command[j];
@@ -154,30 +169,30 @@ export function decide(input) {
     // ledgers - protected paths are never computed from an unverified root.
     if (!hq) return {allow:true};
     const p=body.file_path||body.path;
-    if (protectedPath(hq,p)) return {allow:false,reason:"Denied: lifecycle truth is kernel-owned. Use os/werkforce-kernel <verb>."};
+    if (protectedPath(hq,p)) return deny("Denied: lifecycle truth is kernel-owned. Use os/werkforce-kernel <verb>.");
     return {allow:true};
   }
   if (tool==="Bash") {
     if (presentsKernelControl(body)) {
-      if (!hq) return {allow:false,reason:"Denied: kernel-control command, but no Werkforce HQ could be located (no os/werkforce-kernel found walking up from --hq, the launcher path, cwd). Pass --hq <path-to-HQ> or run the canonical launcher by absolute path."};
+      if (!hq) return deny("Denied: kernel-control command, but no Werkforce HQ could be located (no os/werkforce-kernel found walking up from --hq, the launcher path, cwd). Pass --hq <path-to-HQ> or run the canonical launcher by absolute path.");
       if (allowedKernel(hq,body)) return {allow:true};
       const chk=checkKernelCommand(hq,String(body.command||""));
       if (chk.ok) return {allow:true};
-      return {allow:false,reason:`Denied: ${chk.why}.`};
+      return deny(`Denied: ${chk.why}.`);
     }
     if (!hq) return {allow:true};
     const command=String(body.command||"");
     if (new RegExp(mutationWords,"i").test(command)) {
       const candidates=[...command.matchAll(/["']([^"']+)["']/g)].map(m=>m[1]).concat(command.split(/\s+/));
       if (candidates.some(p=>protectedPath(hq,p.replace(/^["']|["']$/g,""))))
-        return {allow:false,reason:"Denied: lifecycle truth is kernel-owned. Use os/werkforce-kernel <verb>."};
+        return deny("Denied: lifecycle truth is kernel-owned. Use os/werkforce-kernel <verb>.");
       if (/(?:events\.jsonl|board\.md|worklog\.md|decision-log\.md|operator-reviews\.md|audit-log\.md|fleet\.md|writer-receipts)/.test(command))
-        return {allow:false,reason:"Denied: lifecycle truth is kernel-owned. Use os/werkforce-kernel <verb>."};
+        return deny("Denied: lifecycle truth is kernel-owned. Use os/werkforce-kernel <verb>.");
     }
   }
   return {allow:true};
 }
 if (import.meta.url===`file://${process.argv[1]}`) {
-  let input={}; try { input=JSON.parse(readFileSync(0,"utf8")||"{}"); } catch { process.stdout.write(JSON.stringify({allow:false,reason:"Denied: malformed hook input"})+"\n"); process.exit(0); }
+  let input={}; try { input=JSON.parse(readFileSync(0,"utf8")||"{}"); } catch { process.stdout.write(JSON.stringify(deny("Denied: malformed hook input"))+"\n"); process.exit(0); }
   process.stdout.write(JSON.stringify(decide(input))+"\n");
 }

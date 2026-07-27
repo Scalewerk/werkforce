@@ -5,6 +5,6 @@ import { decide } from "./guard.mjs";
 // would fail open, and enforcement must not depend on well-formed input.
 let input={};
 try { input=JSON.parse(readFileSync(0,"utf8")||"{}"); }
-catch { process.stdout.write(JSON.stringify({hookSpecificOutput:{hookEventName:"PreToolUse",permissionDecision:"deny",permissionDecisionReason:"Denied: malformed hook input"}})+"\n"); process.exit(0); }
+catch { process.stdout.write(JSON.stringify({hookSpecificOutput:{hookEventName:"PreToolUse",permissionDecision:"deny",permissionDecisionReason:"Denied: malformed hook input [kernel guard 0.1.2]"}})+"\n"); process.exit(0); }
 const d=decide(input);
 process.stdout.write(JSON.stringify(d.allow?{}:{hookSpecificOutput:{hookEventName:"PreToolUse",permissionDecision:"deny",permissionDecisionReason:d.reason}})+"\n");

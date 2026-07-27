@@ -102,6 +102,24 @@ t("allow: Edit outside any HQ (no unverified-root protection)",
 t("posix: backslashed token does not crash or misdeny",
   bash(`echo C:\\Users\\testuser\\notes.txt`, desktop).allow, true);
 
+// --- 0.1.2 regression: quoted Windows launcher paths must stay intact ---
+// (0.1.1 ate backslashes inside double quotes, so kernel-control was never
+// detected on Windows and unknown verbs were ADMITTED - external report.)
+const winK = `"C:\\Users\\w\\OneDrive\\werkforce\\os\\werkforce-kernel"`;
+const dWin = bash(`${winK} frobnicate --row B12`, desktop);
+t("deny: win-shaped quoted path, unknown verb (0.1.2 regression - was admitted)", dWin.allow, false);
+t("deny reason is specific, not the misleading kernel-control line",
+  /frobnicate|does not resolve|no Werkforce HQ/.test(dWin.reason || ""), true);
+t("stamp: denial names the guard version", /\[kernel guard \d+\.\d+\.\d+\]/.test(dWin.reason || ""), true);
+
+// --- 0.1.2 regression: prose tolerance is uniform across EVERY string flag ---
+// Flags enumerated from the kernel CLI's parseArgs option keys (dist bundle).
+const PROSE_FLAGS = ["row","subject","ask","detail","reason","evidence","recommendation","verdict","category","source","dept","seat","path","stage-to","due"];
+for (const flag of PROSE_FLAGS) {
+  t(`allow: semicolon/ampersand/pipe prose inside --${flag}`,
+    bash(`"${K}" note --row B12 --${flag} "manifest-drift; format-comment & org-chart | task-table"`, hq).allow, true);
+}
+
 rmSync(scratch, { recursive: true, force: true });
 console.log(fails === 0 ? "\nAll guard acceptance cases passed." : `\n${fails} case(s) FAILED.`);
 process.exit(fails === 0 ? 0 : 1);
