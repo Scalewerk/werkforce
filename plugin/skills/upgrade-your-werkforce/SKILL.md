@@ -208,6 +208,15 @@ Preserve founder-authored files, boards, ledgers, events, and unrelated hook
 settings. Arm the Claude PreToolUse wrapper additively; never replace an existing
 hook configuration wholesale.
 
+**The kernel payload is OS spine and is refreshed on EVERY upgrade run** -
+including a run where `os/VERSION` already reads `0.1` and nothing else moves.
+An HQ whose hooks still run a previous release's guard enforces yesterday's
+bugs with today's version stamp: the first external install upgraded to 0.1.1
+and kept getting 0.1.0 denial messages because the copied guard under
+`os/hooks/kernel/` was never re-copied. Since 0.1.2 every guard denial carries
+a `[kernel guard <version>]` stamp, so a stale copy names itself; if a founder
+reports a denial whose stamp trails the installed pack, this refresh is the fix.
+
 After the files are installed, offer the founder one separate, explicit step:
 `os/werkforce-kernel import-v1`. Explain what it imports, show the source and
 backup, and wait for the founder's yes. **Never auto-import.** A decline or no

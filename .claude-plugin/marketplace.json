@@ -9,14 +9,14 @@
   },
   "metadata": {
     "description": "The official Werkforce marketplace - the single Werkforce plugin, versioned and installable.",
-    "version": "0.1.1"
+    "version": "0.1.2"
   },
   "plugins": [
     {
       "name": "werkforce",
       "source": "./plugin",
       "description": "Werkforce Starter v0 - your own agentic workforce with an independent local kernel, governed boards, receipts, review, and additive upgrades.",
-      "version": "0.1.1",
+      "version": "0.1.2",
       "author": {
         "name": "Scalewerk",
         "email": "austin@scalewerk.com"

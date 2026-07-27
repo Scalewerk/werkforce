@@ -1,5 +1,19 @@
 # Changelog — Werkforce Starter
 
+## 0.1.2 — 2026-07-27 (two guard regressions from the first external install's 0.1.1 run)
+
+- Quoted Windows launcher paths are no longer mangled by the guard's command
+  reader (backslashes inside double quotes were being eaten), so an
+  unrecognized kernel verb is refused on Windows exactly as it is everywhere
+  else. The shipped acceptance suite reproduces the reported failure and now
+  covers it.
+- Prose tolerance is proven uniform across every string flag the kernel
+  accepts - the suite now tests each flag by name - and every guard denial
+  carries a [kernel guard <version>] stamp, so a stale guard copy left behind
+  by an earlier upgrade identifies itself in its own denial message. The
+  upgrade now refreshes the copied kernel hook files on every run, which
+  closes the path that let a 0.1.0 guard keep running on a 0.1.1 HQ.
+
 ## 0.1.1 — 2026-07-27 (fix batch from the first external install's 0.1.0 upgrade)
 
 - The kernel guard now finds the HQ on its own, wherever the session is rooted
