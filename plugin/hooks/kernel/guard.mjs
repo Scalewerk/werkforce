@@ -1,6 +1,6 @@
 #!/usr/bin/env node
-import { readFileSync } from "node:fs";
-import { isAbsolute, normalize, relative, resolve, sep } from "node:path";
+import { existsSync, readFileSync } from "node:fs";
+import { dirname, isAbsolute, join, relative, resolve, sep } from "node:path";
 
 const protectedPatterns = [
   /^records\/events\.jsonl$/,
@@ -13,6 +13,50 @@ const protectedPatterns = [
   /^records\/writer-receipts(?:\/|$)/,
 ];
 const mutationWords = String.raw`(?:>>|>|tee\b|sed\s+-i(?:\.\w+)?|perl\s+-pi|writeFileSync|open\([^)]*,\s*["']w|cp\b|mv\b|dd\b|truncate\b|install\b|ln\s+-s)`;
+const KERNEL_VERBS=["file-task","move-stage","record-receipt","queue-decision","decide","signoff","sendback","dispatch","report","note","project","import-v1"];
+
+// The HQ is never taken from an unverified root: a directory only counts as the
+// HQ if os/werkforce-kernel actually exists inside it. Candidates are tried in
+// order and the first that verifies wins; cwd is the LAST resort, not the
+// default - a session rooted anywhere (OneDrive, Desktop, Windows) must still
+// resolve the same HQ (live-install finding, 2026-07-27, first external HQ).
+function findHqFrom(start) {
+  if (!start || typeof start !== "string") return null;
+  let dir;
+  try { dir = resolve(start); } catch { return null; }
+  // A session rooted one level ABOVE the HQ (the folder holding werkforce/) is
+  // the common external layout, so the conventional child is probed first.
+  if (existsSync(join(dir, "werkforce", "os", "werkforce-kernel"))) return join(dir, "werkforce");
+  for (let i = 0; i < 64; i++) {
+    if (existsSync(join(dir, "os", "werkforce-kernel"))) return dir;
+    const up = dirname(dir);
+    if (up === dir) return null;
+    dir = up;
+  }
+  return null;
+}
+export function resolveHq(input) {
+  const body = input.tool_input || {};
+  const command = String(body.command || "");
+  const candidates = [];
+  if (input.hq) candidates.push(input.hq);
+  const mhq = command.match(/--hq(?:=|\s+)(?:"([^"]+)"|'([^']+)'|(\S+))/);
+  if (mhq) candidates.push(mhq[1] || mhq[2] || mhq[3]);
+  const p = body.file_path || body.path;
+  if (p && typeof p === "string" && isAbsolute(p)) candidates.push(dirname(resolve(p)));
+  const mbin = command.match(/(?:"([^"]+[/\\]werkforce-kernel)"|'([^']+[/\\]werkforce-kernel)'|(\S+[/\\]werkforce-kernel)(?=\s|$))/);
+  if (mbin) {
+    const bin = mbin[1] || mbin[2] || mbin[3];
+    if (isAbsolute(bin)) candidates.push(dirname(bin));
+  }
+  if (input.cwd) candidates.push(input.cwd);
+  candidates.push(process.cwd());
+  for (const c of candidates) {
+    const hq = findHqFrom(c);
+    if (hq) return hq;
+  }
+  return null;
+}
 
 function protectedPath(hq, p) {
   if (!p || typeof p !== "string") return false;
@@ -24,21 +68,58 @@ function allowedKernel(hq, input) {
   const argv=input.argv;
   if (!Array.isArray(argv) || argv.length<2) return false;
   if (resolve(argv[0])!==resolve(hq,"os/werkforce-kernel")) return false;
-  return ["file-task","move-stage","record-receipt","queue-decision","decide","signoff","sendback","dispatch","report","note","project","import-v1"].includes(argv[1]);
+  return KERNEL_VERBS.includes(argv[1]);
 }
-const KERNEL_VERBS=["file-task","move-stage","record-receipt","queue-decision","decide","signoff","sendback","dispatch","report","note","project","import-v1"];
-function allowedKernelCommand(hq, input) {
-  // Claude Code's Bash payload carries a command string, never argv (live-parity
-  // finding, 2026-07-27 cutover). Accept exactly one strictly-shaped canonical
-  // invocation: the HQ launcher (quoted-absolute or HQ-relative), a known verb,
-  // and no shell chaining/redirection/substitution anywhere in the command.
-  const command=String(input.command||"");
-  if (/[;|&<>`]|\$\(/.test(command)) return false;
-  const m=command.match(/^\s*(?:"([^"]+)"|'([^']+)'|(\S+))\s+([a-z0-9-]+)\b/);
-  if (!m) return false;
-  const bin=m[1]||m[2]||m[3], verb=m[4];
-  if (resolve(hq,bin)!==resolve(hq,"os/werkforce-kernel")) return false;
-  return KERNEL_VERBS.includes(verb);
+
+// Shell-aware split of a Bash command into words, strict enough to validate the
+// one canonical shape: launcher, verb, flags. Validation covers ONLY the
+// launcher path and the verb - quoted argument values are opaque prose and no
+// character inside them (pipes in a --row cell, semicolons in a --note) may
+// deny the command (prose-sensitivity fix, 2026-07-27, three same-day denials).
+// What still denies, quoted or not: `$(` and backticks (live inside double
+// quotes in real shells) and, unquoted only, chaining/redirection operators.
+function splitCommand(command) {
+  const tokens = []; let cur = ""; let inTok = false; let i = 0;
+  while (i < command.length) {
+    const ch = command[i];
+    if (ch === "'") {
+      const end = command.indexOf("'", i + 1);
+      if (end === -1) return { bad: "an unbalanced single quote" };
+      cur += command.slice(i + 1, end); inTok = true; i = end + 1; continue;
+    }
+    if (ch === '"') {
+      let j = i + 1, body = "";
+      for (; j < command.length && command[j] !== '"'; j++) {
+        if (command[j] === "\\" && j + 1 < command.length) { body += command[j + 1]; j++; continue; }
+        if (command[j] === "`") return { bad: "a backtick inside double quotes (command substitution runs even when quoted)" };
+        if (command[j] === "$" && command[j + 1] === "(") return { bad: "a $( substitution inside double quotes (it runs even when quoted)" };
+        body += command[j];
+      }
+      if (j >= command.length) return { bad: "an unbalanced double quote" };
+      cur += body; inTok = true; i = j + 1; continue;
+    }
+    if (/\s/.test(ch)) { if (inTok) { tokens.push(cur); cur = ""; inTok = false; } i++; continue; }
+    if (ch === "`" ) return { bad: "an unquoted backtick" };
+    if (ch === "$" && command[i + 1] === "(") return { bad: "an unquoted $( substitution" };
+    if (/[;|&<>()]/.test(ch)) return { bad: `an unquoted shell operator '${ch}'` };
+    if (ch === "\\" && (command[i + 1] === " " || command[i + 1] === '"' || command[i + 1] === "'")) {
+      cur += command[i + 1]; inTok = true; i += 2; continue;
+    }
+    cur += ch; inTok = true; i++;
+  }
+  if (inTok) tokens.push(cur);
+  return { tokens };
+}
+function checkKernelCommand(hq, command) {
+  const s = splitCommand(command);
+  if (s.bad) return { ok: false, why: `the command carries ${s.bad}; a kernel invocation must be a single un-chained command` };
+  const [bin, verb] = s.tokens || [];
+  if (!bin) return { ok: false, why: "the command is empty" };
+  if (resolve(hq, bin) !== resolve(hq, "os/werkforce-kernel"))
+    return { ok: false, why: `'${bin}' does not resolve to the canonical launcher os/werkforce-kernel under the HQ at ${hq}` };
+  if (!KERNEL_VERBS.includes(verb || ""))
+    return { ok: false, why: `'${verb || "(none)"}' is not a known kernel verb` };
+  return { ok: true };
 }
 function presentsKernelControl(input) {
   if (Array.isArray(input.argv) && typeof input.argv[0]==="string" &&
@@ -47,18 +128,26 @@ function presentsKernelControl(input) {
   return /(?:^|[\s"'`])(?:[^\s"'`]*[/\\])?werkforce-kernel(?:$|[-_.\s"'`])/.test(command);
 }
 export function decide(input) {
-  const hq=resolve(input.hq||process.cwd()), tool=String(input.tool_name||"");
+  const tool=String(input.tool_name||"");
   const body=input.tool_input||{};
+  const hq=resolveHq(input);
   if (/^(Edit|Write)$/.test(tool)) {
+    // No verified HQ above this file means the file is not under any kernel's
+    // ledgers - protected paths are never computed from an unverified root.
+    if (!hq) return {allow:true};
     const p=body.file_path||body.path;
     if (protectedPath(hq,p)) return {allow:false,reason:"Denied: lifecycle truth is kernel-owned. Use os/werkforce-kernel <verb>."};
     return {allow:true};
   }
   if (tool==="Bash") {
-    if (allowedKernel(hq,body)) return {allow:true};
-    if (allowedKernelCommand(hq,body)) return {allow:true};
-    if (presentsKernelControl(body))
-      return {allow:false,reason:"Denied: kernel-control path does not match the canonical HQ launcher."};
+    if (presentsKernelControl(body)) {
+      if (!hq) return {allow:false,reason:"Denied: kernel-control command, but no Werkforce HQ could be located (no os/werkforce-kernel found walking up from --hq, the launcher path, cwd). Pass --hq <path-to-HQ> or run the canonical launcher by absolute path."};
+      if (allowedKernel(hq,body)) return {allow:true};
+      const chk=checkKernelCommand(hq,String(body.command||""));
+      if (chk.ok) return {allow:true};
+      return {allow:false,reason:`Denied: ${chk.why}.`};
+    }
+    if (!hq) return {allow:true};
     const command=String(body.command||"");
     if (new RegExp(mutationWords,"i").test(command)) {
       const candidates=[...command.matchAll(/["']([^"']+)["']/g)].map(m=>m[1]).concat(command.split(/\s+/));

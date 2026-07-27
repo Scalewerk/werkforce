@@ -73,9 +73,10 @@ if [ -n "$HQ_DEST" ]; then
   chmod +x "$HQ_DEST/os/hooks/kernel/claude-hook.sh"
   echo "  Starter kernel installed to $HQ_DEST"
 
-  # Fresh-install hook registration is additive and idempotent. Claude reads
-  # the project hook through the HQ-owned wrapper; existing unrelated settings
-  # are never rewritten by this shell installer.
+  # Fresh-install hook registration is additive and idempotent. The adapter is
+  # run through node directly (not the bash wrapper) so the same registration
+  # works on Windows; since 0.1.1 the guard resolves the HQ itself and needs
+  # no cwd pinning. Existing unrelated settings are never rewritten here.
   mkdir -p "$HQ_DEST/.claude"
   HOOK_FILE="$HQ_DEST/.claude/hooks.json"
   if [ ! -f "$HOOK_FILE" ]; then
@@ -88,7 +89,7 @@ if [ -n "$HQ_DEST" ]; then
         "hooks": [
           {
             "type": "command",
-            "command": "\"$CLAUDE_PROJECT_DIR\"/os/hooks/kernel/claude-hook.sh"
+            "command": "node \"$CLAUDE_PROJECT_DIR\"/os/hooks/kernel/claude-adapter.mjs"
           }
         ]
       }

@@ -130,7 +130,7 @@ what I am writing as I go:
   `records/events.jsonl`, `records/audit-log.md`, `records/worklog.md`,
   `records/operator-reviews.md`,
   `records/warnings.md`, `records/reviews.md`, `records/sessions.md`,
-  `records/improvements.md`, `records/artifact-registry.md` - copied verbatim
+  `records/improvements.md`, `records/artifact-registry.md`, `TREES.md` - copied verbatim
   from `references/seeds/`, identical across types. `events.jsonl` comes from
   `events.jsonl.tmpl`; fill its clock, offset, founder, and type placeholders
   from the same install facts used for the founding ledger lines

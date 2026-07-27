@@ -83,12 +83,24 @@ done
 [ -d "$HQ/archive" ] || warn "archive/ missing"
 
 # 1b. Record files still carry their format comment (the operative law)
+# Every check family prints at least one line per run (0.1.1 rule: absence is
+# loud) - a family with nothing to say prints its OK summary, a family that
+# cannot run prints a NOTE naming the missing prerequisite.
+FMT_N=0
 for f in records/audit-log.md records/worklog.md records/warnings.md records/sessions.md \
          records/improvements.md records/reviews.md company/decision-log.md; do
-  if [ -f "$HQ/$f" ] && ! grep -q '<!--' "$HQ/$f"; then
-    warn "$f has lost its format comment - shapes may drift; see os/formats.md"
+  if [ -f "$HQ/$f" ]; then
+    FMT_N=$((FMT_N + 1))
+    if ! grep -q '<!--' "$HQ/$f"; then
+      warn "$f has lost its format comment - shapes may drift; see os/formats.md"
+    fi
   fi
 done
+if [ "$FMT_N" -gt 0 ]; then
+  ok "format comments: $FMT_N record files checked"
+else
+  echo "NOTE format comments: no record files found to check"
+fi
 
 # 2. Profile and business model emptiness (information, not judgment)
 if [ -f "$HQ/company/profile.md" ]; then
@@ -101,6 +113,9 @@ if [ -f "$HQ/company/business-model.md" ]; then
 fi
 
 # 2b. Org chart shape - governance rows + the twelve departments, 6 columns each
+if [ ! -f "$HQ/company/org-chart.md" ]; then
+  echo "NOTE org chart: company/org-chart.md missing, org-chart shape checks skipped"
+fi
 if [ -f "$HQ/company/org-chart.md" ]; then
   grep -qi "Lead.*Specialist.*Reviewer" "$HQ/company/org-chart.md" && \
     warn "org-chart.md uses phase-1 seat words (Lead/Specialist/Reviewer) - run upgrade-your-werkforce"
@@ -133,6 +148,7 @@ if [ -f "$HQ/company/org-chart.md" ]; then
       warn "org-chart.md row \"$rowname\" has $((pipes - 1)) columns instead of 6"
     fi
   done < "$HQ/company/org-chart.md"
+  ok "org chart: shape checks ran (governance row, twelve departments, 6-column rows)"
 fi
 
 # 2c. Sessions hygiene - unclosed sessions from before today
@@ -146,14 +162,23 @@ fi
 
 # 2d. Manifest drift - expected files that are gone
 if [ -f "$HQ/os/manifest.md" ]; then
+  MANIFEST_N=0
   while IFS= read -r entry; do
     p=$(echo "$entry" | sed 's/^- //' | sed 's/ .*//')
+    MANIFEST_N=$((MANIFEST_N + 1))
     case "$p" in
       */) [ -d "$HQ/$p" ] || warn "manifest expects folder $p - not found" ;;
       *.*) [ -f "$HQ/$p" ] || warn "manifest expects $p - not found" ;;
       *) [ -f "$HQ/$p" ] || [ -d "$HQ/$p" ] || warn "manifest expects $p - not found" ;;
     esac
   done < <(awk '/^## Expected tree/{f=1; next} /^## /{f=0} f && /^- /' "$HQ/os/manifest.md")
+  if [ "$MANIFEST_N" -gt 0 ]; then
+    ok "manifest drift: $MANIFEST_N expected-tree entries checked"
+  else
+    echo "NOTE manifest drift: os/manifest.md has no '## Expected tree' entries to check"
+  fi
+else
+  echo "NOTE manifest drift: os/manifest.md missing, manifest checks skipped"
 fi
 
 # 2e. Timestamps speak the HQ timezone, never UTC/Zulu
@@ -170,13 +195,18 @@ for d in "$HQ"/*/; do
   [ -d "$d" ] || continue
   top="$(basename "$d")"
   case "$top" in
-    os|company|departments|records|skills|archive) : ;;
+    # kernel/ ships with the 0.1.0 Starter kernel (kernel/dist, kernel/schema)
+    # and sits in the manifest's Expected tree - it is not drift.
+    os|company|departments|records|skills|archive|kernel) : ;;
     *) warn "filing law: unexpected top-level folder $top/ - the HQ has one home per fact; no skill invents a new top-level folder" ;;
   esac
 done
 
 # 3. Departments
 DEPT_COUNT=0
+SEATCARD_N=0
+RENDER_N=0
+BOARD_N=0
 if [ -d "$HQ/departments" ]; then
   for d in "$HQ/departments"/*/; do
     [ -d "$d" ] || continue
@@ -202,6 +232,7 @@ if [ -d "$HQ/departments" ]; then
     if [ -d "${d}seats" ]; then
       for card in "${d}seats"/*.md; do
         [ -f "$card" ] || continue
+        SEATCARD_N=$((SEATCARD_N + 1))
         cardname="$(basename "$card")"
         for h2 in "## Mission" "## What excellent looks like" "## How this seat works" \
                   "## Boundaries" "## Anti-patterns" "## Escalation"; do
@@ -215,6 +246,7 @@ if [ -d "$HQ/departments" ]; then
     if [ -d "${d}outbox" ]; then
       for md in "${d}outbox"/[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]-*.md; do
         [ -f "$md" ] || continue
+        RENDER_N=$((RENDER_N + 1))
         html="${md%.md}.html"
         if [ -f "$html" ]; then
           if [ "$md" -nt "$html" ]; then
@@ -250,6 +282,7 @@ if [ -d "$HQ/departments" ]; then
 
     # Board shape and hygiene
     if [ -f "${d}board.md" ]; then
+      BOARD_N=$((BOARD_N + 1))
       if ! grep -q "| Task | Stage | Seat | Filed | Due | Receipt |" "${d}board.md"; then
         warn "departments/$name/board.md is missing the standard column row"
       fi
@@ -292,6 +325,11 @@ if [ -d "$HQ/departments" ]; then
   done
 fi
 [ "$DEPT_COUNT" -eq 0 ] && warn "no departments opened yet - run open-a-department when you're ready to hire"
+if [ "$DEPT_COUNT" -gt 0 ]; then
+  if [ "$SEATCARD_N" -gt 0 ]; then ok "seat cards: $SEATCARD_N cards checked for the six H2s"; else echo "NOTE seat cards: no seat cards found under any departments/*/seats/ - nothing to check"; fi
+  if [ "$RENDER_N" -gt 0 ]; then ok "deliverable renders: $RENDER_N outbox deliverables checked for a current .html render"; else echo "NOTE deliverable renders: no dated .md deliverables found in any outbox/ - nothing to check"; fi
+  if [ "$BOARD_N" -gt 0 ]; then ok "task tables: $BOARD_N boards checked (columns, receipts, stale In progress, Blocked hygiene)"; else echo "NOTE task tables: no board.md found in any department - nothing to check"; fi
+fi
 
 # 4. Hook health - every registered hook script exists, can run, and has a footprint.
 # Lesson 2026-07-24: both of this HQ's hooks sat non-executable for a full day and their
@@ -341,9 +379,15 @@ HOOK_SETTINGS=()
 HOOK_SETTINGS_N=0   # bash 3.2 refuses ${#arr[@]} on an empty array under set -u
 HOOK_SETTINGS_SEEN=""
 HQ_PARENT="$(cd "$HQ/.." 2>/dev/null && pwd || echo "")"
-for s in "$HQ/.claude/settings.json" "$HQ/.claude/settings.local.json" \
-         "$HQ_PARENT/.claude/settings.json" "$HQ_PARENT/.claude/settings.local.json" \
-         "$HOME/.claude/settings.json" "$HOME/.claude/settings.local.json"; do
+# Every hook surface Claude Code honors is probed, not just settings.json:
+# a standalone .claude/hooks.json (where the kernel PreToolUse wrapper is
+# armed) never appears in any settings file, and a probe that skips it can
+# print "no hooks found" on an HQ whose guard is actively denying writes
+# (a beta customer's 0.1.0 upgrade, 2026-07-27). The probe also names every file it
+# read, so a blind probe can never read as clean.
+for s in "$HQ/.claude/settings.json" "$HQ/.claude/settings.local.json" "$HQ/.claude/hooks.json" \
+         "$HQ_PARENT/.claude/settings.json" "$HQ_PARENT/.claude/settings.local.json" "$HQ_PARENT/.claude/hooks.json" \
+         "$HOME/.claude/settings.json" "$HOME/.claude/settings.local.json" "$HOME/.claude/hooks.json"; do
   [ -f "$s" ] || continue
   case "$HOOK_SETTINGS_SEEN" in *"|$s|"*) continue ;; esac   # the same file can sit on two of these paths
   HOOK_SETTINGS_SEEN="$HOOK_SETTINGS_SEEN|$s|"
@@ -351,7 +395,7 @@ for s in "$HQ/.claude/settings.json" "$HQ/.claude/settings.local.json" \
 done
 
 if [ "$HOOK_SETTINGS_N" -eq 0 ]; then
-  note "no settings.json found beside the HQ, above it, or in ~/.claude - no hooks to probe"
+  note "hook probe read 0 files - none of settings.json / settings.local.json / hooks.json exist under $HQ/.claude, ${HQ_PARENT:-<no parent>}/.claude, or $HOME/.claude - no hooks to probe"
 elif ! command -v python3 >/dev/null 2>&1; then
   note "python3 not found - the hook probe needs it to read hook commands safely, so hooks were not probed this run"
 else
@@ -443,6 +487,7 @@ if any(enabled.values()):
                 continue
             walk(data, "plugin", "%s %s" % (key, entry.get("version", "?")), root)
 PY
+  note "hook probe read these files: ${HOOK_SETTINGS[*]} (plus hooks/hooks.json of each enabled plugin)"
   HOOK_ROWS="$(printf '%s\n' "$HOOK_PY" | python3 - "${HOOK_SETTINGS[@]}" 2>/dev/null || true)"
 
   HOOK_SEEN=""
@@ -509,7 +554,7 @@ PY
       warn "hook $hname shows no evidence it has fired since its last change [unknown] - it may be running silently and leaving no trace, or it may be dead. Fire it once by hand as an install check, or give it a '# checkup-evidence: <path>' line naming where its output lands"
     fi
   done <<< "$HOOK_ROWS"
-  [ "$HOOK_TOTAL" -eq 0 ] && note "no hook scripts found to probe in the settings files or enabled plugins"
+  [ "$HOOK_TOTAL" -eq 0 ] && note "no hook scripts found to probe in the $HOOK_SETTINGS_N files read above or in enabled plugins"
   if [ "$PLUGIN_SILENT" -gt 0 ]; then
     note "$PLUGIN_SILENT plugin-provided hook scripts are installed and registered but leave no footprint this HQ can read - a plugin guard is silent when it passes, so whether each has fired is [unknown]: reported for visibility, not judged -$PLUGIN_SILENT_LIST"
   fi
@@ -556,7 +601,7 @@ if [ -f "$HQ/TREES.md" ]; then
   done < <(grep '^|' "$HQ/TREES.md" | tail -n +3)
   [ "$TREES_WARN" -eq 0 ] && ok "tree-authority: no frozen/dead tree in TREES.md has been written to since its freeze date"
 else
-  note "TREES.md not found - tree-authority tripwire skipped (run the engineering event-log build to add it)"
+  note "TREES.md not found - tree-authority tripwire skipped (upgrade-your-werkforce seeds it; fresh 0.1.1+ installs place it)"
 fi
 
 echo

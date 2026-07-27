@@ -1,7 +1,7 @@
 # OS manifest - what this version installs
 <!-- LIVING (rewritten by install/upgrade only). The checkup compares this against the tree and warns on drift. -->
 
-Pack version: 0.1.0
+Pack version: 0.1.1
 
 ## Skills installed
 - archive-work
@@ -118,4 +118,5 @@ Pack version: 0.1.0
 - records/writer-receipts/
 - skills/STANDARD.md
 - skills/CATALOG.md
+- TREES.md
 - archive/

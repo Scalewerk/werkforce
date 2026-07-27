@@ -1,5 +1,26 @@
 # Changelog — Werkforce Starter
 
+## 0.1.1 — 2026-07-27 (fix batch from the first external install's 0.1.0 upgrade)
+
+- The kernel guard now finds the HQ on its own, wherever the session is rooted
+  (OneDrive, Desktop, Windows paths), instead of trusting the current folder -
+  so canonical kernel commands work and the real ledgers stay protected.
+- Canonical kernel commands are no longer denied for what their prose arguments
+  contain - pipes in a board row or a semicolon in a note pass; real command
+  chaining still does not - and every denial now names the actual failed
+  condition. A guard acceptance suite ships beside the guard.
+- The checkup's hook probe now reads every hook surface Claude Code honors,
+  including .claude/hooks.json, and names every file it read - a blind probe
+  can never read as clean again.
+- Every promised checkup family (manifest drift, format comments, org chart,
+  seat cards, deliverable renders, task tables) now prints at least one OK line
+  per run, or a NOTE saying why it was skipped - absence is loud.
+- The checkup no longer flags the kernel/ folder the 0.1.0 pack itself
+  installs as an unexpected top-level folder.
+- The upgrade now seeds TREES.md and verifies every file it promises
+  (records/artifact-registry.md included) actually landed, reporting any still
+  missing by name; fresh installs place TREES.md too.
+
 ## 0.1.0 — 2026-07-27 (Werkforce Starter v0 — the line renumbers; supersedes the briefly-published 3.4.0, history below unchanged; os schema 0.1)
 
 Public label: **Werkforce Starter v0**.
