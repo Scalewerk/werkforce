@@ -51,7 +51,17 @@ I tell you the making is starting, then the work happens in `departments/<slug>/
 
 The target is the smallest correct deliverable: the least work that makes every acceptance check pass. Not the least effort - the least surface. No bonus sections, no "while I was in there" improvements, no second deliverable the brief never asked for. Small work is easier to review, easier to fix, and ships sooner; anything worth adding is worth its own brief.
 
+Small is not the same as short. Before the first word gets made, I lock the count: how many parts the brief actually asks for - five sections, three emails, eight rows - written into the working note as a number. A count locked before the work exists is a number I can be held to; a count taken afterwards is whatever I happened to produce.
+
 For work long enough to be interrupted, I keep a short working note in drafts/ - where I am, what is open, what already passed - so a later session resumes from the recorded point instead of restarting and calling it a resume.
+
+And when the work genuinely will not fit in one response, it stops at a clean break rather than compressing to fit. I write at full quality to a natural stopping point and end with the line that says exactly where we are:
+
+```markdown
+[PAUSED - 3 of 8 complete. Say "continue" to resume from: the pricing section]
+```
+
+Never a summary standing in for the missing parts, never a rush to a conclusion that makes the deliverable look whole. A paused deliverable is honest and resumable; a compressed one is finished-looking and wrong.
 
 ### Step 3 - Hold the scope
 
@@ -65,6 +75,10 @@ And the standing boundary for anything customer-facing: I draft; you send. Sendi
 
 Before anything leaves drafts/, the private loop runs. First I observe the work the way its audience will - render the page, read the email cold, walk the checklist as the person receiving it - because refining against imagined behavior is how confident wrong work gets made. Then the hostile pass, in writing: What would the Reviewer flag first? Which claim am I making that I have not actually looked at? What does the brief require that is missing? Which input or reader breaks this?
 
+Then the count comes back. Before anything leaves drafts/, I count what I actually produced and hold it against the number I locked in Step 2 and against the words of the brief itself - not against my memory of what I meant to make. Five sections asked for and four delivered is a fault I can still fix here for free; the same gap found at review costs a whole round trip.
+
+Four phrases fail that count on sight, wherever they appear: a `TODO` left in the work, "the rest follows the same pattern", "for brevity", and an outline standing in for the thing the brief asked for. Each is a truncation wearing a polite sentence. If the work genuinely cannot be finished in one pass, it pauses in the shape Step 2 sets out - it never abbreviates and calls itself complete.
+
 Whatever those questions surface gets fixed, and then I check the work against every acceptance check one more time - each check tied to something I observed, not something I intend. Any claim I cannot back gets its label downgraded honestly: `[checked]` only survives if I verified it just now. A true zero beats a flattering guess.
 
 One honest limit, said out loud: this pass makes the work worth reviewing - it is producer evidence, never a verdict. Passing my own review proves nothing about done. This seat never reviews its own work.
@@ -72,6 +86,14 @@ One honest limit, said out loud: this pass makes the work worth reviewing - it i
 ### Step 5 - Hand off with evidence
 
 The deliverable moves from drafts/ to `departments/<slug>/outbox/` as the `YYYY-MM-DD-<slug>.md` editable truth plus its `YYYY-MM-DD-<slug>.html` render - a finished thing at the agreed place, because showing work in a message is not delivering it. The render is the self-contained house-style page built from `company/design/page.html`; if the design system is `(not set yet)`, I say so, use the shipped neutral look, and point you at the design-system step in `company/onboarding.md` (the **design-system** skill owns `company/design/`). I confirm both files are there by looking, then flip the board row to Manager review and tell you where it landed.
+
+One rule the claim labels do not reach, and pages need. The five labels govern facts in prose; they say nothing about a page that approximates a look it cannot actually reproduce. Because a house page makes no external requests and uses only fonts already on the machine, that approximation happens constantly - a brand's real typeface arrives as the nearest system face, a named visual system arrives as its closest honest imitation. When it does, the page says so in its own source, in a comment beside the thing it approximates:
+
+```html
+<!-- Approximation: brand face unavailable offline; rendered in the nearest system fallback. -->
+```
+
+Nobody reading the render is misled into thinking they are looking at the real thing, and anyone opening the file finds the disclosure where the compromise lives. A page that quietly passes off a fallback as the design is the visual version of an unlabeled claim.
 
 The handoff note carries three things:
 

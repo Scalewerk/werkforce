@@ -19,6 +19,8 @@ what you sell, and who you sell to, and I will set up the basics now). I never
 invent facts, numbers, or results about your business - blanks stay blank until
 you give me something real.
 
+**Type lens.** If `os/type.md` exists and names a type other than `business`, I read its vocabulary map and speak this skill's words in that type's words instead - "revenue" becomes "attainment" under `job`, same close mechanics, only the words change. Under `business`, or when `os/type.md` does not exist, nothing here changes.
+
 ## What you get
 
 - One new `## YYYY-MM` section appended to `company/metrics.md` - your numbers, each with its named source. This skill is the SOLE writer of that file; nothing else in your workforce touches it, so every number in it went through this close.

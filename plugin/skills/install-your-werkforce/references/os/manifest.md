@@ -1,7 +1,7 @@
 # OS manifest - what this version installs
 <!-- LIVING (rewritten by install/upgrade only). The checkup compares this against the tree and warns on drift. -->
 
-Pack version: 3.3.0
+Pack version: 3.4.0
 
 ## Skills installed
 - archive-work
@@ -84,6 +84,14 @@ Pack version: 3.3.0
 - os/manifest.md
 - os/VERSION
 - os/type.md
+- os/signoff.sh
+- os/lifecycle_writer.py
+- os/werkforce-kernel
+- os/hooks/kernel/
+- kernel/dist/werkforce-kernel.mjs
+- kernel/schema/werkforce.event.v2.json
+- bin/reconcile.sh
+- bin/reconcile.py
 - company/onboarding.md
 - company/design/design-system.md
 - company/design/page.html
@@ -99,6 +107,7 @@ Pack version: 3.3.0
 - company/customers/
 - departments/
 - records/audit-log.md
+- records/events.jsonl
 - records/worklog.md
 - records/operator-reviews.md
 - records/warnings.md
@@ -106,6 +115,7 @@ Pack version: 3.3.0
 - records/sessions.md
 - records/improvements.md
 - records/artifact-registry.md
+- records/writer-receipts/
 - skills/STANDARD.md
 - skills/CATALOG.md
 - archive/

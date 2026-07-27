@@ -1,6 +1,6 @@
 ---
 name: design-system
-description: Give your company one look that every deliverable wears - a design system at company/design/design-system.md (palette, type, layout, components) plus the house page template company/design/page.html that every rendered deliverable and your dashboard are built from. If you already have a brand or design system, I import it faithfully; if you do not, I interview one out of you in minutes and show you the result in your browser. Use when you say "set up my design system", "make my deliverables look good", "import my brand", "change my company's look", "update my colors", "my pages look off". Run it as its onboarding step, and again whenever your brand changes.
+description: Give your company one look that every deliverable wears - a design system at company/design/design-system.md (palette, type, layout, components) plus the house page template company/design/page.html that every rendered deliverable and your dashboard are built from. If you already have a brand or design system, I import it faithfully; if you do not, you can pick one of three ratifiable presets off the shelf - editorial minimal, soft premium, or industrial brutalist - or I interview one out of you in minutes. Either way you see the result in your browser before it counts. Use when you say "set up my design system", "make my deliverables look good", "import my brand", "pick a look for me", "change my company's look", "update my colors", "my pages look off". Run it as its onboarding step, and again whenever your brand changes.
 ---
 
 # Design system - one look, every page
@@ -32,23 +32,52 @@ you give me something real.
   and hierarchy, readable on a phone. Rendering skills copy and fill it.
 - A preview page in your browser before anything is final - you approve the
   look, or we adjust.
+- Three ratifiable presets on the shelf (`references/presets.md`) if you would
+  rather pick a finished look than describe one, and the full brand interview
+  (`references/brand-interview.md`) if you would rather be asked.
 
 ## What I need from you
 
 1. Either your existing brand (a style guide, a website URL, a logo folder -
-   anything real), or ten minutes to answer taste questions.
+   anything real), or a look picked off the shelf, or ten minutes to answer
+   taste questions.
 2. Your yes on the preview - changing your company's look is your call.
 
 ## How it works
 
-### Step 1 - Import or interview
+### Step 1 - Import, pick a preset, or interview
 
-If you have a brand, point me at it - I read it and record its colors, fonts,
-and rules into the design system with the source named, changing nothing about
-your brand itself. If you do not, I interview: the feeling you want a client
-to have opening your page, two or three companies whose materials you admire,
-one color you own. From that I propose a palette and type scale - proposed,
-labeled as my picks, never presented as your brand until you say yes.
+Three doors to the same place. Whichever you take, the result fills
+`company/design/design-system.md`, which stays the single authority for your
+pages, and none of it counts until you say yes.
+
+**Import.** If you have a brand, point me at it - I read it and record its
+colors, fonts, and rules into the design system with the source named, changing
+nothing about your brand itself.
+
+**Pick a preset.** Three complete looks are ready to ratify, so you are not
+starting from a blank page: **Editorial Minimal** (warm paper, editorial serif,
+hairline structure - for work that is there to be read), **Soft Premium** (deep
+whitespace, nested containers, real motion - for work that must feel expensive
+on sight), and **Industrial Brutalist** (rigid grid, extreme type contrast, one
+hazard accent - for dense, technical, deliberately unfriendly surfaces). Full
+palettes, type scales, and component specs are in `references/presets.md`, each
+one already checked against the contrast floor and the no-external-requests
+rule. A preset is a starting point you own from the moment you pick it - change
+any value in it, and re-run this skill whenever you want it changed again.
+
+**Interview.** If none of that fits, I ask - strategy before appearance: what
+this is, who reads it, what it must prove, and what it must never look like,
+and only then the one color you own and the faces you want. The full question
+set and the nine areas a complete brand covers are in
+`references/brand-interview.md`. From your answers I propose a palette and type
+scale - proposed, labeled as my picks, never presented as your brand until you
+say yes.
+
+Whichever door you take, when the look you pick names a font I cannot fetch -
+a licensed or hosted webfont - the compiled template **approximates it with
+system faces and says so in its own code comment**, and I tell you at the
+preview rather than letting you discover it later.
 
 ### Step 2 - Write the authority
 

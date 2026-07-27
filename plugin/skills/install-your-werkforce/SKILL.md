@@ -28,7 +28,8 @@ from your answers stays "(not set yet)" until you give me something real.
 - `werkforce/HQ.md` - your soul file: wake phrases, standing orders, and the
   timezone every timestamp in the HQ is written in
 - `werkforce/os/` - the operating charter (`charter.md`), the format law
-  (`formats.md`), the manifest, the version file, and `type.md` (the B45 lens
+  (`formats.md`), the transactional lifecycle writer (`signoff.sh` plus
+  `lifecycle_writer.py`), the manifest, the version file, and `type.md` (the B45 lens
   for your werkforce type) - copied in exactly as shipped, so every HQ of the
   same type runs the same OS
 - `werkforce/company/` - org chart (governance seats + all twelve departments,
@@ -37,8 +38,10 @@ from your answers stays "(not set yet)" until you give me something real.
   system and its house page template, visions, outcomes, strategy ledger,
   playbooks, metrics, decision log, and an empty `customers/` folder
 - `werkforce/inbox.md` - drop anything here any time; it becomes work at intake
-- `werkforce/records/` - the master audit log, worklog, warnings, reviews,
-  sessions, improvements, artifact registry
+- `werkforce/records/` - the append-only machine event log, master audit log,
+  worklog, warnings, reviews, sessions, improvements, artifact registry
+- `werkforce/bin/reconcile.sh` - the read-only integrity check joining Done
+  board receipts to the worklog and machine event log
 - `werkforce/skills/` - your own skill shelf, with its standard and catalog
 - `werkforce/archive/` - where retired work goes instead of being deleted
 - The founding line in `records/audit-log.md` and `records/worklog.md`: your
@@ -92,8 +95,11 @@ the templates. Which seed variant I copy depends on the type you named in
 Step 2; the folders and every other file are identical across types. I say
 what I am writing as I go:
 
-- `os/charter.md`, `os/formats.md`, `os/manifest.md`, `os/VERSION` - copied
-  verbatim from `references/os/`, every type
+- `os/charter.md`, `os/formats.md`, `os/manifest.md`, `os/VERSION`,
+  `os/signoff.sh`, `os/lifecycle_writer.py` - copied verbatim from
+  `references/os/`, every type; the two writer entrypoints are made executable
+- `bin/reconcile.sh`, `bin/reconcile.py` - copied verbatim from
+  `references/bin/` and made executable
 - `os/type.md` - copied verbatim from `references/types/<type>.md` (the B45
   lens: apex title, roster note, vocabulary map for your type)
 - `HQ.md` - from `references/seeds/HQ.md.tmpl` (`business`) or
@@ -121,14 +127,17 @@ what I am writing as I go:
   `references/seeds/*.tmpl`, identical across types
 - `inbox.md`, `company/visions.md`, `company/outcomes.md`,
   `company/strategy.md`, `company/playbooks.md`, `company/metrics.md`,
-  `records/audit-log.md`, `records/worklog.md`, `records/operator-reviews.md`,
+  `records/events.jsonl`, `records/audit-log.md`, `records/worklog.md`,
+  `records/operator-reviews.md`,
   `records/warnings.md`, `records/reviews.md`, `records/sessions.md`,
   `records/improvements.md`, `records/artifact-registry.md` - copied verbatim
-  from `references/seeds/`, identical across types
+  from `references/seeds/`, identical across types. `events.jsonl` comes from
+  `events.jsonl.tmpl`; fill its clock, offset, founder, and type placeholders
+  from the same install facts used for the founding ledger lines
 - `skills/STANDARD.md` and `skills/CATALOG.md` - from
   `references/seeds/skills-STANDARD.md` and `skills-CATALOG.md`
 - empty folders: `company/customers/`, `company/design/`, `departments/`,
-  `archive/`
+  `records/writer-receipts/`, `archive/`
 
 Choosing `business` produces the same tree this skill always produced, plus
 the one added `Werkforce type: business` line in `HQ.md` and the new
@@ -172,6 +181,18 @@ And the worklog gets the founding receipt:
 ```
 
 And one opening line to `records/sessions.md`, because the habit starts now.
+
+### Other references in this skill
+
+Not everything under this skill's `references/` folder is copied into a fresh
+HQ - some are standing posture documents for a build that happens later.
+`references/chat-surface-bridge.md` (the ratified B21 posture on talking to
+your Werkforce from Discord, Telegram, or Slack) is one: read it before
+building any bridge, so the reserved-send rule and the per-surface posture
+table are not rediscovered from scratch. No chat-surface-bridge skill exists
+yet; the five-step onboarding-configuration flow the the chat-surface design sketched
+(`departments/product/outbox/2026-07-23-chat-surface-bridge-design.md:54-64`)
+is deliberately not built here - it waits on a real transport existing first.
 
 ## Do this now
 

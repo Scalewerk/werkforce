@@ -59,6 +59,23 @@ We also cover the edges, because your Reviewer will: what failure looks like, no
 
 One more test before a check survives: describe a deliverable that satisfies the words while missing the point. If you can, the words get tightened until you cannot. And if a check cannot be verified by anyone we can name, we do not water it down - we say so out loud and you decide whether the task waits or the bar changes. A true zero beats a flattering guess.
 
+**Mechanical beats aesthetic.** When two checks aim at the same quality, the one anyone can count wins. "The page should not feel cluttered" is a mood two readers will score differently; "no more than one uppercase micro-label for every three sections - the Reviewer counts both" settles in ten seconds. Aesthetic checks are not banned, because some qualities only a reader can judge - but a check that could have been counted and was not is a check that gets argued about instead of run.
+
+**When the deliverable renders as a page**, that preference becomes a method. Pages are where "make it look right" hides from verification, so they get their own bar: four property lists that turn a look into things a Reviewer can walk. The plan names the ones this work touches; the doer still owns every value in them.
+
+- **Typography** - size and weight relationships, line height, tracking, the contrast between display type and body type, and whether the type reads calm or aggressive.
+- **Spacing** - the distance between headline and subhead, between text and buttons, between cards, the gutters, the card padding, and whether that cadence holds from section to section.
+- **Buttons and components** - size, shape, corner radius, filled versus outlined, the primary-versus-secondary hierarchy, dividers, shadows, borders.
+- **Color** - which color carries the background, the panels, the accent, the borders, and the shadows.
+
+The bar is not pixel accuracy. It is that the spacing logic is faithful and written down before anyone opens an editor.
+
+Three questions earn a check of their own on any page meant to persuade: is the hero's scale a deliberate choice rather than the default, is there exactly one moment on the page that earns a second read, and is there a clear path from hook to proof to action even when the page is the artistic kind. Each answers yes or no, and each names who looks and what at.
+
+One check covers text size, the defect a member notices last and a visitor notices first: if the text feels small, the design is not finished. The remedy that passes this check cuts content until it fits; the remedy that fails it shrinks type until the content does.
+
+**And one check for the render itself.** A deliverable that goes from a Markdown source to an HTML twin can arrive looking nothing like the design that was agreed - simplified into a default template, distinctive sections flattened into generic rows, generous spacing compressed into a dense stack, strong typography traded for plain hierarchy, the page's visual identity dropped for convenience. So the plan writes the check that catches it: the rendered page still matches the design read it was built from, verified by opening the render and reading it against that read, never by trusting that the source was right.
+
 ### Step 3 - Separate WHAT from HOW
 
 Now the discipline that makes departments worth having: the plan owns WHAT done looks like and WHY it matters; the doer owns HOW. No "use this structure", no "start with a question", no step-by-step method in the brief. A plan that dictates the route is the founder doing the work with extra steps - and it silently caps the work at your own best idea.

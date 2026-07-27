@@ -13,6 +13,8 @@ You answer short questions, I write the file, and from then on the whole company
 
 This IS the skill that builds your profile, so there is nothing to load first. I find your HQ - the `werkforce/` folder in the current folder if one exists, otherwise `~/werkforce/` - and work on `company/profile.md` inside it. If there is no HQ yet, **install-your-werkforce** builds the full headquarters and hands back to me; or I can create just enough right now - the `company/` and `records/` folders and your profile - and the rest of HQ catches up when you install it. I never invent facts, numbers, or results about your business - blanks stay blank until you give me something real.
 
+**Type lens.** If `os/type.md` exists and names a type other than `business`, I read its vocabulary map and use the type's own headings and words when I write `profile.md` - "What we sell" becomes "What I'm accountable for" under `job`, same file, only the words change. Under `business`, or when `os/type.md` does not exist, nothing here changes.
+
 ## What you get
 
 - A single `company/profile.md` in your HQ, in the exact shape the format law (`os/formats.md`) names, that every department reads before touching any task

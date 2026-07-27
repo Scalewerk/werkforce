@@ -93,7 +93,7 @@ A receipt is one line proving the work is real - what was produced, where the fi
 
 ```markdown
 <!-- Stages: Filed | In progress | Blocked | Manager review | Operator review | Done | Dropped -->
-<!-- Receipt is "-" until Done; a Done receipt says what was produced, where it lives, who reviewed. A Blocked row carries "blocked by {what} - recheck {how}" in its Receipt cell until unblocked. -->
+<!-- Receipt is "-" until Done; a Done receipt carries four machine-checkable fields, in order: full date and time (YYYY-MM-DD HH:MM AM/PM), the deliverable path (or "no-file:{reason}"), the artifact id, and the tree written. A Blocked row carries "blocked by {what} - recheck {how}" in its Receipt cell until unblocked. -->
 | Task | Stage | Seat | Filed | Due | Receipt |
 |---|---|---|---|---|---|
 | Prospect email draft | Done | Marcus | 2026-07-20 | 2026-07-20 | email draft, outbox/2026-07-20-prospect-email.md, reviewed by Elena |

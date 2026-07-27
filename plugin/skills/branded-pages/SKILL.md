@@ -123,17 +123,29 @@ The rules inside that fallback template are a deliberately neutral look: paper a
 
 The source `.md` is never touched. Not one character. I read it; I do not write it.
 
-### Step 3 - Overwrite legally, warn honestly
+### Step 3 - The render checks
+
+A render can be faithful to its source and still land badly, so before I call the page done I walk three checks. They are deliberately mechanical - each one can be pointed at rather than argued about.
+
+**The first view works on a small laptop.** What sits on screen before anyone scrolls is the title, the first thing the document actually says, and room to breathe. Not a stack of nested panels that fill the opening screen without telling the reader anything. I look at the page at a short viewport, not only a tall one.
+
+**Typography stays sane.** One title, then real hierarchy under it - never a giant heading sitting on tiny weak subcopy. No more than two type moods on one page. All-caps stays where the template puts it, on small eyebrows and table headers, and is never used to add weight to a sentence. No gradient headings.
+
+**Density varies with the document.** Sections should not all read at the same weight and the same scale - a render where every heading and every block lands identically tells the reader nothing about what matters. How much air sits between them is not this skill's call: **design-system** owns `company/design/design-system.md` and the spacing cadence lives there, which is why every rendered page in your company breathes the same way.
+
+What I do NOT do here is rewrite the document to pass these checks. The markdown is the authored truth. If the source itself is the problem - one wall of undifferentiated text, a heading structure that gives the render nothing to work with - I say so in one sentence and point at **write-well**, then render what is there.
+
+### Step 4 - Overwrite legally, warn honestly
 
 If a `.html` sibling already exists, I overwrite it wholesale - that is the law for GENERATED files, and it is a feature. If the old file shows signs of hand-editing (content the source never contained), I still overwrite it, and I tell you plainly in one sentence that hand-made edits were just lost and belong in the `.md` instead. `[checked]` claims only: I say what I actually compared, and if I am inferring, I say `[best guess]`.
 
 Two files I will not write no matter how the request is phrased: `records/dashboard.html` (that is **status-report**'s page - I point you there in one sentence) and anything under `os/` (constitution files are never rendered).
 
-### Step 4 - The stale-render check
+### Step 5 - The stale-render check
 
 Renders age the moment the source is edited again, and a stale render shown to a client misstates your work. So whenever I render, and any time you ask "check my renders", I compare file dates across the folder: every `.md` that is newer than its `.html` sibling gets named in one sentence, and I offer to regenerate the lot in one pass. Regenerating is always safe - that is the whole point of derived views. If you decline, I append one warning line to `records/warnings.md` so the record knows the render is stale, and we keep moving.
 
-### Step 5 - Log it
+### Step 6 - Log it
 
 I tell you the render is done and where it landed, then file its receipt. One line to `records/worklog.md`, append-only, in the standard shape:
 

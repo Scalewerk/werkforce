@@ -139,7 +139,7 @@ Then the rest of the department, in one pass:
 ```markdown
 # {{DEPARTMENT}} board
 <!-- Stages: Filed | In progress | Blocked | Manager review | Operator review | Done | Dropped -->
-<!-- Receipt is "-" until Done; a Done receipt says what was produced, where it lives, who reviewed. A Blocked row carries "blocked by {what} - recheck {how}" in its Receipt cell until unblocked (then "-" again). Dropped is never relabeled Done. -->
+<!-- Receipt is "-" until Done; a Done receipt carries four machine-checkable fields, in order: full date and time (YYYY-MM-DD HH:MM AM/PM), the deliverable path (or "no-file:{reason}"), the artifact id, and the tree written. A Blocked row carries "blocked by {what} - recheck {how}" in its Receipt cell until unblocked (then "-" again). Dropped is never relabeled Done. -->
 
 | Task | Stage | Seat | Filed | Due | Receipt |
 |---|---|---|---|---|---|

@@ -320,6 +320,7 @@ hook_footprint() {
   script="$1"; stem="$(basename "$script")"; stem="${stem%.*}"
   decl="$(grep -m1 -E '^(#|//)[[:space:]]*checkup-evidence:' "$script" 2>/dev/null \
           | sed -E 's%^(#|//)[[:space:]]*checkup-evidence:[[:space:]]*%%')"
+  HOOK_DECLARED="$([ -n "$decl" ] && echo 1 || echo 0)"
   if [ -n "$decl" ]; then
     newest="$(find "$HQ"/$decl -type f -newer "$script" 2>/dev/null | head -1)"
     if [ -n "$newest" ]; then
@@ -486,14 +487,24 @@ PY
     else
       ok "hook $hname present ($where, $event) - run through ${kind#via:}, so its executable bit is not required"
     fi
+    # hook_footprint runs inside command substitution below, so assignments it
+    # makes cannot reach this shell. Read the declaration in the caller too:
+    # the branch at :492 must never depend on a subshell-local variable.
+    decl="$(grep -m1 -E '^(#|//)[[:space:]]*checkup-evidence:' "$path" 2>/dev/null \
+            | sed -E 's%^(#|//)[[:space:]]*checkup-evidence:[[:space:]]*%%')"
+    HOOK_DECLARED="$([ -n "$decl" ] && echo 1 || echo 0)"
     if evidence="$(hook_footprint "$path")"; then
       ok "hook $hname $evidence"
-    elif [ "$channel" = plugin ]; then
-      # A plugin guard that passes is silent by design - it writes nothing anywhere, so
-      # there is no footprint to read. Counted into one line rather than repeated per
-      # hook: a wall of identical notes is how a report stops being read.
+    elif [ "$channel" = plugin ] && [ "$HOOK_DECLARED" -eq 0 ]; then
+      # Silent-by-design collapse keys on the hook having made no checkup-evidence
+      # declaration at all, not on channel=plugin alone - a plugin guard that never
+      # declared a footprint is indistinguishable from one designed to pass silently,
+      # so it is counted into one line rather than repeated per hook: a wall of
+      # identical notes is how a report stops being read.
       PLUGIN_SILENT=$((PLUGIN_SILENT + 1))
       PLUGIN_SILENT_LIST="$PLUGIN_SILENT_LIST $hname"
+    elif [ "$channel" = plugin ]; then
+      warn "hook $hname declares a checkup-evidence footprint ($decl) but no trace matching it was found [unknown] - it may be running silently and leaving no trace, or it may be dead. Fire it once by hand as an install check, or fix the declared path"
     else
       warn "hook $hname shows no evidence it has fired since its last change [unknown] - it may be running silently and leaving no trace, or it may be dead. Fire it once by hand as an install check, or give it a '# checkup-evidence: <path>' line naming where its output lands"
     fi
@@ -502,6 +513,50 @@ PY
   if [ "$PLUGIN_SILENT" -gt 0 ]; then
     note "$PLUGIN_SILENT plugin-provided hook scripts are installed and registered but leave no footprint this HQ can read - a plugin guard is silent when it passes, so whether each has fired is [unknown]: reported for visibility, not judged -$PLUGIN_SILENT_LIST"
   fi
+fi
+
+# Tree-authority tripwire (integrity review 2026-07-25, Part 3 M-2). TREES.md
+# declares which copies of Werkforce content are frozen or dead; any file
+# under one of those paths newer than its declared freeze date is a
+# wrong-tree write happening in real time, not after the fact. Warn-only,
+# same as every other check here - it never blocks.
+if [ -f "$HQ/TREES.md" ]; then
+  TREES_WARN=0
+  while IFS='|' read -r _ rawpath role _writer frozen acked _rest; do
+    path="$(echo "$rawpath" | sed -e 's/^ *//' -e 's/ *$//')"
+    role="$(echo "$role" | sed -e 's/^ *//' -e 's/ *$//')"
+    frozen="$(echo "$frozen" | sed -e 's/^ *//' -e 's/ *$//')"
+    acked="$(echo "$acked" | sed -e 's/^ *//' -e 's/ *$//')"
+    case "$role" in frozen|dead) ;; *) continue ;; esac
+    [ -n "$frozen" ] && [ "$frozen" != "—" ] || continue
+    resolved="$path"
+    case "$path" in
+      werkforce/*) resolved="$HQ/${path#werkforce/}" ;;
+      *"(abs)"*) resolved="$(echo "$path" | sed 's/ (abs)//')" ;;
+    esac
+    resolved="${resolved/#\~/$HOME}"
+    [ -e "$resolved" ] || continue
+    # A verified heal (content confirmed unchanged post-freeze, receipt
+    # named in the Acknowledged-through cell) advances the effective
+    # baseline past "Frozen since" for this row only — TREES.md hardening,
+    # row C, 2026-07-26. "Frozen since" itself never changes; a row with no
+    # acknowledgment keeps warning forever, which is the honest default.
+    baseline="$frozen"
+    baseline_note=""
+    if [ -n "$acked" ] && [ "$acked" != "—" ]; then
+      acked_date="$(echo "$acked" | awk '{print $1}')"
+      baseline="$acked_date"
+      baseline_note=", acknowledged through $acked_date per TREES.md"
+    fi
+    newest="$(find "$resolved" -type f -newermt "$baseline 23:59:59" 2>/dev/null | head -1)"
+    if [ -n "$newest" ]; then
+      warn "tree-authority: '$resolved' is declared $role (since $frozen in TREES.md$baseline_note) but has a file written after that date: $newest"
+      TREES_WARN=$((TREES_WARN + 1))
+    fi
+  done < <(grep '^|' "$HQ/TREES.md" | tail -n +3)
+  [ "$TREES_WARN" -eq 0 ] && ok "tree-authority: no frozen/dead tree in TREES.md has been written to since its freeze date"
+else
+  note "TREES.md not found - tree-authority tripwire skipped (run the engineering event-log build to add it)"
 fi
 
 echo

@@ -3,22 +3,31 @@
 One shape per file, written here once. Seed files carry a comment line copied
 from this law; at working time the comment inside the file you are editing is
 the operative rule, and the checkup warns when a file's comment has drifted from
-this law. Kinds: LEDGER (append-only, lines never edited), LIVING (edit the
-named cell or field in place, nothing else), GENERATED (derived, legally
+this law. Kinds: EVENT LOG (`records/events.jsonl` - the append-only source of
+truth, one JSON object per action, lines never edited), LEDGER (append-only,
+lines never edited), LIVING (edit the named cell or field in place, nothing
+else), GENERATED (derived, rebuilt from its source on write, legally
 overwritten).
+
+Article 1 of the constitution sits above every kind below. The event log is the
+source of truth; the human ledgers and every rendered page are generated views,
+rebuilt from it on write. A file's kind here says how that file is *written* -
+LEDGER and LIVING files keep the shapes stated below, stay readable, and stay
+hand-editable - but when any record disagrees with the event log, the
+clock-stamped event wins, never a majority vote across ledgers and never
+inference. The founder hand-edits anything, any time; his edits are imported as
+events, never overwritten.
 
 ## HQ.md - LIVING
 H1 `# {company} - Workforce HQ`, `Founder:`, `Timezone:` (the founder's named
 timezone, for example `America/New_York (EST/EDT)` - every timestamp anywhere
-in the HQ is written and spoken in this timezone, never UTC), `Werkforce
-type:` (`business` | `job` - the B45 setting; `business` is the shipped
-default and a business HQ's line reads `business`. A third value, `personal`,
-is named in the the job-type design but not yet installable by any shipped skill - it
-is not a live value until its own build lands), and `Opened:` lines, `##
-Wake phrases` (the nine, verbatim from the seed), `## Standing orders`
-(numbered; additions append at the end, numbered on). A `job`-type HQ carries
-one additional numbered standing order, the W2 employment boundary, shipped
-verbatim from `references/seeds/HQ-job.md.tmpl`.
+in the HQ is written and spoken in this timezone, never UTC), and `Opened:`
+lines, `## Wake phrases` (the nine, verbatim from the seed), and `## Pointers`
+(one bullet per file the founder is sent to first). Identity, wake phrases, and
+pointers only - no law lives here. Article 16 made `os/charter.md` the one home
+of house law and retired the numbered standing orders this file used to carry;
+the ten that stood here were absorbed into the constitution on ratification,
+none repealed.
 
 ## inbox.md - LEDGER
 H1 plus comment. One line per drop: `- YYYY-MM-DD note/idea/ask in your own
@@ -26,17 +35,19 @@ words`. Intake marks a line adopted by appending ` -> adopted: what it became`
 at line end (the one sanctioned line edit in the OS). An inbox entry owns no
 fact until intake converts it.
 
-## os/charter.md, os/formats.md - shipped verbatim; never edited by skills
-Changes arrive only through upgrade-your-werkforce, recorded in the worklog.
+## os/charter.md - LIVING (amended in place, only as Article 16 says)
+The constitution, and the only home of house law; read at every session open.
+A founder-ratified amendment edits the article in place the same day, dated,
+with its incident named - and nothing else edits this file. The pack fold
+follows through release, and the using-werkforce injection regenerates from
+this file. The old absolute ("shipped verbatim; never edited by skills") was
+struck on ratification: it caused the sprawl, because every founder ruling had
+to park in a standing order or a memory file with a fold-later IOU.
 
-## os/type.md - shipped verbatim per type; never edited by skills
-The B45 lens: apex title, roster note, and vocabulary map for the HQ's
-werkforce type. Install copies the chosen profile verbatim from
-`install-your-werkforce/references/types/<type>.md`; changes to what a type
-means arrive only through upgrade-your-werkforce, recorded in the worklog,
-same law as `os/charter.md` and `os/formats.md`. `HQ.md`'s `Werkforce type:`
-line is the one authority for which type this HQ is; this file is the
-rendered lens that line points to - one authority, no second copy to drift.
+## os/formats.md - shipped verbatim; never edited by skills
+Changes arrive through upgrade-your-werkforce, recorded in the worklog, or as
+the filed consequence of a ratified charter amendment - this file is machinery,
+and it holds no law that does not live in `os/charter.md` first.
 
 ## os/manifest.md - LIVING (rewritten by install/upgrade only)
 H1, `Pack version:` line, `## Skills installed` (one bullet per skill name),
@@ -45,6 +56,11 @@ H1, `Pack version:` line, `## Skills installed` (one bullet per skill name),
 ## os/VERSION
 One line, the OS state version (for example `3.0`). Absent file means a 1.x HQ.
 Only upgrade-your-werkforce rewrites it.
+
+## os/debug-mode.md - LIVING (machinery, amended only as Article 16 says)
+The debug-mode specification (B28), relocated from `HQ.md` 2026-07-26 -
+machinery, not a standing order, so it lives here rather than in the
+constitution. `HQ.md`'s "Machinery - debug mode" section is a pointer only.
 
 ## company/onboarding.md - LIVING (status words edit in place)
 H1 `# {company} - onboarding`, one comment line, then a numbered list - one
@@ -79,19 +95,7 @@ find us, Unit economics, Constraints right now, What we can deliver today.
 The last section holds three bullet lists: Yes (proven), Now (can do on
 request), Not yet (do not claim). Every filled line ends with its source in
 parentheses, in your words ("from my Stripe dashboard", "founder's estimate").
-Blanks stay `(not set yet)`. Business-type HQs only; a `job`-type HQ's
-capability floor is `company/role-scorecard.md` instead (see below) - this
-file is not seeded for `job` or `personal`.
-
-## company/role-scorecard.md - LIVING (job-type HQs only)
-H1, then H2s in order: Who I serve, My responsibilities and how they're
-measured, How I find out what's expected of me, Constraints right now, What I
-can commit to today. The last section holds three bullet lists: Yes (proven),
-Now (can do on request), Not yet (needs my manager or more standing). Same
-shape as `company/business-model.md`'s capability floor, so any skill reading
-that shape finds it here instead under `job`. Every filled line ends with its
-source in parentheses. Blanks stay `(not set yet)`. Seeded only when
-`os/type.md` names `job`; a `business`-type HQ never has this file.
+Blanks stay `(not set yet)`.
 
 ## company/visions.md - LEDGER
 H1 plus comment. One H2 per vision: `## V{n} - {short name}`, one paragraph
@@ -130,10 +134,7 @@ Numbers come from you or files you point at - never invented.
 ## company/org-chart.md - LIVING
 H1 `# {company} - Org chart`, comment lines, `## Governance` table
 `| Seat | Status | Name |` with exactly two rows (Founder - always Active;
-the apex seat - Planned until activated). The apex seat's title follows the
-HQ's werkforce type, read from `os/type.md`: `Chief Executive Officer` for
-`business`, `Chief of Staff` for `job`. The seat's behavior is identical
-either way - only the title differs. `## Departments` table, exactly these columns:
+CEO - Planned until activated). `## Departments` table, exactly these columns:
 `| Department | Status | Planner | Worker | Reviewer | Autonomy |`
 Exactly twelve rows in this order: Engineering, Marketing, Sales, Product,
 Design, Client Delivery, Finance, Agent Resources, Operations, Legal,
@@ -159,7 +160,7 @@ delivered|dormant`, `Promised:`, `Paid:`, `Next touch:` (edited in place), then
 H1 `# {Department} - charter`, `Mission:` line, `Opened: {date} | Autonomy:
 Level {n} - {name}` line, `## KPIs` bullets, `## The three seats` table
 `| Seat | Role | Name | Role card |` rows Planner / Worker / Reviewer
-(Role = the role title, for example Chief Marketing Officer; Role card = one line; the full card
+(Role = the role title, for example CMO; Role card = one line; the full card
 lives in seats/), `## Department rules` numbered, `## Graduation record` dated
 bullets, append-only.
 
@@ -186,7 +187,13 @@ old `In review`, renamed); a task that passes it moves to `Operator review`,
 where it waits for the founder's sign-off at the desk. `Done` means
 operator-signed - the founder signed it off - never the Reviewer's word alone.
 Seat = the agent's given name. Receipt is `-` until Done; a Done row's receipt
-says what was produced, where it lives, who reviewed. A Blocked row carries
+says what was produced, where it lives, who reviewed - and it carries the four
+machine-checkable fields, in this order: full date **and** time (`YYYY-MM-DD
+HH:MM AM/PM`), the deliverable path (or an explicit `no-file:{reason}`), the
+artifact id, and the tree written. Every asserted count inside a receipt names
+the command that produced it. A receipt is written last, against a quiesced
+tree - never against files still being edited. The reconciler warns on any
+missing field; it never blocks. A Blocked row carries
 `blocked by {what} - recheck {how}` in its Receipt cell until unblocked (then
 `-` again). An operator send-back returns the row from `Operator review` to `In
 progress` and is recorded verbatim in records/operator-reviews.md. Dropped is
@@ -222,11 +229,35 @@ company design system, self-contained, from `company/design/page.html`). The
 markdown is LIVING truth; the render is GENERATED and legally overwritten. A
 deliverable handed to the founder is the .html - polished, not raw notes.
 
+## records/events.jsonl - EVENT LOG (the source of truth)
+No H1 and no comment - this file is machine-first. One JSON object per line,
+one line per action, appended and never edited. Every line carries these
+twelve keys: `ts` (the clock read at write time, `YYYY-MM-DD HH:MM:SS ±HHMM`
+in the HQ timezone offset, never UTC) · `event` (exactly one of `signoff |
+sendback | dispatch | report | filed | stage | decision | note`) · `dept` (a
+department slug, `company`, or `unknown` - the honest value for an imported
+line whose department could not be resolved, never a guess) · `row` (the board
+row or action this event is about) · `stage_from` / `stage_to` (board stage
+words, or `null` when the event moves no row) · `path` (the deliverable path,
+or an explicit `no-file:{reason}`) · `artifact` (an artifact id of exactly
+eight lowercase hex characters, or `null`) · `tree` (one of the six roles
+`TREES.md` declares - `canonical | frozen | staging | installed | shadow |
+dead` - or `unknown` on an imported line whose tree could not be told; a live
+event defaults to `canonical` and a caller working against any other tree says
+so) · `actor` (the acting seat, `founder`, or the skill name) · `detail` (one
+line of plain words) · `source` (`live` for an event written as it happened,
+`import` for a line reconstructed from a human ledger that predates the log). Optional keys appear only where they apply: `test`
+(true on verification events that are not real work) and `ambiguous` (true on
+an imported line whose original could not be resolved cleanly). Written only
+through the atomic writer (`os/signoff.sh` and its siblings), which reads the
+clock, appends here, writes every ledger line, and regenerates the views in
+one motion. When this file and any ledger disagree, this file is right.
+
 ## records/audit-log.md - LEDGER (the master audit log)
 H1 plus comment. One line per action or event, from install onward, written by
 whichever skill acted, at the moment it acts:
-`- YYYY-MM-DD HH:MM [{type}] [{owner}] [{scope}] {what happened} - {pointer}`.
-Times are in the HQ timezone (never UTC). `{type}` is exactly one of:
+`- YYYY-MM-DD HH:MM AM/PM [{type}] [{owner}] [{scope}] {what happened} - {pointer}`.
+Times are in the HQ timezone (never UTC), 12-hour with AM/PM, never 24-hour. `{type}` is exactly one of:
 `install | onboarding | task | review | decision | send | spend | hire |
 warning | session | skill | archive | backup | upgrade | note`. `{owner}` is
 the acting seat's given name, `founder`, or the skill name. `{scope}` is a
@@ -237,8 +268,10 @@ activity view reads this file. If an action is not here, it did not happen.
 ## records/worklog.md - LEDGER
 H1 plus comment. One line per finished piece of work:
 `- YYYY-MM-DD [department] Task - receipt: what was produced, where it lives,
-who reviewed`. `[company]` for HQ-level work; migration and upgrade records land
-here too.
+who reviewed`. The receipt carries the same four machine-checkable fields the
+board's Receipt cell does - full date and time, path or `no-file:{reason}`,
+artifact id, tree - and any count inside it names the command that produced it.
+`[company]` for HQ-level work; migration and upgrade records land here too.
 
 ## records/operator-reviews.md - LEDGER (append-only, the review-gap data source)
 H1 plus comment. One line per operator decision at the desk, appended the moment
@@ -246,18 +279,10 @@ the founder signs off or sends a task back:
 `- YYYY-MM-DD [department] TASK-ID signed-off | sent-back: {operator's reasons
 verbatim}`. A signed-off line ends after `signed-off` (the task moves to Done); a
 sent-back line carries the founder's reasons word for word after `sent-back:` so
-the review-gap analysis can read why work bounced. A decline never lands
-reasonless: the desk asks once for the reason at the moment of the decline; if
-none lands yet, the line is filed flagged `sent-back: reason pending` and the
-morning run rechecks it until the verbatim reason lands as a fresh appended
-`sent-back:` line (the pending line stays; lines are never edited). Finished
-means every
-decline in this ledger carries either a verbatim reason or a live reason-pending
-flag being rechecked - the reason is the review-gap system's raw material, and
-without it Managers can never learn the operator's bar. Written only when the
-founder speaks at the founders-desk; the operator-review queue page shows the
-decision but never writes here (generated-view law holds - no write-back forms).
-Lines are never edited or deleted.
+the review-gap analysis can read why work bounced. Written only when the founder
+speaks at the founders-desk; the operator-review queue page shows the decision
+but never writes here (generated-view law holds - no write-back forms). Lines are
+never edited or deleted.
 
 ## records/warnings.md - LEDGER
 H1 plus comment. `- YYYY-MM-DD [skill-name] finding - action taken`. A warning
@@ -269,38 +294,21 @@ quarterly strategy review only, under dated H2 headings. Task reviews live in
 each department's memory.md.
 
 ## records/sessions.md - LEDGER
-H1 plus comment. `- YYYY-MM-DD HH:MM opened - focus: {what}` and
-`- YYYY-MM-DD HH:MM closed - {one-line recap}`, times in the HQ timezone. An
-unclosed foreign line gets a warning, never a lock.
+H1 plus comment. `- YYYY-MM-DD HH:MM AM/PM opened - focus: {what}` and
+`- YYYY-MM-DD HH:MM AM/PM closed {verdict} - {one-line recap}`, times in the HQ
+timezone on the 12-hour clock. `{verdict}` is the reconciler's own words,
+verbatim: `clean`, or `owing {N}` naming what is owed. Closing unclean is legal;
+closing silently unclean is not - a close line with no verdict is a warning with
+a name on it. A session that crosses midnight closes and reopens; a date never
+inherits from session context. An unclosed foreign line gets a warning, never a
+lock.
 
 ## records/improvements.md - LEDGER
 H1 plus comment. `- YYYY-MM-DD lesson|fix|idea|intervention: {one line}` -
 lesson when a control warned or a close was refused, fix when something got
 repaired, idea for a capability the company wants, intervention when the
-founder overrode a seat law. The weekly review reads this file and proposes
-any and all changes the record supports, each atomic.
-
-## records/artifact-registry.md - LEDGER
-H1 plus comment. Every deliverable also publishes as a claude.ai artifact
-(founder law, 2026-07-23) - one line here per publish event, appended the
-moment the publish lands (or is deferred). Three shapes appear in this file,
-in the order the desk's practice actually moved through them - only the third
-is written going forward, and the earlier two stand as valid, never-rewritten
-history:
-
-1. **Born shape** (2026-07-23): `- {path} -> {url} ({date})`
-2. **Bulk-publish shape** (2026-07-24, the plurality of the file's lines): `- {date} {path} -> {url} ({context, e.g. "sign-off walk publish"})`
-3. **Current shape** (written going forward): `- YYYY-MM-DD HH:MM AM/PM — {Department}: {one-line description} — {artifact URL} — source: {repo-relative .html path}` - em-dash-delimited, because descriptions and paths both contain ordinary hyphens and a hyphen separator would be ambiguous where an em dash is not.
-
-Times are in the HQ timezone, never UTC. A republish to an already-registered
-path reuses its existing artifact URL (never a new URL for the same path) and
-gets its own fresh line noting the republish and why. A publish the platform's
-daily cap defers writes `CAP-QUEUED` in place of the URL; run-the-day's
-morning sweep drains CAP-QUEUED lines oldest-first, same shape as its
-reason-pending recheck, and the real URL line supersedes it when the publish
-lands. The latest line for a path is current; earlier lines are history and
-are never edited or deleted. Disk pairs stay canonical; the artifact is a
-derived, republishable snapshot, same standing as the .html render.
+founder overrode a seat law. The weekly review reads this file and proposes any
+and all changes the record supports, each atomic.
 
 ## records/github-map.md - skill-owned (share-to-github only)
 H1 plus comment, three H2 sections: `## Repos we mirror` (one bullet per
@@ -311,8 +319,8 @@ applied by appending ` -> applied YYYY-MM-DD`).
 
 ## records/dashboard.html - GENERATED
 The company dashboard - one self-contained HTML page in the company design
-system, rewritten wholesale by status-report on every run and openable by
-double-click. It is the project-management face of the HQ: header (company,
+system, rewritten wholesale by status-report on every run, rebuilt by the
+writer whenever an event lands, and openable by double-click. It is the project-management face of the HQ: header (company,
 generated-at stamp in the HQ timezone, how to refresh), department boards with
 stage counts and task rows, the decision queue waiting on the founder, open
 outcomes with status, recent deliverables with clickable file links, a

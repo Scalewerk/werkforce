@@ -19,6 +19,8 @@ what you sell, and who you sell to, and I will set up the basics now). I never
 invent facts, numbers, or results about your business - blanks stay blank until
 you give me something real.
 
+**Type lens.** If `os/type.md` names a type other than `business`, this skill's job changes address, not just its words: under `job` it builds `company/role-scorecard.md` instead of `company/business-model.md` - the same Yes/Now/Not-yet capability-floor shape, with "Ideal customer" reading "Who I serve" and the rest of the map applied per `os/type.md`. Under `business`, or when `os/type.md` does not exist, nothing here changes.
+
 ## What you get
 
 - `company/business-model.md` in your HQ, six sections in the exact shape the format law names: Ideal customer, Offer ladder and pricing, How customers find us, Unit economics, Constraints right now, What we can deliver today

@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://scalewerk.com/schemas/werkforce.event.v2.json",
+  "title": "Werkforce Starter event v2",
+  "type": "object",
+  "required": ["schema","event_id","tx_id","idempotency_key","ts","recorded_ts","event","dept","row_id","row","stage_from","stage_to","path","artifact","tree","actor","actor_type","detail","source","payload","import"],
+  "properties": {
+    "schema": {"const":"werkforce.event.v2"},
+    "event_id": {"type":"string","pattern":"^evt_[0-9]{16}$"},
+    "tx_id": {"type":"string"},
+    "idempotency_key": {"type":"string","minLength":1},
+    "ts": {"type":["string","null"]},
+    "recorded_ts": {"type":"string"},
+    "event": {"type":"string"},
+    "dept": {"type":["string","null"]},
+    "row_id": {"type":["string","null"]},
+    "row": {"type":["string","null"]},
+    "stage_from": {"type":["string","null"]},
+    "stage_to": {"type":["string","null"]},
+    "path": {"type":["string","null"]},
+    "artifact": {"type":["string","null"]},
+    "tree": {"type":["string","null"]},
+    "actor": {"type":["string","null"]},
+    "actor_type": {"type":["string","null"]},
+    "detail": {"type":["string","null"]},
+    "source": {"enum":["live","import"]},
+    "payload": {"type":"object"},
+    "import": {"type":["object","null"]}
+  },
+  "additionalProperties": true
+}

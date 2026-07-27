@@ -21,6 +21,8 @@ what you sell, and who you sell to, and I will set up the basics now). I never
 invent facts, numbers, or results about your business - blanks stay blank until
 you give me something real.
 
+**Type lens.** If `os/type.md` exists and names a type other than `business`, I read its vocabulary map and speak this skill's words in that type's words instead - same steps, same mechanics, only the words change. Under `business`, or when `os/type.md` does not exist, nothing here changes.
+
 ## What you get
 
 - A worked board: Filed rows picked up, Blocked rows rechecked, work moved through review honestly

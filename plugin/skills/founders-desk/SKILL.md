@@ -19,6 +19,8 @@ what you sell, and who you sell to, and I will set up the basics now). I never
 invent facts, numbers, or results about your business - blanks stay blank until
 you give me something real.
 
+**Type lens.** If `os/type.md` exists and names a type other than `business`, I read its vocabulary map and speak this skill's words in that type's words instead - "external sends" and the reserved-decision wording stay verbatim, but the surrounding words (e.g. "customer") render per the type's map. Under `business`, or when `os/type.md` does not exist, nothing here changes.
+
 ## What you get
 
 - The reserved list - the seven decisions that are yours forever, each with the reason why

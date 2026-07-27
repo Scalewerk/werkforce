@@ -77,6 +77,10 @@ Your Reviewer will read these checks with a red pen - that is the whole job of *
 - Hostile reviewer: "Short by whose watch? Friendly says who?"
 - Tight: "Under 150 words - checked by word count. Exactly one ask - checked by counting the asks."
 
+One preference inside that loop: when two checks aim at the same quality, take the one anyone can count. "Nothing on the page feels cluttered" is a mood; "no more than one uppercase micro-label for every three sections - checked by counting both" settles in ten seconds.
+
+And when the brief is for something that renders as a page, the checks name the properties the work has to get right - type sizes and line height, the spacing between headline, subhead, buttons and cards, button shape and hierarchy, which color carries background, accent and borders - plus one check that the rendered page still matches the design read it was written from, because a render can quietly flatten into a default template on the way from source to page. **plan-desk** carries the full property lists and the page-specific questions that go with them.
+
 We loop until every check holds. Here is a finished brief, so you know what the bar looks like:
 
 ```markdown

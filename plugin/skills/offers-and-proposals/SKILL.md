@@ -19,6 +19,8 @@ what you sell, and who you sell to, and I will set up the basics now). I never
 invent facts, numbers, or results about your business - blanks stay blank until
 you give me something real.
 
+**Type lens.** If `os/type.md` exists and names a type other than `business`, I read its vocabulary map and speak this skill's words in that type's words instead - "offer" becomes "responsibilities" and "price" is not applicable under `job`, same drafting mechanics, only the words change. Under `business`, or when `os/type.md` does not exist, nothing here changes.
+
 ## What you get
 
 - One finished draft - an offer (reusable, one-to-many) or a proposal (one client, built from a discovery debrief) - in four parts: outcome, scope, price frame, terms
@@ -49,6 +51,8 @@ If the file or the floor section is missing, I do not stop - I append one dated 
 
 A warning is a flag on the play, never a stopped game.
 
+Then, before drafting, I say the read back to you in one line - who this document is for, what it has to get them to do, and the register it should hold. One sentence you can correct in five seconds. Beyond that I ask **exactly one** question, the one whose answer changes the draft most, or none at all. The three discovery questions in Step 2 are a different thing and they stand: those are the substance of the deal, not a preference I could have inferred. What this rule bans is the questionnaire - six things asked before anything gets produced.
+
 ### Step 2 - Pick the shape
 
 Two shapes, one decision:
@@ -64,7 +68,7 @@ Every offer and every proposal has the same skeleton, and each part earns its pl
 
 - **Outcome** - the state of the world this work produces, in the customer's language, with who verifies it and how. Not a list of activities. "You will have X, verified by Y" beats "we will do A, B, C" in every deal you will ever close.
 - **Scope** - what is delivered, one line per deliverable; then the honest fences: what is not included, what we assume, what the client must provide, and what triggers a scope conversation. A hostile reader of the exclusions alone should know exactly what they are not buying.
-- **Price frame** - the price from your offer ladder, stated plainly. Recorded, never decided here: if this deal needs a price that is not on the ladder, I lay out two or three framed options with what each protects and what each trades away, and queue the decision - see Step 5.
+- **Price frame** - the price from your offer ladder, stated plainly. Recorded, never decided here: if this deal needs a price that is not on the ladder, I lay out two or three framed options with what each protects and what each trades away, and queue the decision - see Step 6.
 - **Terms** - timeline, payment schedule, revision or guarantee policy, and what ends the engagement. Short and plain. Terms nobody reads still bind you.
 
 The proposal file takes this shape:
@@ -100,7 +104,17 @@ Founder notes - delete before sending:
 
 A reusable offer uses the same skeleton without the client name and founder notes trailer. Proof points from `company/profile.md` may appear in either - each one carries its claim label in the founder notes, and `[best guess]` proof never ships as fact.
 
-### Step 4 - The overclaim check
+### Step 4 - What not to ship
+
+The floor stops a proposal from lying. This list stops it from reading as though nobody was home - which costs you the deal just as surely, because a client who smells a template stops believing the promises above it. Every line is mechanical: a reviewer can point at the page rather than argue taste.
+
+**Content.** No placeholder identities - no "John Doe", no "Acme Corp", no stand-in client name left in from a previous draft. No fake-perfect numbers: `99.99%`, `10x`, a suspiciously round `50%` with nothing behind it. No filler verbs - Elevate, Seamless, Unleash, Revolutionize, Next-Gen, Empower - which say nothing and would sit unchanged on any competitor's proposal. No row of three identical value cards. No "Trusted by" line naming nobody you can actually name.
+
+**Typography and layout, once it renders.** One title, then real hierarchy under it, never a giant heading over weak tiny subcopy. No more than two type moods on one page. No lazy all-caps used to add weight to a sentence. No gradient headings. Sections should not all read at the same weight and the same scale - a proposal where outcome, scope, price, and terms are visually indistinguishable makes the client hunt for the price, and a client hunting for the price is a client cooling off. How much air sits between them is your design system's call, not this skill's - **design-system** owns `company/design/design-system.md` and the spacing cadence lives there.
+
+**The first view has to work on a small laptop.** What is on screen before the client scrolls is the outcome and who it is for. Not a stack of nested panels that fill the opening screen without saying anything.
+
+### Step 5 - The overclaim check
 
 Now the draft meets the floor, line by line. Every promised deliverable maps to a Yes or Now item. When a promise reaches past the floor, I do not delete it and I do not block - I downgrade it on paper: "we will build your automated pipeline" becomes "we will build your first pipeline by hand and document it", or the line moves from the scope into a clearly-labeled future phase. Then two lines go on the record:
 
@@ -111,7 +125,7 @@ Now the draft meets the floor, line by line. Every promised deliverable maps to 
 
 The first to `records/warnings.md`, the second to `records/improvements.md`. If you believe the capability genuinely belongs on the floor now, that is a **business-model** conversation - move the line there first, then the promise gets to stand. When you are torn, downgrade: moving a claim up later is a good day, and walking one back is not.
 
-### Step 5 - Hand off, and queue what is yours
+### Step 6 - Hand off, and queue what is yours
 
 The finished draft moves from `drafts/` to the department's `outbox/` as the pair the filing law in `os/formats.md` requires: `YYYY-MM-DD-{slug}.md` (the editable truth, founder-notes trailer and all) and `YYYY-MM-DD-{slug}.html` (the finished, self-contained render built from `company/design/page.html`, with the founder-notes trailer left off so it reads client-ready). If your design system is `(not set yet)`, I say so, render with the shipped neutral look, and point you to the **design-system** onboarding step so your next proposal carries your brand - **design-department** owns that look. That move is the handoff, and it is the moment the work becomes visible. If a board row exists for this work, it moves to Manager review; the desk hands that review to a delegated agent that did not write the draft (if your runtime cannot spawn one, the desk plays the Reviewer in turn and says so), and **review-desk** is the skeptical reader it deserves before any customer sees it. This skill never closes its own work.
 
@@ -120,7 +134,7 @@ Two things may be waiting on you, and both queue instead of stalling silently:
 - A price not on the ladder queues to `company/decision-log.md`: `- YYYY-MM-DD [sales] QUEUED: price for {client} proposal - context - options with tradeoffs - recommendation`. The draft carries `(price pending your decision)` until you rule.
 - The send itself. Run **send-guard** when you are ready - it checks the recipient, the claims, and the floor one last time before anything leaves the building. Delete the founder-notes trailer before it goes.
 
-### Step 6 - Log it
+### Step 7 - Log it
 
 One line to `records/worklog.md`, once **review-desk** has had its pass:
 

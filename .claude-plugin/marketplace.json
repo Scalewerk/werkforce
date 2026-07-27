@@ -9,14 +9,14 @@
   },
   "metadata": {
     "description": "The official Werkforce marketplace - the single Werkforce plugin, versioned and installable.",
-    "version": "3.3.0"
+    "version": "3.4.0"
   },
   "plugins": [
     {
       "name": "werkforce",
       "source": "./plugin",
-      "description": "Your own agentic workforce - a complete company operating system installed as skills. Boards, receipts, an independent review triangle, a founder decision boundary, and an additive upgrade path.",
-      "version": "3.3.0",
+      "description": "Werkforce Starter v0 - your own agentic workforce with an independent local kernel, governed boards, receipts, review, and additive upgrades.",
+      "version": "3.4.0",
       "author": {
         "name": "Scalewerk",
         "email": "austin@scalewerk.com"
@@ -28,7 +28,7 @@
         "governance"
       ],
       "category": "workflow",
-      "sha": "sha256:19fd30eeb68a6a2d71a5bd590b709d61232b335d67aa8bc0974e996691bd4560 (content digest of werkforce-plugin-3.3.0.tgz; git-ref b73cc39)"
+      "sha": "sha256:4354cffa2291dc7c020986787f8b02d4632fbf985418764ce55aac46b7f1ce3c (content digest; git-ref sha awaits desk push)"
     }
   ]
 }

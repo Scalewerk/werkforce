@@ -1,0 +1,14 @@
+{
+  "schema": "werkforce.hook-policy.v1",
+  "protected": [
+    "records/events.jsonl",
+    "departments/*/board.md",
+    "records/worklog.md",
+    "company/decision-log.md",
+    "records/operator-reviews.md",
+    "records/audit-log.md",
+    "records/fleet.md",
+    "records/writer-receipts/**"
+  ],
+  "message": "Denied: lifecycle truth is kernel-owned. Use os/werkforce-kernel <verb>."
+}

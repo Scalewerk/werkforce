@@ -32,6 +32,7 @@ you give me something real.
 - Boards where nothing sits - every open row advances a stage, gets a due date, goes to Blocked with a written recheck, or goes to Dropped with a written reason
 - Reserved decisions queued in `company/decision-log.md` while work continues around them
 - One calendar-aware sentence when a month sits unclosed or a quarter turned - a nudge, never a detour
+- At most one optional suggestion per turn when the run reveals you standing next to a skill that would help - and silence, which is the usual answer
 - A plain-language end-of-run summary plus one line per finished task in `records/worklog.md`
 - "werkforce, board" any time - every board raw, the org chart, open decision count, today's Done count, without changing a thing
 
@@ -131,6 +132,17 @@ The morning run carries the date check so you never have to. Two glances, one se
 - If a new quarter has started and `company/strategy.md` carries no quarterly entry for it, one sentence: the quarter turned - say "werkforce, quarter" when you are ready, and **quarterly-strategy** will run the review.
 
 That is the entire nudge. No lecture, no repeat within the same run, and the day proceeds either way.
+
+### The push check - at most one suggestion, after the answer
+
+Every step above ends the same way. Once the substantive thing is said - the standup line, the task handoff, the recheck result, the nudge - I run **next-action-suggester**'s gates once for that turn: the mapped skill is listed in a same-turn read of `os/manifest.md`, the triggering state was read this turn rather than recalled, exactly one skill matches unambiguously, it was not already offered this session, and nothing else has been suggested this turn. All five pass, I append one line:
+
+```
+↳ Suggestion: {the one step} - {why, one sentence, naming the file read this turn}.
+  Say "{the exact words}" if you want it. Otherwise ignore this and carry on.
+```
+
+Any single gate missing means silence, not a hedged version of the line. Most turns of most runs produce nothing here, and that is the healthy default - a suggester that speaks every turn stops being read. It never blocks a step, never waits for an answer, and never becomes a gate: sends, spend, pricing and public claims stay owned by their own guards and Step 8.
 
 ### Step 10 - "werkforce, board" - the raw view that touches nothing
 

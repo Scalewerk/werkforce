@@ -19,6 +19,8 @@ what you sell, and who you sell to, and I will set up the basics now). I never
 invent facts, numbers, or results about your business - blanks stay blank until
 you give me something real.
 
+**Type lens.** If `os/type.md` exists and names a type other than `business`, I read its vocabulary map and speak this skill's words in that type's words instead - same outreach mechanics, only the words change. Under `business`, or when `os/type.md` does not exist, nothing here changes.
+
 ## What you get
 
 - A partner map - the named people and companies who already serve your customers, each with why they would care and what you can give first, filed as the outbox pair `departments/sales/outbox/YYYY-MM-DD-partner-map.md` (editable truth) + `.html` (finished render from your design system)
