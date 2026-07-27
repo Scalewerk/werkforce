@@ -79,6 +79,18 @@ const dNoHq = bash(`os/werkforce-kernel note --row B12`, desktop);
 t("deny: kernel-control with no locatable HQ", dNoHq.allow, false);
 t("deny reason says no HQ located", /no Werkforce HQ could be located/.test(dNoHq.reason || ""), true);
 
+// --- the kernel's NAME in prose is never kernel-control (review correction 1) ---
+t("allow: kernel name in a git commit message (reviewer repro)",
+  bash(`git commit -m "fix os/werkforce-kernel guard"`, hq).allow, true);
+t("allow: kernel name inside an inline node script (live denial 1)",
+  bash(`node -e 'console.log("os/werkforce-kernel is the launcher")'`, hq).allow, true);
+t("allow: kernel bundle name in echoed prose (live denial 2)",
+  bash(`echo "kernel/dist/werkforce-kernel.mjs ships with 0.1.0"`, hq).allow, true);
+t("deny: kernel path executed via interpreter is still control",
+  bash(`node os/werkforce-kernel note --row B12`, hq).allow, false);
+t("deny: chained command naming the kernel keeps the conservative fallback",
+  bash(`os/werkforce-kernel note --row B12 && rm -rf x`, hq).allow, false);
+
 // --- protected paths computed against the verified root, never cwd ---
 t("deny: Edit HQ worklog from Desktop cwd (ledger stays protected off-root)",
   edit(join(hq, "records", "worklog.md"), desktop).allow, false);

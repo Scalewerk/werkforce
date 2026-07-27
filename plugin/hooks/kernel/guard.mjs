@@ -121,10 +121,28 @@ function checkKernelCommand(hq, command) {
     return { ok: false, why: `'${verb || "(none)"}' is not a known kernel verb` };
   return { ok: true };
 }
+// A command is kernel-control only when a werkforce-kernel path sits in an
+// EXECUTED position - the first token, or the second behind an interpreter.
+// The kernel's name appearing inside a prose argument (a commit message, a
+// grep pattern, an inline script) is never control (review correction 1,
+// 2026-07-27: `git commit -m "fix os/werkforce-kernel guard"` was denied).
+// When the command cannot be tokenized (chaining, unbalanced quotes) the old
+// whole-string match is kept as the conservative fallback - such commands are
+// already outside the canonical shape, and the denial names the parse fault.
+const KERNEL_NAME=/(?:^|[/\\])werkforce-kernel(?:$|[-_.])/;
 function presentsKernelControl(input) {
   if (Array.isArray(input.argv) && typeof input.argv[0]==="string" &&
-      /(?:^|[/\\])werkforce-kernel(?:$|[-_.])/.test(input.argv[0])) return true;
+      KERNEL_NAME.test(input.argv[0])) return true;
   const command=String(input.command||"");
+  if (!command) return false;
+  const s=splitCommand(command);
+  if (!s.bad) {
+    const t=s.tokens||[];
+    if (t[0] && KERNEL_NAME.test(t[0])) return true;
+    if (t[0] && /^(?:node|nodejs|bash|sh|zsh|dash|python[0-9.]*)$/.test(t[0]) &&
+        t[1] && KERNEL_NAME.test(t[1])) return true;
+    return false;
+  }
   return /(?:^|[\s"'`])(?:[^\s"'`]*[/\\])?werkforce-kernel(?:$|[-_.\s"'`])/.test(command);
 }
 export function decide(input) {

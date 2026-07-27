@@ -411,7 +411,7 @@ import json, os, shlex, sys
 def emit(*fields):
     print("\t".join(str(f) for f in fields))
 
-def walk(obj, channel, source, root=None):
+def walk(obj, channel, source, root=None, projdir=None):
     hooks = obj.get("hooks") or {}
     if not isinstance(hooks, dict):
         return
@@ -427,6 +427,14 @@ def walk(obj, channel, source, root=None):
                 cmd = hook["command"]
                 if root:
                     cmd = cmd.replace("${CLAUDE_PLUGIN_ROOT}", root).replace("$CLAUDE_PLUGIN_ROOT", root)
+                # $CLAUDE_PROJECT_DIR in a project-level hook file is by
+                # definition the folder holding that .claude/ - expanding it is
+                # how the kernel guard's own registration gets verified rather
+                # than punted as VARPATH (review correction 2, 2026-07-27).
+                if projdir:
+                    q = '"' + projdir + '"'   # keep quoting: the project path may hold spaces
+                    cmd = cmd.replace('"${CLAUDE_PROJECT_DIR}"', q).replace('"$CLAUDE_PROJECT_DIR"', q)
+                    cmd = cmd.replace("${CLAUDE_PROJECT_DIR}", projdir).replace("$CLAUDE_PROJECT_DIR", projdir)
                 try:
                     toks = shlex.split(cmd)
                 except ValueError:
@@ -455,7 +463,13 @@ for path in sys.argv[1:]:
     except Exception:
         emit("settings", path, "-", "PARSEFAIL", "-")
         continue
-    walk(data, "settings", path)
+    # Project dir is knowable only for a project-level .claude/ file; in a
+    # user-level ~/.claude file the variable stays unexpandable (VARPATH).
+    pdir = os.path.dirname(os.path.abspath(path))
+    pdir = os.path.dirname(pdir) if os.path.basename(pdir) == ".claude" else None
+    if pdir == os.path.expanduser("~"):
+        pdir = None
+    walk(data, "settings", path, projdir=pdir)
     for key, on in (data.get("enabledPlugins") or {}).items():
         enabled.setdefault(key, on)   # settings were collected most-specific first
 
