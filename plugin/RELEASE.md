@@ -1,7 +1,7 @@
 # Werkforce Starter v0 — 0.1.0
 
-Werkforce Starter v0 is the final pre-Academy release for Austin and Live
-a beta customer. It keeps the complete public 3.3.0 plugin surface and adds the independent
+Werkforce Starter v0 is the final pre-Academy release for the founder and the
+first external install. It keeps the complete public 3.3.0 plugin surface and adds the independent
 Starter kernel without importing v-next internals.
 
 ## What changed

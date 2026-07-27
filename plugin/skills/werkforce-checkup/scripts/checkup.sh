@@ -383,7 +383,7 @@ HQ_PARENT="$(cd "$HQ/.." 2>/dev/null && pwd || echo "")"
 # a standalone .claude/hooks.json (where the kernel PreToolUse wrapper is
 # armed) never appears in any settings file, and a probe that skips it can
 # print "no hooks found" on an HQ whose guard is actively denying writes
-# (a beta customer's 0.1.0 upgrade, 2026-07-27). The probe also names every file it
+# (first external 0.1.0 upgrade, 2026-07-27). The probe also names every file it
 # read, so a blind probe can never read as clean.
 for s in "$HQ/.claude/settings.json" "$HQ/.claude/settings.local.json" "$HQ/.claude/hooks.json" \
          "$HQ_PARENT/.claude/settings.json" "$HQ_PARENT/.claude/settings.local.json" "$HQ_PARENT/.claude/hooks.json" \
