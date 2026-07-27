@@ -450,7 +450,13 @@ def walk(obj, channel, source, root=None, projdir=None):
                     continue
                 for i, tok in found:
                     if "$" in tok:
-                        emit(channel, source, event, "VARPATH", tok)
+                        # Unexpandable is REPORTED, never subtracted: the raw
+                        # command rides along so the entry is nameable even
+                        # when nothing about it can be verified (0.1.2,
+                        # ENG-probe-note-unexpandable - a live guard was
+                        # concluded absent this way).
+                        raw = " ".join(cmd.split())[:100]
+                        emit(channel, source, event, "VARPATH", tok + " | registered as: " + raw)
                         continue
                     kind = "direct" if i == 0 else "via:" + os.path.basename(toks[0])
                     emit(channel, source, event, kind, os.path.abspath(os.path.expanduser(tok)))
@@ -506,22 +512,27 @@ PY
 
   HOOK_SEEN=""
   HOOK_TOTAL=0
+  HOOK_UNPROBED=0
   PLUGIN_SILENT=0
   PLUGIN_SILENT_LIST=""
   while IFS=$'\t' read -r channel source event kind path; do
     [ -n "${kind:-}" ] || continue
     case "$kind" in
       PARSEFAIL)
+        HOOK_UNPROBED=$((HOOK_UNPROBED + 1))
         warn "hook settings $source could not be parsed as JSON - its hooks cannot be probed, and may not be loading either"
         continue ;;
       NOINSTALLED)
+        HOOK_UNPROBED=$((HOOK_UNPROBED + 1))
         note "plugins are enabled but $source could not be read - plugin-provided hooks were not probed"
         continue ;;
       INLINE)
-        note "hook on $event runs an inline command, not a script file - not probed: $path"
+        HOOK_UNPROBED=$((HOOK_UNPROBED + 1))
+        note "hook on $event in $source runs an inline command, not a script file - not probed, not judged: $path"
         continue ;;
       VARPATH)
-        note "hook on $event uses a variable this probe cannot expand ($path) - not probed"
+        HOOK_UNPROBED=$((HOOK_UNPROBED + 1))
+        note "hook on $event in $source uses a variable this probe cannot expand - not probed, not judged: $path"
         continue ;;
     esac
     case "$HOOK_SEEN" in *"|$path|"*) continue ;; esac   # one script, one report, however many events it sits on
@@ -568,7 +579,15 @@ PY
       warn "hook $hname shows no evidence it has fired since its last change [unknown] - it may be running silently and leaving no trace, or it may be dead. Fire it once by hand as an install check, or give it a '# checkup-evidence: <path>' line naming where its output lands"
     fi
   done <<< "$HOOK_ROWS"
-  [ "$HOOK_TOTAL" -eq 0 ] && note "no hook scripts found to probe in the $HOOK_SETTINGS_N files read above or in enabled plugins"
+  # The probe never silently subtracts what it cannot read: "none found" is
+  # only ever said when NOTHING was seen. Entries seen but unverifiable keep
+  # the conclusion honest as a WARN naming their count (0.1.2 field lesson: a
+  # hook that denied commands in the same session was concluded absent).
+  if [ "$HOOK_TOTAL" -eq 0 ] && [ "$HOOK_UNPROBED" -eq 0 ]; then
+    note "no hook entries of any kind found in the $HOOK_SETTINGS_N files read above or in enabled plugins"
+  elif [ "$HOOK_TOTAL" -eq 0 ]; then
+    warn "hook probe: $HOOK_UNPROBED hook entries were found but NONE could be verified (each is named in a NOTE above with its registered command) - this is not a clean result; an armed hook may be live and unprobed"
+  fi
   if [ "$PLUGIN_SILENT" -gt 0 ]; then
     note "$PLUGIN_SILENT plugin-provided hook scripts are installed and registered but leave no footprint this HQ can read - a plugin guard is silent when it passes, so whether each has fired is [unknown]: reported for visibility, not judged -$PLUGIN_SILENT_LIST"
   fi

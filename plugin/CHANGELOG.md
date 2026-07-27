@@ -1,6 +1,13 @@
 # Changelog — Werkforce Starter
 
-## 0.1.2 — 2026-07-27 (two guard regressions from the first external install's 0.1.1 run)
+## 0.1.2 — 2026-07-27 (guard and checkup regressions from the first external install's 0.1.1 run)
+
+- The checkup's hook probe never silently subtracts what it cannot read: every
+  hook entry it cannot expand or verify is named in the report with its
+  registered command, and "no hook entries found" is only ever said when
+  nothing at all was seen - if entries were seen but none verified, the run
+  says so as a warning. The quoted-variable registration form the first
+  external install uses is now expanded and verified directly.
 
 - Quoted Windows launcher paths are no longer mangled by the guard's command
   reader (backslashes inside double quotes were being eaten), so an
