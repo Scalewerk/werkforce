@@ -7,7 +7,7 @@ description: Bring an older HQ up to the current operating system - session-led,
 
 Upgrades have a bad reputation because most of them are demolitions: the new version moves in by throwing the old one out. Your HQ cannot be treated that way - those files are your company's memory, and some of them hold months of decisions, receipts, and hard-won lessons. So this migration runs under one law: everything the new version needs gets ADDED, and nothing you already have gets deleted or overwritten. Your boards keep their rows, your charters keep their names, your worklog keeps every line.
 
-The version stamp lives in `os/VERSION` - one line, only this skill ever writes it. The current operating system is `3.4`. An HQ with no VERSION file is a first-generation HQ, a `2.0` HQ is an older origin, and any `3.x` HQ is a supported origin for the additive migration to 3.4 - none is a problem; each is just a starting point this migration climbs from. You watch the whole migration happen, change by change, and the record of what moved goes on the worklog before the new version number does. If anything ever looks wrong afterward, the dated backup from minute one takes you straight back.
+The version stamp lives in `os/VERSION` - one line, only this skill ever writes it. The current operating system is `0.1`. An HQ with no VERSION file is a first-generation HQ, a `2.0` HQ is an older origin, and any `3.x` HQ is a supported origin for the additive migration to 3.4 - none is a problem; each is just a starting point this migration climbs from. You watch the whole migration happen, change by change, and the record of what moved goes on the worklog before the new version number does. If anything ever looks wrong afterward, the dated backup from minute one takes you straight back.
 
 ## Personalization
 
@@ -23,7 +23,7 @@ you give me something real.
 
 - A dated, verified backup of your whole HQ before a single byte changes
 - Every file the current version expects added from the shipped seeds - every file you already have left exactly as it is
-- The OS files refreshed from the current references: `os/charter.md`, `os/formats.md`, `os/manifest.md`, and `os/VERSION` stamped to `3.4` (the constitution and the format law only ever change through this skill)
+- The OS files refreshed from the current references: `os/charter.md`, `os/formats.md`, `os/manifest.md`, and `os/VERSION` stamped to `0.1` (the constitution and the format law only ever change through this skill)
 - A `Werkforce type:` line added to `HQ.md` and `os/type.md` copied in - `business` by default on no answer, `job` only on your explicit confirmation after I say what I see on your org chart (B45; see Step 3)
 - A `Timezone:` line added to `HQ.md` from your answer - so every date the system writes and speaks is in your time, never UTC
 - The v3 additions seeded from the shipped seeds: `records/audit-log.md` (the master audit log), `company/onboarding.md` (with the steps your HQ has already completed marked Done from the evidence on disk), and `company/design/` (the design system, owned by **design-system**)
@@ -182,7 +182,7 @@ The migration also writes the first line into the master audit log it just seede
 - YYYY-MM-DD HH:MM [upgrade] [upgrade-your-werkforce] [company] migrated HQ 2.0 -> 3.0 - records/worklog.md
 ```
 
-Then, last of all, `os/VERSION` gets its one line - `3.4`. Last on purpose: if a migration is ever interrupted halfway, the HQ never claims a version it has not earned - the next run reads the old stamp, sees what already landed, skips it, and finishes the rest. Done means the record shows it, and the stamp comes after the record.
+Then, last of all, `os/VERSION` gets its one line - `0.1`. Last on purpose: if a migration is ever interrupted halfway, the HQ never claims a version it has not earned - the next run reads the old stamp, sees what already landed, skips it, and finishes the rest. Done means the record shows it, and the stamp comes after the record.
 
 ## Do this now
 
@@ -194,7 +194,7 @@ Homework: open the backup archive listing once and confirm your real files are i
 
 Next: run **werkforce-checkup** - a fresh migration deserves a clean bill of health, and the checkup will tell you in plain OK and WARN lines whether the upgraded tree holds together.
 
-## Werkforce Starter v0 kernel migration (3.x -> 3.4)
+## Werkforce Starter v0 kernel migration (any 3.x -> 0.1)
 
 This MINOR migration is additive and always starts with **backup-your-werkforce**.
 List and verify the backup archive before writing. Then copy the shipped kernel
@@ -209,6 +209,6 @@ After the files are installed, offer the founder one separate, explicit step:
 `os/werkforce-kernel import-v1`. Explain what it imports, show the source and
 backup, and wait for the founder's yes. **Never auto-import.** A decline or no
 answer leaves the existing 3.x HQ running unchanged except for the installed,
-inactive kernel files. Stamp `os/VERSION` `3.4` only after the backup, file
+inactive kernel files. Stamp `os/VERSION` `0.1` only after the backup, file
 installation, hook check, migration record, and any founder-approved import have
 completed successfully.

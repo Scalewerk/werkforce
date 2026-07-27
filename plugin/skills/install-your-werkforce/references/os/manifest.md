@@ -1,7 +1,7 @@
 # OS manifest - what this version installs
 <!-- LIVING (rewritten by install/upgrade only). The checkup compares this against the tree and warns on drift. -->
 
-Pack version: 3.4.0
+Pack version: 0.1.0
 
 ## Skills installed
 - archive-work

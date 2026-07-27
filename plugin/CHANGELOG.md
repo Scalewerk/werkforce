@@ -1,6 +1,6 @@
 # Changelog — Werkforce Starter
 
-## 3.4.0 — 2026-07-27 (MINOR; os 3.3 -> 3.4)
+## 0.1.0 — 2026-07-27 (Werkforce Starter v0 — the line renumbers; supersedes the briefly-published 3.4.0, history below unchanged; os schema 0.1)
 
 Public label: **Werkforce Starter v0**.
 
@@ -15,8 +15,8 @@ Public label: **Werkforce Starter v0**.
   installed-artifact acceptance suite remains runnable after delivery.
 - Carried the live Claude Bash command-shape fix and its six acceptance cases.
 - Folded the atomic sign-off worklog append and Article-16 format correction.
-- Carried the delayed Option B note and corrected the version triple to pack
-  3.4.0, OS 3.4, and manifest 3.4.0.
+- Carried the delayed Option B note and corrected the version triple - now pack
+  0.1.0, OS 0.1, and manifest 0.1.0 under the Starter renumbering.
 - Added the internal-tier exclusion control and the `pack-3.3` rename carrier.
 
 ## 3.3.0 — 2026-07-25

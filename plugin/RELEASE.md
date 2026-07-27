@@ -1,4 +1,4 @@
-# Werkforce Starter v0 — 3.4.0
+# Werkforce Starter v0 — 0.1.0
 
 Werkforce Starter v0 is the final pre-Academy release for Austin and Live
 a beta customer. It keeps the complete public 3.3.0 plugin surface and adds the independent
@@ -19,7 +19,7 @@ Starter kernel without importing v-next internals.
 - The operator sign-off path includes the worklog in its atomic receipt motion.
 - The shipped format seed now matches Article 16.
 - The delayed release-note carry and the pack/OS/manifest version triple are
-  resolved at 3.4.0 / 3.4 / 3.4.0.
+  resolved at 0.1.0 / 3.4 / 0.1.0.
 - The release path has a real internal-skill exclusion gate.
 - The canonical next-cut carrier is named `pack-3.3`; historical `pack-3.1`
   remains intact as recovery evidence.
