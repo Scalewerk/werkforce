@@ -235,12 +235,10 @@ own line, type `[note]` in place of `[install]`, narrated the same way.
 
 ## What this skill does not do
 
-- It does not amend `connecting-tools.md`, the shipped B13 reference - that
-  file still frames connection as founder-performed and needs its own
-  matching edit. That is a separate, flagged follow-up build, not done here;
-  until it lands, treat this skill (and the founder's 2026-07-23 connection-
-  doctrine amendment in `company/decision-log.md`) as the current law, not
-  that reference.
+- It does not amend `references/connecting-tools.md` - that page states the
+  standing connection posture (files-first, reads free, writes founder-gated,
+  HQ record outranks the connector) and defers the process itself to this
+  skill. When the two ever disagree, this skill is the current law.
 - It does not bundle any vendor MCP server. I fetch and wire a server at
   connection time, on your yes - the plugin itself still ships none.
 - It does not weaken the write/send gate. An installed write-capable

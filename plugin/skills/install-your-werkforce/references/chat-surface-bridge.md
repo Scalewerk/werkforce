@@ -1,6 +1,6 @@
-# Talking to your Werkforce from a chat surface (B21)
+# Talking to your Werkforce from a chat surface
 
-<!-- Ratified posture reference. Source: the signed the chat-surface design
+<!-- Ratified posture reference. Source: the signed chat-surface bridge design
 (departments/product/outbox/2026-07-23-chat-surface-bridge-design.md, Product
 Manager PASS + operator sign-off 2026-07-23) plus the founder's 2026-07-25
 build greenlight. This file states the standing posture; it is not itself an

@@ -29,7 +29,7 @@ from your answers stays "(not set yet)" until you give me something real.
   timezone every timestamp in the HQ is written in
 - `werkforce/os/` - the operating charter (`charter.md`), the format law
   (`formats.md`), the transactional lifecycle writer (`signoff.sh` plus
-  `lifecycle_writer.py`), the manifest, the version file, and `type.md` (the B45 lens
+  `lifecycle_writer.py`), the manifest, the version file, and `type.md` (the werkforce-type lens
   for your werkforce type) - copied in exactly as shipped, so every HQ of the
   same type runs the same OS
 - `werkforce/company/` - org chart (governance seats + all twelve departments,
@@ -100,7 +100,7 @@ what I am writing as I go:
   `references/os/`, every type; the two writer entrypoints are made executable
 - `bin/reconcile.sh`, `bin/reconcile.py` - copied verbatim from
   `references/bin/` and made executable
-- `os/type.md` - copied verbatim from `references/types/<type>.md` (the B45
+- `os/type.md` - copied verbatim from `references/types/<type>.md` (the werkforce-type
   lens: apex title, roster note, vocabulary map for your type)
 - `HQ.md` - from `references/seeds/HQ.md.tmpl` (`business`) or
   `references/seeds/HQ-job.md.tmpl` (`job`), with `{{COMPANY}}`, `{{FOUNDER}}`,
@@ -122,7 +122,7 @@ what I am writing as I go:
   `references/seeds/business-model.md.tmpl`) or `company/role-scorecard.md`
   (`job` only, from `references/seeds/role-scorecard.md.tmpl` - same
   Yes/Now/Not-yet capability-floor shape, job's grounding equivalent per the
-  the job-type design's Q1 recommendation)
+  werkforce-type design's recommendation)
 - `company/decision-log.md`, `company/design/design-system.md` - from
   `references/seeds/*.tmpl`, identical across types
 - `inbox.md`, `company/visions.md`, `company/outcomes.md`,
@@ -186,13 +186,11 @@ And one opening line to `records/sessions.md`, because the habit starts now.
 
 Not everything under this skill's `references/` folder is copied into a fresh
 HQ - some are standing posture documents for a build that happens later.
-`references/chat-surface-bridge.md` (the ratified B21 posture on talking to
+`references/chat-surface-bridge.md` (the ratified posture on talking to
 your Werkforce from Discord, Telegram, or Slack) is one: read it before
 building any bridge, so the reserved-send rule and the per-surface posture
 table are not rediscovered from scratch. No chat-surface-bridge skill exists
-yet; the five-step onboarding-configuration flow the the chat-surface design sketched
-(`departments/product/outbox/2026-07-23-chat-surface-bridge-design.md:54-64`)
-is deliberately not built here - it waits on a real transport existing first.
+yet; the five-step onboarding-configuration flow that posture document's source design sketched is deliberately not built here - it waits on a real transport existing first.
 
 ## Do this now
 

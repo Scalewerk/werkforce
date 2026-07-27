@@ -29,7 +29,7 @@ across ledgers, never inference.
 
 *Incident:* six sign-off dates went wrong when two hand-kept ledgers agreed on a
 disproven date and only the clock-stamped record dissented — a two-of-three vote
-would have filed B52 and B43 wrong (reconciliation §4; integrity F-04/F-05).
+would have filed two sign-offs wrong (reconciliation §4).
 Ratified in direction by the founder's 09:48 PM amendment.
 
 ## Article 2 — One event, one write
@@ -128,9 +128,9 @@ a build") and ends with the plain next step: "If you sign: X happens next."
 Reserved acts stay reserved regardless and stop at a ready-to-execute runbook.
 
 *Incident:* signed designs sat silently unbuilt until the founder had to say so
-twice — the B60 doctrine ("the build task needs to be created automatically")
+twice — the founder's doctrine ("the build task needs to be created automatically")
 and the 11:59 AM greenlight ("Assume that if I've signed off on the design, I've
-signed off on the implementation"); B27: "If I sign off on this, I want to know
+signed off on the implementation") and, on another sign-off: "If I sign off on this, I want to know
 what the next step is."
 
 ## Article 9 — Seven calls are the founder's alone
@@ -157,7 +157,7 @@ internal.
 
 *Incident:* load-bearing recommendations passed two reviews buried in
 paragraphs; the dashboard bounced twice on the design bar; the founder made it
-law at B43: "Moving forward, the RECOMMENDATION is first. Not at the bottom of
+law: "Moving forward, the RECOMMENDATION is first. Not at the bottom of
 the document." (operator-reviews 07-24/07-25).
 
 ## Article 11 — Absorb over protect
@@ -168,7 +168,7 @@ something the founder built, is absorbed; conflict with the house way is a
 reason to weigh replacement, not a reason to skip. Treating the founder's own
 past designs as fixed constraints is false compliance.
 
-*Incident:* B53 was rejected twice for protecting the design system from skills
+*Incident:* a proposal was rejected twice for protecting the design system from skills
 that would have improved it — founder verbatim, 10:04 AM: "I am not an expert,
 so skipping skills because it would conflict with what I've built in the past is
 false compliance."
@@ -181,9 +181,9 @@ warned three times with no filed atom is itself a defect: the warning
 auto-drafts its inbox atom. Drafts folders and practice HQs stay invisible to
 controls until handoff. New guards default WARN and must earn hard.
 
-*Incident:* warn-never-block held (the B4 floor, adopted 07-23) — but 238
+*Incident:* warn-never-block held (the floor adopted 07-23) — but 238
 identical warnings produced zero cleanup tasks while a foreign scaffold squatted
-in the HQ for two days (integrity F-03/F-35: "warnings that spawn no atoms are
+in the HQ for two days ("warnings that spawn no atoms are
 decoration").
 
 ## Article 13 — The desk delegates, narrates, and stays visible
@@ -209,9 +209,7 @@ runs at every session open and marks every adopted line — an unswept inbox is 
 warning with a name on it.
 
 *Incident:* ~14 inbox atoms were picked up by nothing because no intake ran the
-day they landed, and 4 more were converted without adoption marks (integrity
-F-30/F-31); the atoms rule kept the B53 absorb-partition clean across two boards
-(F-32).
+day they landed, and 4 more were converted without adoption marks; the atoms rule kept that week's absorb-partition clean across two boards.
 
 ## Article 15 — Sessions close honestly; drift heals the day it is found
 

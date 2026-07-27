@@ -58,7 +58,7 @@ One line, the OS state version (for example `3.0`). Absent file means a 1.x HQ.
 Only upgrade-your-werkforce rewrites it.
 
 ## os/debug-mode.md - LIVING (machinery, amended only as Article 16 says)
-The debug-mode specification (B28), relocated from `HQ.md` 2026-07-26 -
+The debug-mode specification, relocated from `HQ.md` 2026-07-26 -
 machinery, not a standing order, so it lives here rather than in the
 constitution. `HQ.md`'s "Machinery - debug mode" section is a pointer only.
 

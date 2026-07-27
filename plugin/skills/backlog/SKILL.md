@@ -41,7 +41,7 @@ entry:
 <!-- LEDGER. One line per idea: "- B{n} YYYY-MM-DD {the idea, founder's words}".
      Promotion appends " -> promoted YYYY-MM-DD: what it became"; dropping appends
      " -> dropped YYYY-MM-DD: reason". Lines are never edited or deleted. -->
-- B1 2026-07-21 Werkforce Starter as a gift card SKU for agencies to hand clients
+- B1 2026-07-21 Offer a gift-card version of the audit package for agencies to hand clients
 ```
 
 No seat, no due date, no department - that is the point. Parking commits you to

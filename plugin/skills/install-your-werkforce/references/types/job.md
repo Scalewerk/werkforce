@@ -1,5 +1,5 @@
 # Werkforce type: job
-<!-- Copied verbatim to os/type.md at install when type = job. Retro-fitted from the founder's own hand-patched W2 HQ (the job-type design, 2026-07-24). -->
+<!-- Copied verbatim to os/type.md at install when type = job. Retro-fitted from a real job-type HQ run by hand before this setting existed. -->
 
 Apex seat: Chief of Staff, advisory apex, activated by ceo-seat. Behavior is
 identical to the CEO seat; only the title and its grounding source change.
@@ -8,7 +8,7 @@ Roster: keep all twelve shipped department rows, re-labeled for a W2 role -
 never swapped. Which four are the role's recommended set (the departments a
 W2 role actually staffs, e.g. Sales/Operations/Strategy/Information Security
 equivalents) is not yet decided; leave every row Planned at install and let
-the founder mark recommended rows by hand until a later B45 pass resolves it.
+the founder mark recommended rows by hand until a later design pass resolves it.
 
 Grounding file: company/role-scorecard.md replaces company/business-model.md
 as the capability floor every voice-bearing and safety skill (including

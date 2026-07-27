@@ -21,6 +21,10 @@
   but the 0.1.0 pack left it out (it was founder-signed on 2026-07-25 and
   excluded from the 3.3 assembly only by the signed-content boundary). The pack
   now holds 72 skills.
+- Internal Scalewerk tracking ids (board rows, design ids, draft numbers) are
+  scrubbed from all shipped customer-facing text - every reference now says
+  what it means in plain words. The connecting-tools reference is reconciled
+  with the shipped connect-a-tool skill, which now owns the connection process.
 - The upgrade now seeds TREES.md and verifies every file it promises
   (records/artifact-registry.md included) actually landed, reporting any still
   missing by name; fresh installs place TREES.md too.

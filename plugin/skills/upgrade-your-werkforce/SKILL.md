@@ -24,7 +24,7 @@ you give me something real.
 - A dated, verified backup of your whole HQ before a single byte changes
 - Every file the current version expects added from the shipped seeds - every file you already have left exactly as it is
 - The OS files refreshed from the current references: `os/charter.md`, `os/formats.md`, `os/manifest.md`, and `os/VERSION` stamped to `0.1` (the constitution and the format law only ever change through this skill)
-- A `Werkforce type:` line added to `HQ.md` and `os/type.md` copied in - `business` by default on no answer, `job` only on your explicit confirmation after I say what I see on your org chart (B45; see Step 3)
+- A `Werkforce type:` line added to `HQ.md` and `os/type.md` copied in - `business` by default on no answer, `job` only on your explicit confirmation after I say what I see on your org chart (see Step 3)
 - A `Timezone:` line added to `HQ.md` from your answer - so every date the system writes and speaks is in your time, never UTC
 - The v3 additions seeded from the shipped seeds: `records/audit-log.md` (the master audit log), `company/onboarding.md` (with the steps your HQ has already completed marked Done from the evidence on disk), and `company/design/` (the design system, owned by **design-system**)
 - `company/org-chart.md` grown to the full shape: the Governance table, plus a Planned row for each of the twelve standard departments it was missing
@@ -86,13 +86,13 @@ This step ends with a receipt, not a promise: I re-list every file this step nam
 
 Four OS files are refreshed rather than skipped, because the constitution and the format law only ever change through this skill: `os/charter.md` and `os/formats.md` are copied exactly from the current references, `os/manifest.md` is rewritten to the current pack version and expected tree, and `os/VERSION` is stamped last of all in Step 7. Your founder data is never touched by this refresh - only the OS spine moves.
 
-**The werkforce type (B45, new in this build).** Every HQ this skill touches gets exactly one of three outcomes, decided in this order, and lands here in Step 3 - before `os/VERSION` is stamped in Step 7, so a half-finished migration is still readable:
+**The werkforce type (new in this build).** Every HQ this skill touches gets exactly one of three outcomes, decided in this order, and lands here in Step 3 - before `os/VERSION` is stamped in Step 7, so a half-finished migration is still readable:
 
 1. **`HQ.md` already carries a `Werkforce type:` line.** Your answer, once given, is never asked again - but I still check that `os/type.md` exists and matches the line, and add it from `references/types/<type>.md` if it is missing. A half-migrated HQ that gained the line in an earlier, interrupted run but never got its lens file does not stay broken forever; this is the one thing that "changes" in this case, and only when the file is actually absent.
-2. **No `Werkforce type:` line, and nothing on the org chart suggests otherwise.** I ask once. **Silence default: `business`.** No answer, or an explicit decline, becomes a `business` HQ and gains only the `Werkforce type: business` line plus `os/type.md` - zero other bytes move. This is the whole safety story: every pre-B45 HQ in the world is a `business` HQ until its founder says otherwise.
+2. **No `Werkforce type:` line, and nothing on the org chart suggests otherwise.** I ask once. **Silence default: `business`.** No answer, or an explicit decline, becomes a `business` HQ and gains only the `Werkforce type: business` line plus `os/type.md` - zero other bytes move. This is the whole safety story: every HQ from before this setting existed is a `business` HQ until its founder says otherwise.
 3. **No `Werkforce type:` line, but the org chart's apex-seat cell already holds a non-CEO title** (the pattern the early job-type HQ was hand-patched into before this setting existed). I *say what I see* - name the cell and its title - and ask; I never infer and silently write `job`. **Silence default: same as case 2 - `business`.** No answer, or an explicit decline, still becomes a `business` HQ; the only difference from case 2 is that the migration record notes the apex-title evidence I saw and that you were asked and declined, so a later run does not ask again on the same evidence. If you confirm `job`, I add the `Werkforce type: job` line, copy `os/type.md` from `references/types/job.md`, and add `company/role-scorecard.md` from its seed **only if that file does not already exist** - same skip-if-present rule as every other founder-data file in this step. **I do not re-head your existing `company/profile.md` or rewrite its "What we sell"-style headings to the job vocabulary**, even after you confirm `job` - your own words under a shipped heading are founder-authored divergence, untouchable by this migration. Re-heading an existing profile is offered as a separate, one-at-a-time edit you approve later, never bundled into the type confirmation.
 
-`personal` is never offered by this migration - the the job-type design holds that profile behind a founder conversation that has not happened, so no upgrade path infers or offers it.
+`personal` is never offered by this migration - the werkforce-type design holds that profile behind a founder conversation that has not happened, so no upgrade path infers or offers it.
 
 One scaffold gets refreshed on every board: the comment line at the top that names the stages. The 3.1 stage law is `Filed | In progress | Blocked | Manager review | Operator review | Done | Dropped` - `In review` is renamed to `Manager review` and a new `Operator review` stage sits between it and `Done`, because in 3.1 `Done` means operator-signed, not the Reviewer's word alone. I rewrite that one comment line to the current law.
 
@@ -173,7 +173,7 @@ A 3.1 -> 3.2 step that made the full official seat names offer says which way yo
 - YYYY-MM-DD [company] Migrated HQ 3.1 -> 3.2 - receipt: backup werkforce-backup-YYYY-MM-DD.tar.gz verified; refreshed os/formats.md, os/manifest.md; full official seat names offer: declined (org-chart Seat/Role cells and role-card headers left as written) | accepted (N cells renamed across org chart, N charters, N role cards) | not offered (no abbreviated seat cell found); reviewed by {founder}
 ```
 
-Any run that lands a werkforce-type outcome (B45) says which one, explicitly, in the same record - never silently:
+Any run that lands a werkforce-type outcome says which one, explicitly, in the same record - never silently:
 
 ```markdown
 - YYYY-MM-DD [company] Migrated HQ ... - receipt: ...; werkforce type set to business (no answer, default applied) | werkforce type set to job (org chart apex cell read "{title}", founder confirmed) | werkforce type line already present, unchanged; reviewed by {founder}

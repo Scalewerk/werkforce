@@ -88,7 +88,7 @@ A "Done" with no receipt · a "Done" the founder never signed · a claim with no
 
 ## Operational guidance - not law
 
-These are house habits, not articles. They bind practice, not the constitution, and they change without an amendment (ratified draft:197 - procedure "belongs in the minted reconciler skill, not in law read at every session open").
+These are house habits, not articles. They bind practice, not the constitution, and they change without an amendment (ratified amendment - procedure "belongs in the minted reconciler skill, not in law read at every session open").
 
 - **Check for a skill first.** Before doing a job by hand, check whether a skill already covers it - the wake phrases and the catalog exist so work runs the proven way, not an improvised one. When the same job has gone well twice, it is a candidate for `grow-a-skill`.
 - **The push check, once per turn.** After the founder's actual question is answered - never before it, never instead of it - run `next-action-suggester`'s gates once. If every gate passes (skill listed in a same-turn `os/manifest.md` read, triggering state read this turn, exactly one unambiguous match, not already offered this session, one suggestion per turn at most), append its single `↳ Suggestion:` line and stop. Any gate miss is silence, not a softer line. It is a whisper, never a gate: it blocks nothing, requires no acknowledgement, and long runs of silent turns are the healthy default.

@@ -308,7 +308,7 @@ preset shelf nobody can choose between is a longer interview, not a shorter one.
 
 Every value above traces to a file in the read-only public clone of
 `https://github.com/leonxlnx/taste-skill` at commit `e988add` (2026-07-23), the
-same commit the B53 evaluation read.
+same commit the shipped evaluation read.
 
 | Preset | Source file | Lines |
 |---|---|---|
